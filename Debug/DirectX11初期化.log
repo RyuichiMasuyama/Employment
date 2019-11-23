@@ -1,0 +1,54 @@
+﻿cl : コマンド ライン warning D9030: '/Gm' はマルチプロセシングと互換性がありません。/MP スイッチを無視します
+  WindowsManager.cpp
+  TestScene.cpp
+  TestGameObject.cpp
+  Shader.cpp
+  MyDirectXVertexShader.cpp
+  MyDirectXPixelShader.cpp
+  MyDirectXGeometryShader.cpp
+  RenderTerget.cpp
+  DirectXRenderObject.cpp
+  DirectXRenderManager.cpp
+c:\work\git\project\employment\source\core\designpattern\singleton.h(29): warning C4316: 'mslib::Transform::TransformSendContext': ヒープで割り当てられたオブジェクトが 16 にアラインメントされていない可能性があります
+  c:\work\git\project\employment\source\core\designpattern\singleton.h(29): note: クラス テンプレート のメンバー関数 'mslib::Transform::TransformSendContext *mslib::pattern::Singleton<mslib::Transform::TransformSendContext>::Create(void)' のコンパイル中
+  c:\work\git\project\employment\source\core\designpattern\singleton.h(15): note: コンパイル対象の関数 テンプレート インスタンス化 'mslib::Transform::TransformSendContext *mslib::pattern::Singleton<mslib::Transform::TransformSendContext>::Create(void)' のリファレンスを確認してください
+  c:\work\git\project\employment\source\mydirectxtransform.h(10): note: コンパイル対象の クラス テンプレート インスタンス化 'mslib::pattern::Singleton<mslib::Transform::TransformSendContext>' のリファレンスを確認してください
+  MyDirectXTransform.cpp
+  MyDirectXMath.cpp
+  MyDirectXLight.cpp
+  MyDirectXCamera.cpp
+c:\work\git\project\employment\source\core\designpattern\singleton.h(29): warning C4316: 'mslib::Transform::TransformSendContext': ヒープで割り当てられたオブジェクトが 16 にアラインメントされていない可能性があります
+  c:\work\git\project\employment\source\core\designpattern\singleton.h(29): note: クラス テンプレート のメンバー関数 'mslib::Transform::TransformSendContext *mslib::pattern::Singleton<mslib::Transform::TransformSendContext>::Create(void)' のコンパイル中
+  c:\work\git\project\employment\source\core\designpattern\singleton.h(15): note: コンパイル対象の関数 テンプレート インスタンス化 'mslib::Transform::TransformSendContext *mslib::pattern::Singleton<mslib::Transform::TransformSendContext>::Create(void)' のリファレンスを確認してください
+  c:\work\git\project\employment\source\mydirectxtransform.h(10): note: コンパイル対象の クラス テンプレート インスタンス化 'mslib::pattern::Singleton<mslib::Transform::TransformSendContext>' のリファレンスを確認してください
+  main.cpp
+c:\work\git\project\employment\source\core\designpattern\singleton.h(29): warning C4316: 'mslib::Transform::TransformSendContext': ヒープで割り当てられたオブジェクトが 16 にアラインメントされていない可能性があります
+  c:\work\git\project\employment\source\core\designpattern\singleton.h(29): note: クラス テンプレート のメンバー関数 'mslib::Transform::TransformSendContext *mslib::pattern::Singleton<mslib::Transform::TransformSendContext>::Create(void)' のコンパイル中
+  c:\work\git\project\employment\source\core\designpattern\singleton.h(15): note: コンパイル対象の関数 テンプレート インスタンス化 'mslib::Transform::TransformSendContext *mslib::pattern::Singleton<mslib::Transform::TransformSendContext>::Create(void)' のリファレンスを確認してください
+  c:\work\git\project\employment\source\mydirectxtransform.h(10): note: コンパイル対象の クラス テンプレート インスタンス化 'mslib::pattern::Singleton<mslib::Transform::TransformSendContext>' のリファレンスを確認してください
+  imgui_widgets.cpp
+  imgui_impl_win32.cpp
+  imgui_impl_dx11.cpp
+  imgui_draw.cpp
+  imgui_demo.cpp
+  コードを生成中...
+  コンパイル中...
+  imgui.cpp
+  GameObjectManager.cpp
+  WICTextureLoader.cpp
+  HelperFunction.cpp
+  DirectXTextureManager.cpp
+  DirectX11Manager.cpp
+  DeviceGetter.cpp
+  DepseBufferRender2DGameObject.cpp
+  SceneManager.cpp
+  BaseScene.cpp
+  Object.cpp
+  GameLoopManager.cpp
+  FpsManager.cpp
+  BasePostEffectComponent.cpp
+  BaseLightComponent.cpp
+  CameraComponent.cpp
+  BaseCameraComponent.cpp
+  コードを生成中...
+  DirectX11初期化.vcxproj -> C:\work\git\project\Debug\DirectX11初期化.exe
