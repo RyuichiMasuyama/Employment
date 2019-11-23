@@ -1,0 +1,387 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="source\Windows\WindowsManager.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ImGui\imgui.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ImGui\imgui_demo.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ImGui\imgui_draw.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ImGui\imgui_impl_dx11.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ImGui\imgui_impl_win32.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ImGui\imgui_widgets.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\DirectX\DeviceGetter.cpp">
+      <Filter>DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="source\DirectX\DirectX11Manager.cpp">
+      <Filter>DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="source\DirectX\DirectXTextureManager.cpp">
+      <Filter>DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="source\DirectX\TextureLoader\WICTextureLoader.cpp">
+      <Filter>DirectX\TextureLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="source\DirectX\math\HelperFunction.cpp">
+      <Filter>DirectX\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="source\core\FpsManager.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="source\core\GameLoopManager.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="source\core\Object\Object.cpp">
+      <Filter>core\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="source\core\Scene\SceneManager.cpp">
+      <Filter>core\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="source\core\Scene\BaseScene.cpp">
+      <Filter>core\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="source\core\Component\Camera\CameraComponent.cpp">
+      <Filter>core\Component\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\core\Component\PostEffect\BasePostEffectComponent.cpp">
+      <Filter>core\Component\PostEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="source\core\Component\Camera\base\BaseCameraComponent.cpp">
+      <Filter>core\Component\Camera\base</Filter>
+    </ClCompile>
+    <ClCompile Include="source\core\Component\Light\base\BaseLightComponent.cpp">
+      <Filter>core\Component\Light\base</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Renderer\DirectXRenderObject.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Renderer\DirectXRenderManager.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Shader\MyDirectXPixelShader.cpp">
+      <Filter>Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Shader\MyDirectXVertexShader.cpp">
+      <Filter>Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Shader\Shader.cpp">
+      <Filter>Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Shader\MyDirectXGeometryShader.cpp">
+      <Filter>Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="source\DepseBufferRender2DGameObject.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GameObjectManager.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="source\MyDirectXCamera.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="source\MyDirectXLight.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="source\MyDirectXMath.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="source\MyDirectXTransform.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="source\RenderTerget.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TestGameObject.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TestScene.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="source\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="core">
+      <UniqueIdentifier>{7f78e4ff-722c-4989-b9ab-1b98ae615045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DirectX">
+      <UniqueIdentifier>{756ada3f-74d2-42b5-8ba4-02ef41be7329}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Windows">
+      <UniqueIdentifier>{4ec57b3b-f40e-4a02-9235-546e6c3bdd15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ImGui">
+      <UniqueIdentifier>{59a6eb54-0f7d-4f71-9ac0-3720aa894d6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DirectX\TextureLoader">
+      <UniqueIdentifier>{bfaa0250-c7ca-412e-85f2-33561cad7e00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DirectX\Math">
+      <UniqueIdentifier>{92f22e73-19c7-469a-b7af-edf1cd1cf7c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\Object">
+      <UniqueIdentifier>{ac81cba7-4195-44f1-bc11-98b5f913cfe1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\Component">
+      <UniqueIdentifier>{b2695adb-99a6-4230-94fd-77de4ba6e74a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\DesignPattern">
+      <UniqueIdentifier>{1c101cd8-0574-4b37-a91b-a3a12eac529a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\Scene">
+      <UniqueIdentifier>{86795868-4508-4f47-be61-2cf947e5f39d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\Component\Camera">
+      <UniqueIdentifier>{e8b31c22-4dc2-4b4d-b6c4-504926a97989}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\Component\Light">
+      <UniqueIdentifier>{32538d51-26c5-47ca-b81f-3cba6e41ae66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\Component\PostEffect">
+      <UniqueIdentifier>{f2c714ed-d490-4740-a113-080931b4142a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\Component\Render">
+      <UniqueIdentifier>{9a2f3093-983c-41dd-8b42-4dd4ee585b22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\Component\Camera\base">
+      <UniqueIdentifier>{9b826006-e155-43b6-9b51-db2528f5850d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\Component\Light\base">
+      <UniqueIdentifier>{e90a728e-706e-419a-821a-c9150d81c2f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{141f8b30-68fb-4eb0-afdd-0c3b1141e368}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader">
+      <UniqueIdentifier>{b0c99414-23be-4f5b-a34e-361c95d75bbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="other">
+      <UniqueIdentifier>{d5a5efdb-b218-42bd-9740-07b8b1479b47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader\fx">
+      <UniqueIdentifier>{adb6891d-473a-43a7-8ea4-f467dd62ab95}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\Windows\WindowsDefineData.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Windows\WindowsManager.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ImGui\imconfig.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ImGui\imgui.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ImGui\imgui_impl_dx11.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ImGui\imgui_impl_win32.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ImGui\imgui_internal.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ImGui\ImGuiManager.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ImGui\imstb_rectpack.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ImGui\imstb_textedit.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ImGui\imstb_truetype.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="source\DirectX\Compointers.h">
+      <Filter>DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="source\DirectX\DeviceGetter.h">
+      <Filter>DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="source\DirectX\DirectX11Manager.h">
+      <Filter>DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="source\DirectX\DirectXTextureManager.h">
+      <Filter>DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="source\DirectX\TextureLoader\WICTextureLoader.h">
+      <Filter>DirectX\TextureLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="source\DirectX\math\HelperFunction.h">
+      <Filter>DirectX\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\base.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\FpsManager.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\GameLoopManager.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\Object\object.h">
+      <Filter>core\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\Scene\basescene.h">
+      <Filter>core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\Scene\SceneManager.h">
+      <Filter>core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\DesignPattern\Singleton.h">
+      <Filter>core\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\Component\Camera\CameraComponent.h">
+      <Filter>core\Component\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\Component\PostEffect\BasePostEffectComponent.h">
+      <Filter>core\Component\PostEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\Component\Light\LightComponent.h">
+      <Filter>core\Component\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\Component\Camera\base\BaseCameraComponent.h">
+      <Filter>core\Component\Camera\base</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\Component\Light\base\BaseLightComponent.h">
+      <Filter>core\Component\Light\base</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\Component\Render\RenderComponent.h">
+      <Filter>core\Component\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\Component\Render\Render2DComponent.h">
+      <Filter>core\Component\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Renderer\DirectXRenderManager.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Renderer\DirectXRenderObject.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Shader\MyDirectXGeometryShader.h">
+      <Filter>Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Shader\MyDirectXPixelShader.h">
+      <Filter>Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Shader\MyDirectXVertexShader.h">
+      <Filter>Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Shader\Shader.h">
+      <Filter>Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="source\DepseBufferRender2DGameObject.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameObjectManager.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="source\MyDirectXCamera.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="source\MyDirectXLight.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="source\MyDirectXMath.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="source\MyDirectXTransform.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="source\RenderLayer.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="source\RenderTerget.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TemplateFactory.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TestCompoent.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TestGameObject.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TestScene.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="source\main.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="source\ImGui\imgui.ini">
+      <Filter>ImGui</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="shader\BumpMapPS.fx">
+      <Filter>Shader\fx</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\BumpMapVS.fx">
+      <Filter>Shader\fx</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\fifo.fx">
+      <Filter>Shader\fx</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\ps.fx">
+      <Filter>Shader\fx</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\ps2d.fx">
+      <Filter>Shader\fx</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\psBlackout.fx">
+      <Filter>Shader\fx</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\PSGauss.fx">
+      <Filter>Shader\fx</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\psskydome.fx">
+      <Filter>Shader\fx</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\pstest.fx">
+      <Filter>Shader\fx</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\pstriangle.fx">
+      <Filter>Shader\fx</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\psvscommon.fx">
+      <Filter>Shader\fx</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\testps.fx">
+      <Filter>Shader\fx</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\testvs.fx">
+      <Filter>Shader\fx</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\vs.fx">
+      <Filter>Shader\fx</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\vs2d.fx">
+      <Filter>Shader\fx</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\VSGauss.fx">
+      <Filter>Shader\fx</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\vstriangle.fx">
+      <Filter>Shader\fx</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\Geometry\gs.fx">
+      <Filter>Shader\fx</Filter>
+    </FxCompile>
+  </ItemGroup>
+</Project>
