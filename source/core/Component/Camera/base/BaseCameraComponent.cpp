@@ -1,5 +1,5 @@
 #include "./BaseCameraComponent.h"
-#include "./RenderTerget.h"
+#include "./Renderer/RenderTerget.h"
 
 namespace mslib {
 namespace component {

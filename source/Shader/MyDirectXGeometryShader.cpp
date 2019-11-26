@@ -13,7 +13,8 @@ void GeometryShaderManager::CreateShader(const char * _map_name, const char * _f
 		return;
 	}
 
-	hr = m_device->CreateGeometryShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, m_geometry_shader[_map_name].GetAddressOf());
+	hr = directx::DirectX11Manager::GetInstance().GetDevice->
+		CreateGeometryShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, m_geometry_shader[_map_name].GetAddressOf());
 	if (FAILED(hr)) {
 		return;
 	}

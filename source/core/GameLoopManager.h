@@ -1,57 +1,34 @@
 #pragma once
 
-#include"./DirectX/DirectX11Manager.h"
-#include "./Renderer/DirectXRenderManager.h"
-#include "./MyDirectXCamera.h"
-#include "./MyDirectXLight.h"
-
+#include "./FpsManager.h"
 #include <memory>
 
-class FpsManager;
-
 namespace mslib {
-	namespace directx {
-		class DirectX11Manager;
+class GameLoop {
+public:
+	GameLoop();
 
-	}
-}
+	~GameLoop();
 
-namespace Game {
-	class GameLoop {
-	public:
-		GameLoop(mslib::directx::DirectX11Manager * _directx_manager);
+	void Init();
 
-		~GameLoop();
+	void Update();
 
-		void Init();
+	void Render();
 
-		void Update();
+	void ImGuiRender();
 
-		void Render();
+	void Exit();
 
-		void ImGuiRender();
+private:
+	FpsManager m_fps_manager;
 
-		void Exit();
+	void RenderAfter();
+	void RenderBefore();
 
-	private:
-		mslib::directx::DirectX11Manager *m_directx11_manager;
-		// MyDirectX11::Render::DirectXRender *m_directx_render;
+	void ImGuiRenderAfter();
+	void ImGuiRenderBefor();
 
-		std::unique_ptr<FpsManager> m_fps_manager;
 
-		//ÉJÉÅÉâÇÃê∂ê¨
-		mslib::Camera::Camera m_camera;
-		mslib::Light::ParallelLight m_light;
-
-		void RenderAfter();
-		void RenderBefore();
-
-		void ImGuiRenderAfter();
-		void ImGuiRenderBefor();
-
-		void RenderSetShaders();
-
-		void PostEffect();
-
-	};
+};
 }

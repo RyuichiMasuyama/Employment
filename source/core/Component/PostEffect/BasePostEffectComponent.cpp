@@ -1,16 +1,13 @@
 #include "./BasePostEffectComponent.h"
-#include "./Renderer/DirectXRenderManager.h"
+#include "./Renderer/RenderTerget.h"
 
 namespace mslib {
 namespace component {
 
-void BasePostEffectComponent::Update() {
-	
-}
-
-void BasePostEffectComponent::FixedUpdate() {
-	render::PostEffectData posteffectData;
-	render::DirectXRender::GetInstance().DrawPostEffect(posteffectData);
+BasePostEffectComponent::BasePostEffectComponent(std::weak_ptr<render::RenderTerget> _renderTerget):
+	m_renderTerget(_renderTerget){
+	m_parameter = std::make_shared<render::PostEffect>();
+	m_renderTerget.lock()->SetPostEffectData(m_parameter);
 }
 
 }

@@ -1,58 +1,13 @@
 #include "./Shader/Shader.h"
+#include "./AssetManager/AssetManager.h"
+
+#ifdef DIRECTX11
+#include "./ShaderCompiler.h"
+#endif
 
 namespace mslib {
 namespace directx {
 
-HRESULT CompileShaderFromFile(const char * _file_name, LPCSTR _main_fanction_name, LPCSTR _shader_version, ID3DBlob ** _compile_shader)
-{
-	//コンパイルが成功したか否か
-	HRESULT hr = S_OK;
-
-	//wchar_tに変換するための変数
-	wchar_t file_name[SHADER_NAME_MAX];
-	UINT	name_len = 0;
-
-	//char から wchar_t　へ変換
-	setlocale(LC_ALL, "japanese");
-	mbstowcs_s(&name_len, file_name, SHADER_NAME_MAX, _file_name, _TRUNCATE);
-
-	DWORD shader_flag = D3DCOMPILE_ENABLE_STRICTNESS;
-#if defined(DEBUG)||defined(_DEBUG)
-	shader_flag |= D3DCOMPILE_DEBUG;
-#endif // defined(DEBUG)||defined(_DEBUG)/
-
-	//コンパイルシェーダー(Error検出)
-	ID3DBlob *blob_error = nullptr;
-
-	//シェーダーのコンパイル
-	hr = D3DCompileFromFile(
-		file_name,
-		nullptr,
-		D3D_COMPILE_STANDARD_FILE_INCLUDE,
-		_main_fanction_name,
-		_shader_version,
-		shader_flag,
-		0,
-		_compile_shader,
-		&blob_error
-	);
-
-	if (FAILED(hr)) {
-
-		if (blob_error != nullptr) {
-			MessageBox(
-				NULL,
-				(char*)blob_error->GetBufferPointer(), "ShaderCompileError", MB_OK);
-		}
-		if (blob_error) {
-			blob_error->Release();
-		}
-		return hr;
-	}
-
-	return S_OK;
-
-}
 
 ID3D11Buffer* BufferCreater::CreateConstantBuffer(UINT _byte_size)
 {
@@ -99,28 +54,78 @@ ID3D11Buffer * BufferCreater::CreateIndexBuffer(UINT* _index, UINT _index_num)
 }
 
 //各種シェーダーの生成
-void ShaderWark::Create() {
-	//バーテックスシェーダー
-	m_vertex_manager.CreateShader(shader::INPUT_LAYOUT_NAME::INPUT_LAYOUT_POS_NORMAL_TANGENT_TEXCOORD, "normal_vs", "shader/testvs.fx");
-	m_vertex_manager.CreateShader(shader::INPUT_LAYOUT_NAME::INPUT_LAYOUT_POS_NORMAL_TANGENT_TEXCOORD, "2d_vs", "shader/vs2d.fx");
-	m_vertex_manager.CreateShader(shader::INPUT_LAYOUT_NAME::INPUT_LAYOUT_POS_NORMAL_TANGENT_TEXCOORD, "gauss_vs", "shader/VSGauss.fx");
+//void ShaderWark::Create() {
+//	//バーテックスシェーダー
+//	m_vertex_manager.CreateShader(shader::INPUT_LAYOUT_NAME::INPUT_LAYOUT_POS_NORMAL_TANGENT_TEXCOORD, "normal_vs", "shader/testvs.fx");
+//	m_vertex_manager.CreateShader(shader::INPUT_LAYOUT_NAME::INPUT_LAYOUT_POS_NORMAL_TANGENT_TEXCOORD, "2d_vs", "shader/vs2d.fx");
+//	m_vertex_manager.CreateShader(shader::INPUT_LAYOUT_NAME::INPUT_LAYOUT_POS_NORMAL_TANGENT_TEXCOORD, "gauss_vs", "shader/VSGauss.fx");
+//
+//	//ピクセルシェーダー
+//	m_pixel_manager.CreateShader("normal_ps", "shader/pstest.fx");
+//	m_pixel_manager.CreateShader("2d_ps", "shader/ps2d.fx");
+//	m_pixel_manager.CreateShader("gauss_ps", "shader/PSGauss.fx");
+//
+//	//ジオメトリシェーダー
+//	m_geometry_manager.CreateShader("normal_gs", "shader/Geometry/gs.fx");
+//
+//	// ポストエフェクトシェーダー
+//	// Gauss
+//	m_vertex_manager.CreateShader(shader::INPUT_LAYOUT_NAME::INPUT_LAYOUT_POS_NORMAL_TANGENT_TEXCOORD, "Gauss", "shader/VSGauss.fx");
+//	m_pixel_manager.CreateShader("Gauss", "shader/PSGauss.fx");
+//
+//	// Bloom
+//
+//}
+}
 
-	//ピクセルシェーダー
-	m_pixel_manager.CreateShader("normal_ps", "shader/pstest.fx");
-	m_pixel_manager.CreateShader("2d_ps", "shader/ps2d.fx");
-	m_pixel_manager.CreateShader("gauss_ps", "shader/PSGauss.fx");
+namespace shader{
 
-	//ジオメトリシェーダー
-	m_geometry_manager.CreateShader("normal_gs", "shader/Geometry/gs.fx");
+Shader ShaderLoader::Load(std::string _shaderName, ShaderType _shaderType) {
 
-	// ポストエフェクトシェーダー
-	// Gauss
-	m_vertex_manager.CreateShader(shader::INPUT_LAYOUT_NAME::INPUT_LAYOUT_POS_NORMAL_TANGENT_TEXCOORD, "Gauss", "shader/VSGauss.fx");
-	m_pixel_manager.CreateShader("Gauss", "shader/PSGauss.fx");
+	auto asset = assets::AssetsManager::GetInstance().m_assets[_shaderName];
 
-	// Bloom
+	Shader weakShader;
+#ifdef  DIRECTX11
+	// nullチェック
+	if (asset.operator Microsoft::WRL::Details::BoolType()) {
+	/*	Shader weakShader;
+		asset.AsWeak(&weakShader);
+		return  weakShader;*/
+	}
+	directx::ShaderCompiler shaderCompiler;
 
+	switch (_shaderType)
+	{
+	case ShaderType::VS:
+		asset = shaderCompiler.Load(_shaderName, directx::ShaderType::VS);
+		break;
+	case ShaderType::PS: {
+		auto aaa = shaderCompiler.Load(_shaderName, directx::ShaderType::PS);
+
+		weakShader = (ID3D11PixelShader*)aaa.Get();// = (ID3D11PixelShader*)shaderCompiler.Load(_shaderName, directx::ShaderType::PS).Get();
+		// shaderCompiler.Load(_shaderName, directx::ShaderType::PS);
+		break; }
+	case ShaderType::GS:
+		asset = shaderCompiler.Load(_shaderName, directx::ShaderType::GS);
+		break;
+	case ShaderType::HS:
+		asset = shaderCompiler.Load(_shaderName, directx::ShaderType::HS);
+		break;
+	case ShaderType::DS:
+		asset = shaderCompiler.Load(_shaderName, directx::ShaderType::DS);
+		break;
+	default:
+		break;
+	}
+	//Shader weakShader;
+
+	assets::AssetsManager::GetInstance().m_assets[_shaderName] = asset;
+	//asset.AsWeak(&weakShader);
+
+	return weakShader;
+#endif
 }
 
 }
 }
+

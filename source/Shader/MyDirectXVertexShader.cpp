@@ -127,7 +127,8 @@ void VertexShaderManager::CreateShader(INPUT_LAYOUT_NAME _input_layout_name, con
 	}
 
 	//頂点シェーダーを生成
-	hr = m_device->CreateVertexShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, m_vertex_shader[_map_name].GetAddressOf());
+	hr = directx::DirectX11Manager::GetInstance().GetDevice->
+		CreateVertexShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, m_vertex_shader[_map_name].GetAddressOf());
 	if (FAILED(hr)) {
 		MessageBox(nullptr, "CreateVertexShader error", "error", MB_OK);
 
@@ -136,7 +137,8 @@ void VertexShaderManager::CreateShader(INPUT_LAYOUT_NAME _input_layout_name, con
 	}
 
 	//頂点データ定義生成
-	hr = m_device->CreateInputLayout(&element.at(0), element.size(), blob->GetBufferPointer(), blob->GetBufferSize(), m_input_layout[_map_name].GetAddressOf());
+	hr = directx::DirectX11Manager::GetInstance().GetDevice->
+		CreateInputLayout(&element.at(0), element.size(), blob->GetBufferPointer(), blob->GetBufferSize(), m_input_layout[_map_name].GetAddressOf());
 	if (FAILED(hr)) {
 		MessageBox(nullptr, "CreateInputLayer error", "error", MB_OK);
 

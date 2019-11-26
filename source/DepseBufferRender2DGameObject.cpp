@@ -1,5 +1,6 @@
 #include "./DepseBufferRender2DGameObject.h"
 #include "./core/Component/Render/Render2DComponent.h"
+#include "./AssetManager/MeshLoader.h"
 
 #include <ImGui/imgui.h>
 
@@ -11,8 +12,8 @@ void DepseBuffer2DRenderGameObject::Initialize()
 
 	CreateUpdateFunction(TestUpdateName, &DepseBuffer2DRenderGameObject::TestUpdate, this);
 	SetUpdateFunction(TestUpdateName);
-
-	AddComponent<component::Render2DComponent>("polygon");
+	mesh::MeshLoader loader;
+	AddComponent<component::Render2DComponent>(loader.Load("polygon.obj"));
 }
 void DepseBuffer2DRenderGameObject::ImGuiDraw()
 {

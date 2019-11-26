@@ -11,10 +11,8 @@ class PixelShaderManager {
 private:
 	std::unordered_map<std::string, mslib::directx::PixelShader> m_pixel_shader;
 
-	mslib::directx::Device m_device;
-
 public:
-	PixelShaderManager(mslib::directx::Device _device) :m_device(_device) {};
+	PixelShaderManager() = default;
 
 	//シェーダーのコンパイル
 	void CreateShader(const char * _map_name, const char * _file_name, const char * _main_function_name = "main");

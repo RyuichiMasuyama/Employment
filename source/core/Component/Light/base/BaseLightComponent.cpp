@@ -1,5 +1,5 @@
 #include "./BaseLightComponent.h"
-#include "./MyDirectXTransform.h"
+#include "./DirectX/SubResourceSendManager.h"
 
 namespace mslib {
 namespace component {
