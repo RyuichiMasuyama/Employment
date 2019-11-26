@@ -1,6 +1,6 @@
 #include "MyDirectXCamera.h"
 #include "./Shader/Shader.h"
-#include "MyDirectXTransform.h"
+#include "./DirectX/SubResourceSendManager.h"
 
 namespace mslib {
 namespace Camera {

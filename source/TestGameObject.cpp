@@ -1,6 +1,6 @@
 #include "TestGameObject.h"
 #include "./core/Component/Render/RenderComponent.h"
-
+#include "./AssetManager/MeshLoader.h"
 #include <ImGui/imgui.h>
 
 namespace mslib {
@@ -16,12 +16,12 @@ void TestGameObject::Initialize() {
 
 	CreateUpdateFunction(TestUpdateName, &TestGameObject::TestUpdate, this);
 	SetUpdateFunction(TestUpdateName);
+	mesh::MeshLoader meshLoader;
+	AddComponent<component::RenderComponent>(meshLoader.Load("aaa.obj"));
 
-	AddComponent<component::RenderComponent>("dragon");
+	//directx::BufferCreater creater(directx::DirectX11Manager::GetInstance().GetDevice());
 
-	directx::BufferCreater creater(directx::DirectX11Manager::GetInstance().GetDevice());
-
-	buff = creater.CreateConstantBuffer(sizeof(PostEffectGause));
+	//buff = creater.CreateConstantBuffer(sizeof(PostEffectGause));
 }
 
 void TestGameObject::ImGuiDraw() {

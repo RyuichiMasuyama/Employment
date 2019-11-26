@@ -1,25 +1,26 @@
 #pragma once
 
 #include "./core/Object/Object.h"
+#include "./Renderer/PostEffect.h"
 
 namespace mslib {
+namespace render {
+class RenderTerget;
+}
+
 namespace component {
 
 class BasePostEffectComponent :public Component {
 	BASE_CLASS_IS(Component)
 public:
-	BasePostEffectComponent() = default;
+	BasePostEffectComponent(std::weak_ptr<render::RenderTerget> _renderTerget);
 	virtual ~BasePostEffectComponent() = default;
 
-	virtual void Initialize() {}
-	virtual void Update() override;
-	virtual void FixedUpdate() override;
-
+	std::weak_ptr<render::PostEffect> GetParamater() { return m_parameter; }
 private:
-	// Gaussエフェクトの力
-	float m_gaussPower;
-
-
+	std::shared_ptr<render::PostEffect> m_parameter;
+	// カメラからレンダーターゲットを受け取る
+	std::weak_ptr<render::RenderTerget> m_renderTerget;
 };
 
 }

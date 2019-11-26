@@ -8,6 +8,18 @@ SamplerState g_SamplerShadowMap : register(s1);
 // コンスタントバッファ
 //--------------------------------------------------------------------------------------
 
+struct MaterialStruct
+{
+    float4 ambient;
+    float4 diffuse;
+    float4 emissive;
+    float4 bump;
+    float4 specular;
+    float transparency;
+    float shininess;
+    float reflectivity;
+};
+
 cbuffer ConstantBufferWorld : register(b0)
 {
 	float4x4 World;
@@ -23,10 +35,10 @@ cbuffer ConstantBufferProjection : register(b2)
     float4x4 Projection;
 }
 
+// こちらに変更予定
 //cbuffer ConstantCamera : register(b1)
 //{
-//    float4x4 View;
-//    float4x4 Projection;
+//      Camera
 //}
 
 cbuffer ConstantBufferMaterial : register(b3)
@@ -35,6 +47,12 @@ cbuffer ConstantBufferMaterial : register(b3)
 	float4	diffuseMaterial;
 	float4	specularMaterial;
 }
+
+// こちらに変更予定
+//cbuffer ConstantBufferMaterial : register(b2)
+//{
+//    MaterialStruct material;
+//}
 
 //cbuffer ConstantBufferLight : register(b4)
 //{

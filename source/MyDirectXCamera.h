@@ -2,9 +2,12 @@
 
 #include "MyDirectXMath.h"
 #include "./DirectX/DirectX11Manager.h"
-#include "RenderTerget.h"
 
 namespace mslib {
+namespace render {
+class RenderTerget;
+}
+
 namespace Camera {
 
 class Camera {
@@ -40,7 +43,7 @@ private:
 	directx::Device m_device;
 	directx::DeviceContext m_device_context;
 
-	std::weak_ptr<mslib::render::RenderTerget> m_renderTerget;
+	std::weak_ptr<render::RenderTerget> m_renderTerget;
 
 public:
 	//コンストラクタ

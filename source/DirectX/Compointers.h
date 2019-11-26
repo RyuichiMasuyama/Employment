@@ -8,6 +8,8 @@
 
 namespace mslib {
 namespace directx {
+typedef Microsoft::WRL::ComPtr<ID3D11DeviceChild> D3D11BaseComptr;
+
 typedef Microsoft::WRL::ComPtr<ID3D11Buffer> ConstantBuffer, VertexBuffer, IndexBuffer, StructuredBuffer;
 typedef Microsoft::WRL::ComPtr<ID3D11InputLayout> InputLayout;
 typedef Microsoft::WRL::ComPtr<ID3D11VertexShader> VertexShader;

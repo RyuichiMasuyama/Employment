@@ -14,7 +14,8 @@ void PixelShaderManager::CreateShader(const char * _map_name, const char * _file
 		return;
 	}
 
-	hr = m_device->CreatePixelShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, m_pixel_shader[_map_name].GetAddressOf());
+	hr = directx::DirectX11Manager::GetInstance().GetDevice->
+		CreatePixelShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, m_pixel_shader[_map_name].GetAddressOf());
 	if (FAILED(hr)) {
 		return;
 	}

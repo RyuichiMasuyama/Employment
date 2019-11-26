@@ -32,10 +32,8 @@ private:
 
 	void InputLayoutPick(INPUT_LAYOUT_NAME _input_layout_name, std::vector<D3D11_INPUT_ELEMENT_DESC>& element);
 
-	directx::Device m_device;
-
 public:
-	VertexShaderManager(mslib::directx::Device _device) :m_device(_device) {};
+	VertexShaderManager() = default;
 
 	void CreateShader(INPUT_LAYOUT_NAME _input_layout_name, const char * _map_name, const char* _file_name, const char* _main_function_name = "main");
 

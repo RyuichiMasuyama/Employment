@@ -22,13 +22,7 @@
     <ClCompile Include="source\ImGui\imgui_widgets.cpp">
       <Filter>ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="source\DirectX\DeviceGetter.cpp">
-      <Filter>DirectX</Filter>
-    </ClCompile>
     <ClCompile Include="source\DirectX\DirectX11Manager.cpp">
-      <Filter>DirectX</Filter>
-    </ClCompile>
-    <ClCompile Include="source\DirectX\DirectXTextureManager.cpp">
       <Filter>DirectX</Filter>
     </ClCompile>
     <ClCompile Include="source\DirectX\TextureLoader\WICTextureLoader.cpp">
@@ -64,22 +58,7 @@
     <ClCompile Include="source\core\Component\Light\base\BaseLightComponent.cpp">
       <Filter>core\Component\Light\base</Filter>
     </ClCompile>
-    <ClCompile Include="source\Renderer\DirectXRenderObject.cpp">
-      <Filter>Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Renderer\DirectXRenderManager.cpp">
-      <Filter>Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Shader\MyDirectXPixelShader.cpp">
-      <Filter>Shader</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Shader\MyDirectXVertexShader.cpp">
-      <Filter>Shader</Filter>
-    </ClCompile>
     <ClCompile Include="source\Shader\Shader.cpp">
-      <Filter>Shader</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Shader\MyDirectXGeometryShader.cpp">
       <Filter>Shader</Filter>
     </ClCompile>
     <ClCompile Include="source\DepseBufferRender2DGameObject.cpp">
@@ -88,19 +67,7 @@
     <ClCompile Include="source\GameObjectManager.cpp">
       <Filter>other</Filter>
     </ClCompile>
-    <ClCompile Include="source\MyDirectXCamera.cpp">
-      <Filter>other</Filter>
-    </ClCompile>
-    <ClCompile Include="source\MyDirectXLight.cpp">
-      <Filter>other</Filter>
-    </ClCompile>
     <ClCompile Include="source\MyDirectXMath.cpp">
-      <Filter>other</Filter>
-    </ClCompile>
-    <ClCompile Include="source\MyDirectXTransform.cpp">
-      <Filter>other</Filter>
-    </ClCompile>
-    <ClCompile Include="source\RenderTerget.cpp">
       <Filter>other</Filter>
     </ClCompile>
     <ClCompile Include="source\TestGameObject.cpp">
@@ -110,6 +77,42 @@
       <Filter>other</Filter>
     </ClCompile>
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\Renderer\RenderObject.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="source\DirectX\SubResourceSendManager.cpp">
+      <Filter>DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="source\DirectX\DirectXRenderManager.cpp">
+      <Filter>DirectX\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="source\DirectX\DirectXRenderTerget.cpp">
+      <Filter>DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Renderer\RenderTerget.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Shader\ShaderCompiler.cpp">
+      <Filter>Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Renderer\Render.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="source\DirectX\DirectXPipeline.cpp">
+      <Filter>DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="source\AssetManager\TextureLoader.cpp">
+      <Filter>Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="source\core\Component\Render\RenderComponent.cpp">
+      <Filter>core\Component\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="source\core\Component\Render\Render2DComponent.cpp">
+      <Filter>core\Component\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="source\AssetManager\MeshLoader.cpp">
+      <Filter>Asset</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="core">
@@ -172,6 +175,18 @@
     <Filter Include="Shader\fx">
       <UniqueIdentifier>{adb6891d-473a-43a7-8ea4-f467dd62ab95}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shader\fx\hader">
+      <UniqueIdentifier>{f3da803f-3519-4780-875a-5b6e178fd004}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Asset">
+      <UniqueIdentifier>{4712fd61-1eda-4075-b05e-c46fbeb316e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DirectX\Object">
+      <UniqueIdentifier>{63ad00c8-ce2b-4c68-adda-c12b740d0baa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\Component\Mesh">
+      <UniqueIdentifier>{2cfd55fd-8416-4c02-8f15-eb6689c1c67e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Windows\WindowsDefineData.h">
@@ -210,13 +225,7 @@
     <ClInclude Include="source\DirectX\Compointers.h">
       <Filter>DirectX</Filter>
     </ClInclude>
-    <ClInclude Include="source\DirectX\DeviceGetter.h">
-      <Filter>DirectX</Filter>
-    </ClInclude>
     <ClInclude Include="source\DirectX\DirectX11Manager.h">
-      <Filter>DirectX</Filter>
-    </ClInclude>
-    <ClInclude Include="source\DirectX\DirectXTextureManager.h">
       <Filter>DirectX</Filter>
     </ClInclude>
     <ClInclude Include="source\DirectX\TextureLoader\WICTextureLoader.h">
@@ -267,21 +276,6 @@
     <ClInclude Include="source\core\Component\Render\Render2DComponent.h">
       <Filter>core\Component\Render</Filter>
     </ClInclude>
-    <ClInclude Include="source\Renderer\DirectXRenderManager.h">
-      <Filter>Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Renderer\DirectXRenderObject.h">
-      <Filter>Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Shader\MyDirectXGeometryShader.h">
-      <Filter>Shader</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Shader\MyDirectXPixelShader.h">
-      <Filter>Shader</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Shader\MyDirectXVertexShader.h">
-      <Filter>Shader</Filter>
-    </ClInclude>
     <ClInclude Include="source\Shader\Shader.h">
       <Filter>Shader</Filter>
     </ClInclude>
@@ -291,25 +285,10 @@
     <ClInclude Include="source\GameObjectManager.h">
       <Filter>other</Filter>
     </ClInclude>
-    <ClInclude Include="source\MyDirectXCamera.h">
-      <Filter>other</Filter>
-    </ClInclude>
-    <ClInclude Include="source\MyDirectXLight.h">
-      <Filter>other</Filter>
-    </ClInclude>
     <ClInclude Include="source\MyDirectXMath.h">
       <Filter>other</Filter>
     </ClInclude>
-    <ClInclude Include="source\MyDirectXTransform.h">
-      <Filter>other</Filter>
-    </ClInclude>
     <ClInclude Include="source\RenderLayer.h">
-      <Filter>other</Filter>
-    </ClInclude>
-    <ClInclude Include="source\RenderTerget.h">
-      <Filter>other</Filter>
-    </ClInclude>
-    <ClInclude Include="source\TemplateFactory.h">
       <Filter>other</Filter>
     </ClInclude>
     <ClInclude Include="source\TestCompoent.h">
@@ -322,6 +301,48 @@
       <Filter>other</Filter>
     </ClInclude>
     <ClInclude Include="source\main.h" />
+    <ClInclude Include="source\Renderer\RenderObject.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Renderer\PostEffect.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="source\DirectX\SubResourceSendManager.h">
+      <Filter>DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\DesignPattern\FarmBase.h">
+      <Filter>core\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="source\AssetManager\AssetManager.h">
+      <Filter>Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="source\DirectX\DirectXRenderManager.h">
+      <Filter>DirectX\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="source\DirectX\DirectXRenderTerget.h">
+      <Filter>DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Renderer\RenderTerget.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Shader\ShaderCompiler.h">
+      <Filter>Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Renderer\Render.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="source\DirectX\DirectXPipeline.h">
+      <Filter>DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="source\AssetManager\TextureLoader.h">
+      <Filter>Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\Component\Mesh\MeshComponent.h">
+      <Filter>core\Component\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="source\AssetManager\MeshLoader.h">
+      <Filter>Asset</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="source\ImGui\imgui.ini">
@@ -359,9 +380,6 @@
     <FxCompile Include="shader\pstriangle.fx">
       <Filter>Shader\fx</Filter>
     </FxCompile>
-    <FxCompile Include="shader\psvscommon.fx">
-      <Filter>Shader\fx</Filter>
-    </FxCompile>
     <FxCompile Include="shader\testps.fx">
       <Filter>Shader\fx</Filter>
     </FxCompile>
@@ -382,6 +400,9 @@
     </FxCompile>
     <FxCompile Include="shader\Geometry\gs.fx">
       <Filter>Shader\fx</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\psvscommon.fx">
+      <Filter>Shader\fx\hader</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

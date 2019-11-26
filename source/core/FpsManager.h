@@ -6,25 +6,14 @@
 #include <mmsystem.h>
 #include <memory>
 
-#include "./DirectX/DirectX11Manager.h"
+#ifdef DIRECTX11
 #include "MyDirectXMath.h"
+#endif
+
+namespace mslib {
 
 class FpsManager {
 private:
-	struct ConstantBufferTime {
-		math::Vector4 time;
-		math::Vector4 delta_time;
-	};
-
-	//コンスタントバッファ
-	mslib::directx::ConstantBuffer m_constant_buffer;
-
-	//デバイス
-	mslib::directx::Device m_device;
-
-	//デバイスコンテキスト
-	mslib::directx::DeviceContext m_device_context;
-
 	LARGE_INTEGER m_counter;
 	LONGLONG m_old_counter;
 	LONGLONG m_start_timer;
@@ -36,7 +25,7 @@ private:
 
 	//固定フレームの分数
 	double m_fixed_time_fraction;
-	
+
 	//固定フレームの母数
 	double m_fixed_time_parameter;
 
@@ -49,14 +38,10 @@ private:
 	//FPS計算系のアップデート
 	void FpsUpdate();
 
-	//コンスタントバッファ送信用アップデート
-	void SendConstantBufferUpdate();
+public:
+	FpsManager();
 
-public:// bar.h
-	//FpsManager & operator=(const FpsManager& bar) = default;  // <- またcpp内で適切に実装してやる必要がある
-	FpsManager(mslib::directx::DirectX11Manager*_directx);
-
-	~FpsManager(); // デストラクタを非インライン化;
+	~FpsManager() = default; // デストラクタを非インライン化;
 
 	void Update();
 
@@ -65,3 +50,5 @@ public:// bar.h
 
 	float GetDeltaTime() { return m_delta_time; };
 };
+
+}

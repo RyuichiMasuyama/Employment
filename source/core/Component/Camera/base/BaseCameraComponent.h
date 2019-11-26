@@ -1,7 +1,8 @@
 #pragma once
 
-#include "./RenderTerget.h"
+#include "./Renderer/RenderTerget.h"
 #include "./core/Object/Object.h"
+#include "../../PostEffect/BasePostEffectComponent.h"
 
 // 前方宣言
 namespace  mslib {
@@ -18,6 +19,7 @@ using BaseCameraComponentSPtr = std::shared_ptr<BaseCameraComponent>;
 
 class BaseCameraComponent :public Component{
 	BASE_CLASS_IS(Component)
+	friend object::GameObject;
 public:
 	BaseCameraComponent();
 	virtual ~BaseCameraComponent() = default;
@@ -72,6 +74,16 @@ private:
 
 	//カメラのプロジェクションマトリックスの生成
 	void CreateProjectionMatrix();
+
+	template<class T>
+	std::weak_ptr<T> AddPostEffectComponent() {
+		static_assert(std::is_base_of<component::BasePostEffectComponent, T>::value, "ポストエフェクトを設定してください");
+
+		// ポストエフェクトコンポーネントを生成
+		// 今後、AddComponentではポストエフェクトを
+		// アタッチできないようにしなければいけない
+		auto postEffect = m_transform.lock()->m_gameObject.lock()->AddComponent<T>(m_renderTerget);
+	}
 };
 
 }

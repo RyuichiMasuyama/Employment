@@ -11,10 +11,8 @@ class GeometryShaderManager {
 private:
 	std::unordered_map<std::string, mslib::directx::GeometryShader> m_geometry_shader;
 
-	mslib::directx::Device m_device;
-
 public:
-	GeometryShaderManager(mslib::directx::Device _device) :m_device(_device) {};
+	GeometryShaderManager() = default;
 
 	//シェーダーのコンパイル
 	void CreateShader(const char * _map_name, const char * _file_name, const char * _main_function_name = "main");
