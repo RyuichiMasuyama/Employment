@@ -63,12 +63,12 @@ enum TEXTURE_ENUM {
 };
 
 struct Material {
-	math::Vector3 ambient;		//アンビエント
-	math::Vector3 diffuse;		//ディフューズ
-	math::Vector3 emissive;		//エミッシブ
+	math::Vector3 ambient = math::Vector3(0.1f, 0.1f, 0.1f);		//アンビエント
+	math::Vector3 diffuse = math::Vector3(0.8f, 0.8f, 0.8f);		//ディフューズ
+	math::Vector3 emissive = math::Vector3(0.f, 0.f, 0.f);		//エミッシブ
 	math::Vector3 bump;			//バンプ
 	float transparency;			//トランスペアレント
-	math::Vector4 specular;		//スペキュラ(w=Power)
+	math::Vector4 specular = math::Vector4(0.2f, 0.2f, 0.2f, 0.9f);		//スペキュラ(w=Power)
 	float shininess;			//シャイニーズ
 	float reflectivity;			//リフレクション
 

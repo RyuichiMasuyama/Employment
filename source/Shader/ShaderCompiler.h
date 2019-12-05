@@ -55,6 +55,13 @@ enum INPUT_LAYOUT_NAME :unsigned int {
 class ShaderCompiler {
 public:
 	assets::AssetBase Load(std::string _shaderName, ShaderType _shaderType);
+
+	directx::PixelShader PSLoad(std::string _shaderName);
+	directx::VertexShader VSLoad(std::string _shaderName);
+	directx::InputLayout ILLoad(std::string _shaderName);
+	directx::GeometryShader GSLoad(std::string _shaderName);
+	directx::HullShader HSLoad(std::string _shaderName);
+	directx::DomainShader DSLoad(std::string _shaderName);
 private:
 	void InputLayoutPick(INPUT_LAYOUT_NAME _input_layout_name, std::vector<D3D11_INPUT_ELEMENT_DESC>& element);
 

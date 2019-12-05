@@ -1,22 +1,20 @@
 #pragma once
+#include "./PostEffectBase.h"
 
 namespace mslib {
 namespace render {
+class PostEffect;
 
-struct PostEffect {
-	bool GaussFlag;
-	float GaussPower;
+class PostEffect {
+public:
+	PostEffect(CameraTexture _cameraTexture):m_postEffect(_cameraTexture) {};
+	~PostEffect() = default;
 	
-	bool BloomFlag;
-	float BloomPower;
+	void Rendring();
+	void SetStatus(PostEffectStatus _status);
+private:
+	PostEffectBase m_postEffect;
 };
-
-//class PostEffectCommand {
-//
-//private:
-//	const PostEffect& m_postEffect;
-//
-//};
 
 }
 }

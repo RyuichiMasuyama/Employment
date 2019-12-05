@@ -12,17 +12,15 @@ namespace texture {
 Texture TextureLoader::Load(std::string _fileName) {
 
 #ifdef DIRECTX11
-	Microsoft::WRL::WeakRef weak;
 	// ロードされてれば返す
-	assets::AssetBase asset = assets::AssetsManager::GetInstance().m_assets[_fileName];
-	if (asset.operator Microsoft::WRL::Details::BoolType() != nullptr) {
-		asset.AsWeak(&weak);
-		return weak;
+	auto &asset = assets::AssetsManager::GetInstance().m_assets[_fileName];
+	if (asset.has_value()) {
+		return std::any_cast<Texture>(asset);
 	}
 
 	// されていないのでロードする
 	HRESULT hr;
-	directx::ShaderTexture texture;
+	Texture texture;
 	char current_path[1024];
 	GetCurrentDirectory(1024, current_path);	// 当初のカレントフォルダの記録
 
@@ -44,13 +42,12 @@ Texture TextureLoader::Load(std::string _fileName) {
 
 	// ロードをミスするとnullを返す
 	if (FAILED(hr)) {
-		assets::AssetsManager::GetInstance().m_assets[_fileName] = nullptr;
+		asset = nullptr;
 		return nullptr; 
 	}
 	// ロードができたのでアセットManagerにセット
-	assets::AssetsManager::GetInstance().m_assets[_fileName] = texture;
-	texture.AsWeak(&weak);
-	return weak;
+	asset = texture;
+	return texture;
 #endif
 }
 

@@ -51,6 +51,7 @@ public:
 	mslib::directx::RenderTargetView GetRenderTargetView();
 	mslib::directx::DepthStencilState GetDepthStencilState();
 	mslib::directx::DepthStencilView GetDepthStencilView();
+	mslib::directx::SamplerState GetSamplerState();
 
 	void TurnOnAlphaBlending();
 	void TurnOffAlphaBlending();

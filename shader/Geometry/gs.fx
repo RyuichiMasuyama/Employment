@@ -24,6 +24,25 @@ float4x4 Size(float _size)
     return resize;
 }
 
+// 頂点カラー
+//[maxvertexcount(3)]
+//void main(triangle VS_GAUSSE_OUTPUT input[3], inout TriangleStream<VS_GAUSSE_OUTPUT> TriStr)
+//{
+    
+//		//同じデータを挿入
+//    VS_GAUSSE_OUTPUT out_vertex;
+//    out_vertex = input[0];
+//    out_vertex.Color = float4(1.f, 0.f, 0.f, 1.f);
+//    TriStr.Append(out_vertex);
+//    out_vertex = input[1];
+//    out_vertex.Color = float4(1.f, 1.f, 0.f, 1.f);
+//    TriStr.Append(out_vertex);
+//    out_vertex = input[2];
+//    out_vertex.Color = float4(1.f, 0.f, 1.f, 1.f);
+//    TriStr.Append(out_vertex);
+//}
+
+// アウトライン
 [maxvertexcount(6)]
 void main(triangle VS_OUTPUT input[3], inout TriangleStream<VS_OUTPUT> TriStr)
 {
@@ -33,10 +52,6 @@ void main(triangle VS_OUTPUT input[3], inout TriangleStream<VS_OUTPUT> TriStr)
         VS_OUTPUT out_vertex = input[i];
 		
         TriStr.Append(out_vertex);
-
-        //out_vertex.Pos.x += 5.f;
-
-       // TriStr.Append(out_vertex);
     }
     TriStr.RestartStrip();
 
@@ -53,44 +68,6 @@ void main(triangle VS_OUTPUT input[3], inout TriangleStream<VS_OUTPUT> TriStr)
 
         TriStr.Append(out_vertex);
     }
-    
-    //VS_OUTPUT out_put = (VS_OUTPUT) 0;
-
-    //out_put.Pos.x = -0.25f;
-    //out_put.Pos.y = 0.25f;
-    //out_put.Pos.z = 0.5f;
-    //out_put.Pos.w = 1.f;
-
-    //// out_put.Color.a = 1.f;
-
-    //TriStr.Append(out_put);
-    
-    //out_put.Pos.x = 0.25f;
-    //out_put.Pos.y = 0.25f;
-    //out_put.Pos.z = 0.5f;
-    //out_put.Pos.w = 1.f;
-    
-    ////out_put.Color.a = 1.f;
-
-    //TriStr.Append(out_put);
-    
-    //out_put.Pos.x = -0.25f;
-    //out_put.Pos.y = -0.25f;
-    //out_put.Pos.z = 0.5f;
-    //out_put.Pos.w = 1.f;
-
-    //// out_put.Color.a = 1.f;
-
-    //TriStr.Append(out_put);
-    
-    //out_put.Pos.x = 0.25f;
-    //out_put.Pos.y = -0.25f;
-    //out_put.Pos.z = 0.5f;
-    //out_put.Pos.w = 1.f;
-
-    //// out_put.Color.a = 1.f;
-
-    //// TriStr.Append(out_put);
 
     TriStr.RestartStrip();
 

@@ -48,10 +48,12 @@ void FpsManager::Update() {
 	//FPSアップデート
 	FpsUpdate();
 
-	directx::SubResourceSendManager::GetInstance().SetTimeBuffer(
-		math::Vector4(m_time, m_time / 2.f, m_time / 4.f, m_time / 8.f),
-		math::Vector4(m_delta_time, m_delta_time / 2.f, m_delta_time / 4.f, m_delta_time / 8.f)
-	);
+	if (GetFixedFlag()) {
+		directx::SubResourceSendManager::GetInstance().SetTimeBuffer(
+			math::Vector4(m_time, m_time / 2.f, m_time / 4.f, m_time / 8.f),
+			math::Vector4(m_delta_time, m_delta_time / 2.f, m_delta_time / 4.f, m_delta_time / 8.f)
+		);
+	}
 }
 
 }

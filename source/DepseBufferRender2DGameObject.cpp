@@ -12,8 +12,8 @@ void DepseBuffer2DRenderGameObject::Initialize()
 
 	CreateUpdateFunction(TestUpdateName, &DepseBuffer2DRenderGameObject::TestUpdate, this);
 	SetUpdateFunction(TestUpdateName);
-	mesh::MeshLoader loader;
-	AddComponent<component::Render2DComponent>(loader.Load("polygon.obj"));
+	// mesh::MeshLoader loader;
+	// AddComponent<component::Render2DComponent>(loader.Load("assets/polygon.mobj"));
 }
 void DepseBuffer2DRenderGameObject::ImGuiDraw()
 {

@@ -7,21 +7,25 @@ namespace directx {
 
 void DirectXPipeline::SetVertexPixcle(std::string _vs, std::string _ps) {
 	shader::ShaderLoader shaderLoader;
-	m_shaderResource.vertexShader = shaderLoader.Load(_vs, shader::ShaderType::VS);
-	m_shaderResource.pixelShader = shaderLoader.Load(_ps, shader::ShaderType::PS);
-	m_shaderResource.inputLayer = shaderLoader.Load(_ps, shader::ShaderType::IL);
+	shaderLoader.Load(_vs, m_shaderResource.vertexShader, shader::ShaderType::VS);
+	shaderLoader.Load(_ps, m_shaderResource.pixelShader, shader::ShaderType::PS);
+	shaderLoader.Load(_vs, m_shaderResource.inputLayer, shader::ShaderType::IL);
 }
 
 void DirectXPipeline::SetGeometory(std::string _gs) {
 	shader::ShaderLoader shaderLoader;
-	m_shaderResource.geometryShader = shaderLoader.Load(_gs, shader::ShaderType::GS);
+	shaderLoader.Load(_gs, m_shaderResource.geometryShader, shader::ShaderType::GS);
 }
 
 void DirectXPipeline::SetHullDomainShader(std::string _ds, std::string _hs) {
 	shader::ShaderLoader shaderLoader;
-	m_shaderResource.domainShader = shaderLoader.Load(_ds, shader::ShaderType::DS);
-	m_shaderResource.hullShader = shaderLoader.Load(_hs, shader::ShaderType::HS);
+	shaderLoader.Load(_ds, m_shaderResource.domainShader, shader::ShaderType::DS);
+	shaderLoader.Load(_hs, m_shaderResource.hullShader, shader::ShaderType::HS);
 }
+void DirectXPipeline::SetTexture(texture::Texture _texture, int _setNumber) {
+	if (_setNumber < m_texture.size()) m_texture[_setNumber] = _texture;
+}
+
 //
 //// 位置情報
 //directx::SubResourceSendManager::GetInstance().SetWorldObjectBuffer();
@@ -30,39 +34,25 @@ void DirectXPipeline::Draw() {
 
 	//描画用のシェーダーやレイアウト、頂点データーを送信
 	// 頂点フォーマットをセット
-	directx::VertexShader vs;
-	directx::PixelShader ps;
-	directx::InputLayout layer;
-	directx::GeometryShader gs;
-	directx::HullShader hs;
-	directx::DomainShader ds;
-/*
-	m_shaderResource.vertexShader .As(&vs);
-	m_shaderResource.pixelShader.As(&ps);
-	m_shaderResource.inputLayer.As(&layer);
-	m_shaderResource.geometryShader.As(&gs);
-	m_shaderResource.hullShader.As(&hs);
-	m_shaderResource.domainShader.As(&ds);
-*/
-	deviceContext->IASetInputLayout(layer.Get());
+	deviceContext->IASetInputLayout(m_shaderResource.inputLayer.Get());
 
 	// 頂点シェーダーをセット
-	deviceContext->VSSetShader(vs.Get(), nullptr, 0);
+	deviceContext->VSSetShader(m_shaderResource.vertexShader.Get(), nullptr, 0);
 
 	// ピクセルシェーダーをセット
-	deviceContext->PSSetShader(ps.Get(), nullptr, 0);
+	deviceContext->PSSetShader(m_shaderResource.pixelShader.Get(), nullptr, 0);
 
-	// サンプラーステートを転送
-	// deviceContext->PSSetSamplers(0, 1, render_object.lock()->GetAddressOf());
+	//// サンプラーステートを転送
+	//deviceContext->PSSetSamplers(0, 1, .lock()->GetAddressOf());
 
 	//ジオメトリシェーダーをセット
-	deviceContext->GSSetShader(gs.Get(), nullptr, 0);
+	deviceContext->GSSetShader(m_shaderResource.geometryShader.Get(), nullptr, 0);
 
 	//ハルシェーダーをセット
-	deviceContext->HSSetShader(hs.Get(), nullptr, 0);
+	deviceContext->HSSetShader(m_shaderResource.hullShader.Get(), nullptr, 0);
 
 	//ドメインシェーダーをセット
-	deviceContext->DSSetShader(ds.Get(), nullptr, 0);
+	deviceContext->DSSetShader(m_shaderResource.domainShader.Get(), nullptr, 0);
 
 	//↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
@@ -81,10 +71,35 @@ void DirectXPipeline::Draw() {
 	deviceContext->IASetIndexBuffer(m_index_buffer.Get(), DXGI_FORMAT_R32_UINT, 0);
 	auto material = m_mesh->GetMaterial();
 	for (unsigned int i = 0; i < m_texture.size(); i++) {
-		ShaderTexture tex;
-		//m_texture[i].As(&tex);
-		deviceContext->PSSetShaderResources(i, 1, tex.GetAddressOf());
+		deviceContext->PSSetShaderResources(i, 1, m_texture[i].GetAddressOf());
 	}
+	SubResourceSendManager::GetInstance().SetMaterialBuffer(material);
+
+	unsigned int indexCount = static_cast<int>(m_mesh->GetPolygons()->index.size());
+	// 描画！！！
+	deviceContext->DrawIndexed(
+		indexCount,					// インデックスの数
+		0,							// 最初のインデックスバッファの位置
+		0							// 頂点バッファの最初からの位置
+	);
+}
+
+void DirectXPipeline::NoSetShaderDraw() {
+	auto deviceContext = DirectX11Manager::GetInstance().GetDeviceContext();
+
+	// 頂点バッファをセットする
+	unsigned int stride = sizeof(render::Vertex3DModel);
+	unsigned  offset = 0;
+
+	deviceContext->IASetVertexBuffers(0, 1, m_vertex_buffer.GetAddressOf(), &stride, &offset);
+
+	//インデックスバッファをセット
+	deviceContext->IASetIndexBuffer(m_index_buffer.Get(), DXGI_FORMAT_R32_UINT, 0);
+	auto material = m_mesh->GetMaterial();
+	for (unsigned int i = 0; i < m_texture.size(); i++) {
+		deviceContext->PSSetShaderResources(i, 1, m_texture[i].GetAddressOf());
+	}
+	SubResourceSendManager::GetInstance().SetMaterialBuffer(material);
 
 	unsigned int indexCount = static_cast<int>(m_mesh->GetPolygons()->index.size());
 	// 描画！！！
@@ -143,8 +158,12 @@ void DirectXPipeline::CreateIndexBuffer(size_t _indexNum, void* _indexFrontAddre
 }
 
 void DirectXPipeline::LoadTexture(std::string _textureName) {
-	texture::TextureLoader loader;
-	m_texture.push_back(loader.Load(_textureName));
+	if (!(_textureName == "null" || _textureName == " ")) {
+		texture::TextureLoader loader;
+		m_texture.push_back(loader.Load(_textureName));
+	} else {
+		m_texture.push_back(nullptr);
+	}
 }
 
 }

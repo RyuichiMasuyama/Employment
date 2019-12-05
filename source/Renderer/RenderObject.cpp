@@ -89,14 +89,29 @@ void MyMesh::Load(std::string _file_name) {
 
 		fscanf(p_file, "\n");
 
+		char shaderName[256];
+		fscanf(p_file, "%s", shaderName);
+		m_material.vsName= shaderName;
+		fscanf(p_file, "%s", shaderName);
+		m_material.psName = shaderName;
+		fscanf(p_file, "%s", shaderName);
+		m_material.gsName = shaderName;
+		fscanf(p_file, "%s", shaderName);
+		m_material.hsName = shaderName;
+		fscanf(p_file, "%s", shaderName);
+		m_material.dsName = shaderName;
 		fclose(p_file);
 
 		m_pipeline.CreateIndexBuffer(m_polygons.index.size(), &m_polygons.index[0]);
-		m_pipeline.CreateVertexBuffer(sizeof(m_polygons.vertex[0]), m_polygons.vertex.size(), &m_polygons.vertex[0]);
+		m_pipeline.CreateVertexBuffer(sizeof(m_polygons.vertex[0]), m_polygons.vertex.size(), &m_polygons.vertex.at(0));
 
 		for (auto itr : m_material.textureName) {
 			m_pipeline.LoadTexture(itr);
 		}
+		// シェーダーロード
+		m_pipeline.SetVertexPixcle(m_material.vsName, m_material.psName);
+		m_pipeline.SetGeometory(m_material.gsName);
+		m_pipeline.SetHullDomainShader(m_material.hsName, m_material.dsName);
 
 		return; 
 

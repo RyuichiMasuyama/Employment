@@ -5,7 +5,7 @@
 
 #include "./core/Object/object.h"
 #include "./imgui/imgui.h"
-#include "./DirectX/DirectX11Manager.h"
+#include "./core/Component/PostEffect/BasePostEffectComponent.h"
 
 namespace mslib {
 namespace origin {
@@ -27,6 +27,23 @@ private:
 	float gauuse = 1.f;
 };
 
+class HaveCameraGameObject :public object::GameObject {
+	BASE_CLASS_IS(GameObject)
+public:
+	static constexpr const char* TestUpdateName = "TestUpdate";
+
+	void Initialize() override;
+
+	void ImGuiDraw() override;
+
+private:
+	float m_gauusePower;
+	float m_bloomPower;
+	bool m_gauuseFlag;
+	bool m_bloomFlag;
+	std::weak_ptr<component::BasePostEffectComponent> m_postEffect;
+	void TestUpdate() {};
+};
 }
 }
 

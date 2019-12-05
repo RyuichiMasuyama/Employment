@@ -31,7 +31,9 @@
     <ClCompile Include="source\AssetManager\TextureLoader.cpp" />
     <ClCompile Include="source\core\Component\Camera\base\BaseCameraComponent.cpp" />
     <ClCompile Include="source\core\Component\Camera\CameraComponent.cpp" />
+    <ClCompile Include="source\core\Component\Camera\ShadowMapCameraComponent.cpp" />
     <ClCompile Include="source\core\Component\Light\base\BaseLightComponent.cpp" />
+    <ClCompile Include="source\core\Component\Light\DirectionalLightComponent.cpp" />
     <ClCompile Include="source\core\Component\PostEffect\BasePostEffectComponent.cpp" />
     <ClCompile Include="source\core\Component\Render\Render2DComponent.cpp" />
     <ClCompile Include="source\core\Component\Render\RenderComponent.cpp" />
@@ -50,6 +52,7 @@
     <ClCompile Include="source\DirectX\TextureLoader\WICTextureLoader.cpp" />
     <ClCompile Include="source\GameObjectManager.cpp" />
     <ClCompile Include="source\ImGui\imgui.cpp" />
+    <ClCompile Include="source\ImGui\ImGuiManager.cpp" />
     <ClCompile Include="source\ImGui\imgui_demo.cpp" />
     <ClCompile Include="source\ImGui\imgui_draw.cpp" />
     <ClCompile Include="source\ImGui\imgui_impl_dx11.cpp" />
@@ -57,6 +60,11 @@
     <ClCompile Include="source\ImGui\imgui_widgets.cpp" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\MyDirectXMath.cpp" />
+    <ClCompile Include="source\origne\GameObjectGround.cpp" />
+    <ClCompile Include="source\origne\GameObjectLight.cpp" />
+    <ClCompile Include="source\Renderer\DirectXPostEffect.cpp" />
+    <ClCompile Include="source\Renderer\PostEffect.cpp" />
+    <ClCompile Include="source\Renderer\PostEffectBase.cpp" />
     <ClCompile Include="source\Renderer\Render.cpp" />
     <ClCompile Include="source\Renderer\RenderObject.cpp" />
     <ClCompile Include="source\Renderer\RenderTerget.cpp" />
@@ -73,8 +81,11 @@
     <ClInclude Include="source\core\base.h" />
     <ClInclude Include="source\core\Component\Camera\base\BaseCameraComponent.h" />
     <ClInclude Include="source\core\Component\Camera\CameraComponent.h" />
+    <ClInclude Include="source\core\Component\Camera\ShadowMapCameraComponent.h" />
     <ClInclude Include="source\core\Component\Light\base\BaseLightComponent.h" />
-    <ClInclude Include="source\core\Component\Light\LightComponent.h" />
+    <ClInclude Include="source\core\Component\Light\DirectionalLightComponent.h" />
+    <ClInclude Include="source\core\Component\Light\PointLightComponent.h" />
+    <ClInclude Include="source\core\Component\Light\SpotLightComponent.h" />
     <ClInclude Include="source\core\Component\Mesh\MeshComponent.h" />
     <ClInclude Include="source\core\Component\PostEffect\BasePostEffectComponent.h" />
     <ClInclude Include="source\core\Component\Render\Render2DComponent.h" />
@@ -107,7 +118,11 @@
     <ClInclude Include="source\ImGui\imstb_truetype.h" />
     <ClInclude Include="source\main.h" />
     <ClInclude Include="source\MyDirectXMath.h" />
+    <ClInclude Include="source\origne\GameObjectGround.h" />
+    <ClInclude Include="source\origne\GameObjectLight.h" />
+    <ClInclude Include="source\Renderer\DirectXPostEffect.h" />
     <ClInclude Include="source\Renderer\PostEffect.h" />
+    <ClInclude Include="source\Renderer\PostEffectBase.h" />
     <ClInclude Include="source\Renderer\Render.h" />
     <ClInclude Include="source\Renderer\RenderObject.h" />
     <ClInclude Include="source\Renderer\RenderTerget.h" />
@@ -124,6 +139,12 @@
     <None Include="source\ImGui\imgui.ini" />
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Include="shader\Base\psRender2DBase.fx">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="shader\Base\vsRender2DBase.fx">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
+    </FxCompile>
     <FxCompile Include="shader\BumpMapPS.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -186,6 +207,9 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="shader\psShadowMap.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="shader\psskydome.fx">
@@ -251,6 +275,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">Vertex</ShaderType>
     </FxCompile>
     <FxCompile Include="shader\VSGauss.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -258,6 +283,9 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="shader\vsShadowMap.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="shader\vstriangle.fx">
@@ -412,6 +440,7 @@
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PreprocessorDefinitions>DIRECTX11;_DIRECTX11;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <FxCompile>
       <ShaderModel>5.1</ShaderModel>

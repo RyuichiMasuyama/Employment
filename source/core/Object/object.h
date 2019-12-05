@@ -15,6 +15,11 @@
 
 namespace mslib {
 
+// ゲームオブジェクトの管理
+namespace manager {
+class GameObjectManager;
+}
+
 namespace component {
 class Component;
 using ComponentSPtr = std::shared_ptr<Component>;
@@ -72,6 +77,7 @@ protected:
 	// transform
 	math::Vector3 m_position;
 	math::Quaternion m_quaternion;
+	math::Vector3 m_rotate;
 	math::Vector3 m_scale;
 
 	// マトリックス
@@ -80,9 +86,11 @@ protected:
 
 class GameObject :public TransformObejct {
 	BASE_CLASS_IS(TransformObejct)
+		friend manager::GameObjectManager;
+
 public:
 	static constexpr const char*  NonUpadteFunctionName = "NonUpadteFuntionName";
-	
+
 	GameObject();
 	~GameObject() = default;
 
@@ -92,23 +100,20 @@ public:
 
 	virtual void ImGuiDraw() {};
 
-	virtual void BeforUpdate() {};
-	virtual void AfterUpdate() {};
-
 	virtual void FixedUpdate();
 
 	template<class T, class...LIST>
 	std::weak_ptr<T> AddComponent(LIST&&... _list) {
-		static_assert(std::is_base_of<component::Component,T>::value, "ゲームオブジェクトを継承してください");
+		static_assert(std::is_base_of<component::Component, T>::value, "ゲームオブジェクトを継承してください");
 		auto result = std::make_shared<T>(_list...);
 		// component::ComponentSPtr comRes = result;
 		result->m_transform = m_transform;
 		m_component.push_back(result);
 		result->Initialize();
-		
+
 		// 優先順位の並び替え今後実装予定
 		/*std::sort(m_component.begin(), m_component.end(), [](auto itr, auto itr2) {
-			return itr.m_priority < itr2.m_priority; 
+			return itr.m_priority < itr2.m_priority;
 		});*/
 
 		return result;
@@ -126,6 +131,8 @@ private:
 
 	bool m_isActive = true;
 
+	void TransformUpdate();
+	void ChaildUpdate(const math::Matrix& _parentMat);
 
 protected:
 	template<typename T,class P>
@@ -139,6 +146,9 @@ protected:
 	const bool& GetActive() { return m_isActive; } 
 
 	transform::TransformSPtr m_transform;
+
+	virtual void BeforUpdate() {};
+	virtual void AfterUpdate() {};
 
 };
 
@@ -174,20 +184,29 @@ public:
 	Transform(
 		math::Vector3& _position,
 		math::Quaternion& _quaternion,
+		math::Vector3 _rotate,
 		math::Vector3& _scale,
-		math::Matrix& _matrix)
+		math::Matrix& _matrix,
+		object::GameObject* m_gameObject)
 		:m_position(_position),
 		m_quaternion(_quaternion),
+		m_rotate(_rotate),
 		m_scale(_scale),
-		m_matrix(_matrix){};
+		m_matrix(_matrix),
+		m_gameObject(m_gameObject) {}
 
 	TransformPtr m_parent;
 	std::vector<TransformPtr> m_children;
-	object::GameObjectPtr m_gameObject;
+
+	// from_thisを使いたくないので生ポを保持させる
+	// deleteされないか心配
+
+	object::GameObject* m_gameObject;
 
 	// 位置・回転・サイズ
 	math::Vector3& m_position;
 	math::Quaternion& m_quaternion;
+	math::Vector3& m_rotate;
 	math::Vector3& m_scale;
 
 	// マトリックス

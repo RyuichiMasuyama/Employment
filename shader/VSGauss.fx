@@ -13,7 +13,7 @@ VS_GAUSSE_OUTPUT main(float4 Pos : POSITION,
     VS_GAUSSE_OUTPUT output = (VS_GAUSSE_OUTPUT) 0;
 
     // äÓñ{ìIÇ»èÓïÒ
-    output.Pos = mul(Pos, World);
+    output.Pos = Pos;
     output.Pos.w = 1.f;
     output.Color = float4(1.0f, 1.0f, 1.0f, 1.0f);
     output.Tex = Tex;

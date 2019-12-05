@@ -9,8 +9,8 @@ namespace render{
 class MyMesh;
 }
 namespace directx {
-
 class DirectXPipeline {
+	friend class DirectXPostEffect;
 private:
 	VertexBuffer m_vertex_buffer;
 	IndexBuffer m_index_buffer;
@@ -28,7 +28,10 @@ public:
 	void SetGeometory(std::string	_gs);
 	void SetHullDomainShader(std::string	_ds, std::string	_hs);
 
+	void SetTexture(texture::Texture _texture,int _setNumber);
+
 	void Draw();
+	void NoSetShaderDraw();
 
 	void CreateVertexBuffer(size_t _vertexSize, size_t _vertexNum, void *_vertexFrontAddress);
 	void CreateIndexBuffer(size_t _indexNum, void* _indexFrontAddress);

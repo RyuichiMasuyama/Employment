@@ -6,14 +6,14 @@ namespace mslib {
 namespace assets {
 
 
-
-class AssetsManager :public  pattern::Singleton<AssetsManager> {
-public:
-
-private:
-	std::unordered_map<>m_textures;
-
-};
+//
+//class AssetsManager :public  pattern::Singleton<AssetsManager> {
+//public:
+//
+//private:
+//	std::unordered_map<>m_textures;
+//
+//};
 
 }
 }

@@ -7,7 +7,7 @@ namespace mslib {
 namespace texture {
 
 #ifdef DIRECTX11
-using Texture = Microsoft::WRL::WeakRef;
+using Texture = directx::ShaderTexture;
 #endif
 
 class TextureLoader {

@@ -45,9 +45,7 @@ HRESULT CompileShaderFromFile(const char * _file_name, LPCSTR _main_fanction_nam
 	if (FAILED(hr)) {
 
 		if (blob_error != nullptr) {
-			MessageBox(
-				NULL,
-				(char*)blob_error->GetBufferPointer(), "ShaderCompileError", MB_OK);
+			MessageBox(NULL, (char*)blob_error->GetBufferPointer(), "ShaderCompileError", MB_OK);
 		}
 		if (blob_error) {
 			blob_error->Release();
@@ -61,8 +59,6 @@ HRESULT CompileShaderFromFile(const char * _file_name, LPCSTR _main_fanction_nam
 assets::AssetBase ShaderCompiler::Load(std::string _shaderName, ShaderType _shaderType) {
 	auto device = directx::DirectX11Manager::GetInstance().GetDevice();
 
-	std::any myAny;
-
 	switch (_shaderType)
 	{
 	case ShaderType::VS: {
@@ -73,6 +69,8 @@ assets::AssetBase ShaderCompiler::Load(std::string _shaderName, ShaderType _shad
 		HRESULT hr = directx::CompileShaderFromFile(_shaderName.c_str(), "main", "vs_5_0", &blob);
 
 		if (FAILED(hr)) {
+			std::string errorMessage = "[" + _shaderName + "]is NotFound\nPlease check File path";
+			MessageBox(nullptr, errorMessage.c_str(), "error", MB_OK);
 			return nullptr;
 		}
 
@@ -117,6 +115,8 @@ assets::AssetBase ShaderCompiler::Load(std::string _shaderName, ShaderType _shad
 		HRESULT hr = directx::CompileShaderFromFile(_shaderName.c_str(), "main", "ps_5_0", &blob);
 
 		if (FAILED(hr)) {
+			std::string errorMessage = "[" + _shaderName + "]is NotFound\nPlease check File path";
+			MessageBox(nullptr, errorMessage.c_str(), "error", MB_OK);
 			return nullptr;
 		}
 
@@ -128,7 +128,6 @@ assets::AssetBase ShaderCompiler::Load(std::string _shaderName, ShaderType _shad
 			blob->Release();
 			return nullptr;
 		}
-		myAny = shader;
 		return shader;
 	}
 
@@ -140,6 +139,8 @@ assets::AssetBase ShaderCompiler::Load(std::string _shaderName, ShaderType _shad
 		HRESULT hr = directx::CompileShaderFromFile(_shaderName.c_str(), "main", "gs_5_0", &blob);
 
 		if (FAILED(hr)) {
+			std::string errorMessage = "[" + _shaderName + "]is NotFound\nPlease check File path";
+			MessageBox(nullptr, errorMessage.c_str(), "error", MB_OK);
 			return nullptr;
 		}
 
@@ -159,6 +160,118 @@ assets::AssetBase ShaderCompiler::Load(std::string _shaderName, ShaderType _shad
 		break;
 	}
 	return nullptr;
+}
+
+directx::PixelShader ShaderCompiler::PSLoad(std::string _shaderName) {
+	auto device = directx::DirectX11Manager::GetInstance().GetDevice();
+	//コンパイル済みシェーダー
+	ID3DBlob * blob = nullptr;
+	directx::PixelShader shader;
+	HRESULT hr = directx::CompileShaderFromFile(_shaderName.c_str(), "main", "ps_5_0", &blob);
+
+	if (FAILED(hr)) {
+		std::string errorMessage = "[" + _shaderName + "]is NotFound\nPlease check File path";
+		MessageBox(nullptr, errorMessage.c_str(), "error", MB_OK);
+		return nullptr;
+	}
+
+	//頂点シェーダーを生成
+	hr = device->CreatePixelShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, shader.GetAddressOf());
+	if (FAILED(hr)) {
+		MessageBox(nullptr, "CreateVertexShader error", "error", MB_OK);
+
+		blob->Release();
+		return nullptr;
+	}
+	return shader;
+}
+
+directx::VertexShader ShaderCompiler::VSLoad(std::string _shaderName) {
+	//コンパイル済みシェーダー
+	auto device = directx::DirectX11Manager::GetInstance().GetDevice();
+	ID3DBlob * blob = nullptr;
+	directx::VertexShader shader;
+
+	HRESULT hr = directx::CompileShaderFromFile(_shaderName.c_str(), "main", "vs_5_0", &blob);
+
+	if (FAILED(hr)) {
+		std::string errorMessage = "[" + _shaderName + "]is NotFound\nPlease check File path";
+		MessageBox(nullptr, errorMessage.c_str(), "error", MB_OK);
+		return nullptr;
+	}
+
+	//頂点シェーダーを生成
+	hr = device->CreateVertexShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, shader.GetAddressOf());
+	if (FAILED(hr)) {
+		MessageBox(nullptr, "CreateVertexShader error", "error", MB_OK);
+
+		blob->Release();
+		return nullptr;
+	}
+
+	return shader;
+}
+
+directx::InputLayout ShaderCompiler::ILLoad(std::string _shaderName) {
+	//コンパイル済みシェーダー
+	auto device = directx::DirectX11Manager::GetInstance().GetDevice();
+	ID3DBlob * blob = nullptr;
+
+	//頂点レイアウト
+	std::vector<D3D11_INPUT_ELEMENT_DESC >element;
+	directx::InputLayout shader;
+
+	InputLayoutPick(INPUT_LAYOUT_POS_NORMAL_TANGENT_TEXCOORD, element);
+
+	HRESULT hr = directx::CompileShaderFromFile(_shaderName.c_str(), "main", "vs_5_0", &blob);
+
+	if (FAILED(hr)) {
+		return nullptr;
+	}
+
+	//頂点データ定義生成
+	hr = device->CreateInputLayout(&element.at(0), static_cast<UINT>(element.size()), blob->GetBufferPointer(), blob->GetBufferSize(), shader.GetAddressOf());
+	if (FAILED(hr)) {
+		MessageBox(nullptr, "CreateInputLayer error", "error", MB_OK);
+
+		blob->Release();
+		return nullptr;
+	}
+	return shader;
+}
+
+directx::GeometryShader ShaderCompiler::GSLoad(std::string _shaderName) {
+	auto device = directx::DirectX11Manager::GetInstance().GetDevice();
+	//コンパイル済みシェーダー
+	ID3DBlob * blob = nullptr;
+	directx::GeometryShader shader;
+
+	HRESULT hr = directx::CompileShaderFromFile(_shaderName.c_str(), "main", "gs_5_0", &blob);
+
+	if (FAILED(hr)) {
+		return nullptr;
+	}
+
+	//頂点シェーダーを生成
+	hr = device->CreateGeometryShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, shader.GetAddressOf());
+	if (FAILED(hr)) {
+		MessageBox(nullptr, "CreateVertexShader error", "error", MB_OK);
+
+		blob->Release();
+		return nullptr;
+	}
+
+	return shader;
+}
+
+directx::HullShader ShaderCompiler::HSLoad(std::string _shaderName) {
+	auto device = directx::DirectX11Manager::GetInstance().GetDevice();
+	return directx::HullShader();
+}
+
+directx::DomainShader ShaderCompiler::DSLoad(std::string _shaderName) {
+	auto device = directx::DirectX11Manager::GetInstance().GetDevice();
+	return directx::DomainShader();
 }
 
 void ShaderCompiler::InputLayoutPick(INPUT_LAYOUT_NAME _input_layout_name, std::vector<D3D11_INPUT_ELEMENT_DESC>& element)

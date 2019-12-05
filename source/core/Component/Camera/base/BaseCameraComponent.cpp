@@ -26,6 +26,7 @@ BaseCameraComponent::BaseCameraComponent() {
 }
 
 void BaseCameraComponent::Initialize() {
+	base::Initialize();
 	// ƒ|ƒCƒ“ƒ^‚ð“n‚µ‚Ä‚¨‚­
 	m_renderTerget.lock()->SetCameraData(
 		m_worldMatrix,
@@ -70,7 +71,7 @@ void BaseCameraComponent::SetProjection(
 void BaseCameraComponent::CreateCameraMatrix() {
 	auto pos = m_transform.lock()->m_position;
 	auto mat = m_transform.lock()->m_matrix;
-	auto look = mat.GetFront() * *m_length;
+	auto look = mat.GetFront() * *m_length + pos;
 	auto upVec = mat.GetUp();
 
 	ALIGN16 DirectX::XMVECTOR eye = DirectX::XMVectorSet(pos.x, pos.y, pos.z, 0.0f);

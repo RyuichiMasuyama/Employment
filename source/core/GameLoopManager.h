@@ -1,7 +1,6 @@
 #pragma once
 
 #include "./FpsManager.h"
-#include <memory>
 
 namespace mslib {
 class GameLoop {
@@ -21,14 +20,12 @@ public:
 	void Exit();
 
 private:
-	FpsManager m_fps_manager;
+	FpsManager m_fpsManager;
 
 	void RenderAfter();
 	void RenderBefore();
 
 	void ImGuiRenderAfter();
 	void ImGuiRenderBefor();
-
-
 };
 }

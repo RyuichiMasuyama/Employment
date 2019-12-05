@@ -16,8 +16,6 @@ VS_OUTPUT main(float4 Pos		:	POSITION,
 	output.WPos = output.Pos;
 	output.Pos = mul(output.Pos, View);
 	output.Pos = mul(output.Pos, Projection);
-	//output.Color = Color;
-	//output.Color.a = 0.f;
 
     output.Tex = Tex;
 
@@ -28,6 +26,7 @@ VS_OUTPUT main(float4 Pos		:	POSITION,
 	N = normalize(N);
 
 	output.Normal = N;
+    output.Color = saturate(dot(N, way));
 
 	return output;
 }

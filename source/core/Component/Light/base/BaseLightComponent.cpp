@@ -1,15 +1,20 @@
 #include "./BaseLightComponent.h"
+
 #include "./DirectX/SubResourceSendManager.h"
 
 namespace mslib {
 namespace component {
 
-void BaseLightComponent::Update() {
-	auto wayVec4 = math::Vector4(m_transform.lock()->m_matrix.GetUp());
-
-	directx::SubResourceSendManager::GetInstance().SetLightBuffer(wayVec4, m_color);
+void BaseLightComponent::SetMyLightType(LIGHT_TYPE _lightType) {
+	m_myType = _lightType;
 }
 
+void BaseLightComponent::SetColor(math::Vector3 _color) {
+	m_color = _color;
+}
 
+void BaseLightComponent::SetPower(float _power) {
+	m_color.w = _power;
+}
 }
 }

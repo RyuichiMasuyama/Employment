@@ -82,16 +82,13 @@ namespace shader{
 
 Shader ShaderLoader::Load(std::string _shaderName, ShaderType _shaderType) {
 
-	auto asset = assets::AssetsManager::GetInstance().m_assets[_shaderName];
-
-	Shader weakShader;
 #ifdef  DIRECTX11
-	// nullチェック
-	if (asset.operator Microsoft::WRL::Details::BoolType()) {
-	/*	Shader weakShader;
-		asset.AsWeak(&weakShader);
-		return  weakShader;*/
+	auto a = std::any_cast<directx::PixelShader>(assets::AssetsManager::GetInstance().m_assets[_shaderName]);
+	if (a) {
+		return a;
 	}
+	Shader weakShader;
+	auto &asset = assets::AssetsManager::GetInstance().m_assets[_shaderName];
 	directx::ShaderCompiler shaderCompiler;
 
 	switch (_shaderType)
@@ -119,7 +116,7 @@ Shader ShaderLoader::Load(std::string _shaderName, ShaderType _shaderType) {
 	}
 	//Shader weakShader;
 
-	assets::AssetsManager::GetInstance().m_assets[_shaderName] = asset;
+	// assets::AssetsManager::GetInstance().m_assets[_shaderName] = asset;
 	//asset.AsWeak(&weakShader);
 
 	return weakShader;
