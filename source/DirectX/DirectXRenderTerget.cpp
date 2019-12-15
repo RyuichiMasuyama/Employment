@@ -6,6 +6,13 @@
 
 namespace mslib {
 namespace directx {
+
+const math::Matrix ShadowMapDirectXRenderTerget::SHADOW_BIAS = math::Matrix(
+	0.5f, 0.0f, 0.0f, 0.0f,
+	0.0f, -0.5f, 0.0f, 0.0f,
+	0.0f, 0.0f, 1.0f, 0.0f,
+	0.5f, 0.5f, 0.0f, 1.0f);
+
 DirectXRenderTerget::DirectXRenderTerget(render::RenderTergetType _renderTergetType) :
 	render::RenderTerget(_renderTergetType) {};
 
@@ -20,16 +27,31 @@ void DirectXRenderTerget::SetShaderResouce(int _number) {
 	DirectX11Manager::GetInstance().GetDeviceContext()->PSSetShaderResources(_number, 1, m_shaderResourceView.GetAddressOf());
 }
 
-void DirectXRenderTerget::RenderBefor() {
-	float color[4] = { 0.f,0.f,1.f,1.f };
-	auto deviceContext = DirectX11Manager::GetInstance().GetDeviceContext();;
+void DirectXRenderTerget::BufferClear() {
+	auto deviceContext = DirectX11Manager::GetInstance().GetDeviceContext();
 	auto depth = DirectX11Manager::GetInstance().GetDepthStencilView();
 
-	deviceContext->OMSetRenderTargets(1, m_renderTergetView.GetAddressOf(), depth.Get());
-	deviceContext->ClearRenderTargetView(m_renderTergetView.Get(), color);
+	auto renderTergetView = m_renderTergetView;
+	// auto renderTergetView = DirectX11Manager::GetInstance().GetRenderTargetView();
+
+	deviceContext->OMSetRenderTargets(1, renderTergetView.GetAddressOf(), depth.Get());
+	deviceContext->ClearRenderTargetView(renderTergetView.Get(), m_color);
 	deviceContext->ClearDepthStencilView(depth.Get(), D3D11_CLEAR_DEPTH, 1.0f, 0);
+	deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	deviceContext->PSSetSamplers(0, 1, m_samplerState.GetAddressOf());
+	UniqueProcess();
 }
-//
+
+render::CameraTexture DirectXRenderTerget::GetCameraTexture()
+{
+	return m_shaderResourceView;
+}
+
+std::weak_ptr<math::Matrix> DirectXRenderTerget::GetCameraPorjection()
+{
+	return render::RenderTerget::GetCameraProjection();
+}
+
 //void DirectXRenderTerget::Pipeline() {
 //
 //	//////////////////////////////////////////////////////////////////////
@@ -103,8 +125,13 @@ void DirectXRenderTerget::RenderBefor() {
 //
 //}
 
-MainDirectXRenderTerget::MainDirectXRenderTerget(render::RenderTergetType _renderTergetType)
-	:DirectXRenderTerget(_renderTergetType) {
+MainDirectXRenderTerget::MainDirectXRenderTerget()
+	:DirectXRenderTerget(render::RenderTergetType::MAIN) {
+	m_color[0] = 0.f;
+	m_color[1] = 0.f;
+	m_color[2] = 1.f;
+	m_color[3] = 1.f;
+
 	// 2次元テクスチャの設定
 	D3D11_TEXTURE2D_DESC texDesc;
 	memset(&texDesc, 0, sizeof(texDesc));
@@ -167,8 +194,12 @@ MainDirectXRenderTerget::MainDirectXRenderTerget(render::RenderTergetType _rende
 		m_samplerState.GetAddressOf());
 }
 
-SubDirectXRenderTerget::SubDirectXRenderTerget(render::RenderTergetType _renderTergetType)
-	:DirectXRenderTerget(_renderTergetType) {
+SubDirectXRenderTerget::SubDirectXRenderTerget()
+	:DirectXRenderTerget(render::RenderTergetType::SUBCAMERA) {
+	m_color[0] = 0.f;
+	m_color[1] = 0.f;
+	m_color[2] = 1.f;
+	m_color[3] = 1.f;
 	// 2次元テクスチャの設定
 	D3D11_TEXTURE2D_DESC texDesc;
 	memset(&texDesc, 0, sizeof(texDesc));
@@ -232,8 +263,12 @@ SubDirectXRenderTerget::SubDirectXRenderTerget(render::RenderTergetType _renderT
 
 }
 
-ShadowMapDirectXRenderTerget::ShadowMapDirectXRenderTerget(render::RenderTergetType _renderTergetType)
-	:DirectXRenderTerget(_renderTergetType) {
+ShadowMapDirectXRenderTerget::ShadowMapDirectXRenderTerget()
+	:DirectXRenderTerget(render::RenderTergetType::SHADOW_MAP) {
+	m_color[0] = 1.f;
+	m_color[1] = 1.f;
+	m_color[2] = 1.f;
+	m_color[3] = 1.f;
 	// 2次元テクスチャの設定
 	D3D11_TEXTURE2D_DESC texDesc;
 	memset(&texDesc, 0, sizeof(texDesc));
@@ -300,6 +335,45 @@ ShadowMapDirectXRenderTerget::ShadowMapDirectXRenderTerget(render::RenderTergetT
 	directx::DirectX11Manager::GetInstance().GetDevice()->CreateSamplerState(
 		&smpDesc,
 		m_samplerState.GetAddressOf());
+
+	shader::ShaderLoader shaderLoader;
+	shaderLoader.Load("shader/psShadowMap.fx", m_ps, shader::ShaderType::PS);
+	shaderLoader.Load("shader/vsShadowMap.fx", m_vs, shader::ShaderType::VS);
+	shaderLoader.Load("shader/vsShadowMap.fx", m_il, shader::ShaderType::IL);
+}
+
+void ShadowMapDirectXRenderTerget::UniqueProcess() {
+	//cbParam.Shadow = *DirectXRenderTerget::GetCameraPorjection().lock() * SHADOW_BIAS;
+	auto deviceContext = DirectX11Manager::GetInstance().GetDeviceContext();
+
+	deviceContext->IASetInputLayout(m_il.Get());
+	deviceContext->PSSetShader(m_ps.Get(), nullptr, 0);
+	deviceContext->VSSetShader(m_vs.Get(), nullptr, 0);
+	deviceContext->GSSetShader(nullptr, nullptr, 0);
+	deviceContext->HSSetShader(nullptr, nullptr, 0);
+	deviceContext->DSSetShader(nullptr, nullptr, 0);
+}
+
+BasicDirectXRenderTerget::BasicDirectXRenderTerget() 
+	:DirectXRenderTerget(render::RenderTergetType::BASIC) {
+	m_color[0] = 0.f;
+	m_color[1] = 0.f;
+	m_color[2] = 1.f;
+	m_color[3] = 1.f;
+	auto& dxInce = DirectX11Manager::GetInstance();
+	m_renderTergetView = dxInce.GetRenderTargetView();
+	m_samplerState = dxInce.GetSamplerState();
+	m_shaderResourceView = nullptr;
+	m_texture2d= nullptr;
+
+}
+
+PostEffectDirectXRenderTerget::PostEffectDirectXRenderTerget()
+	:DirectXRenderTerget(render::RenderTergetType::BASIC) {
+	m_color[0] = 0.f;
+	m_color[1] = 0.f;
+	m_color[2] = 1.f;
+	m_color[3] = 1.f;
 }
 
 }

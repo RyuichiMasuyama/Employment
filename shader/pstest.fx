@@ -15,7 +15,7 @@ float4 main(VS_OUTPUT input) : SV_Target
     normal = normalize(normal);
     light = normalize(light);
 
-    col = max(0.0, dot(light, normal));
+   // col = max(0.0, dot(light, normal));
 
     col.a = 1.f;
 
@@ -23,5 +23,5 @@ float4 main(VS_OUTPUT input) : SV_Target
 
     // float outcolor = float4(1.f, 1.f, 1.f, 1.f);
     // return outcolor;
-     return texcol * col;
+    return texcol * col;
 }

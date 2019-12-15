@@ -15,6 +15,11 @@ void GameObjectManager::Update() {
 	m_gameObjectList.erase(result, m_gameObjectList.end());
 }
 
+void GameObjectManager::FixedUpdate() {
+	for (auto itr : m_gameObjectList) { itr->FixedUpdate(); }
+	TransformUpdate();
+}
+
 void GameObjectManager::ShowImGui() {
 #ifndef _DEBUG
 #else
@@ -25,6 +30,14 @@ void GameObjectManager::ShowImGui() {
 #endif // !_DEBUG
 
 }
+
+void GameObjectManager::TransformUpdate() {
+	for (auto itr : m_gameObjectList) {
+		// ˆê”Ôã‚Ìe‚Ì‚ÝXV
+		itr->TransformUpdate();
+	}
+}
+
 
 }
 }

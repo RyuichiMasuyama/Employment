@@ -39,13 +39,13 @@ public:
 	}
 
 	void Update();
-	void FixedUpdate() { for (auto itr : m_gameObjectList) { itr->FixedUpdate(); } }
+	void FixedUpdate();
 
 	void ShowImGui();
 
 private:
 	std::vector<object::GameObjectSPtr> m_gameObjectList;
-
+	void TransformUpdate();
 };
 
 }

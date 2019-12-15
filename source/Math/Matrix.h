@@ -70,7 +70,7 @@ public:
 		return *this;
 	}
 
-	DirectX::XMMATRIX ToMATRIX() { return  DirectX::XMLoadFloat4x4(this); }
+	DirectX::XMMATRIX ToMATRIX() { return  DirectX::XMMatrixTranspose(DirectX::XMLoadFloat4x4(this)); }
 
 	/*
 		Matrix& operator*(const Quaternion& qua) {

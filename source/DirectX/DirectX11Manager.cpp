@@ -362,6 +362,11 @@ mslib::directx::DepthStencilView DirectX11Manager::GetDepthStencilView()
 	return m_depth_stencil_view;
 }
 
+mslib::directx::SamplerState DirectX11Manager::GetSamplerState()
+{
+	return m_samplerState;
+}
+
 void DirectX11Manager::TurnOnAlphaBlending()
 {
 	float blendFactor[4];

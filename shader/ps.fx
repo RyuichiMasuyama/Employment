@@ -8,33 +8,40 @@
 //--------------------------------------------------------------------------------------
 float4 main(VS_OUTPUT input) : SV_Target
 {
-	float4 N = input.Normal;
-	float4 L = LightDirection;
+    float4 N = input.Normal;
+    float4 Pos = input.Pos;
 
-	N.w = 0.0f;					// 法線はベクトルなのでＷの値を０にする。
-	L.w = 0.0f;					// 光の方向はベクトルなのでＷの値を０にする。
+    N.w = 0.f; // 法線はベクトルなのでＷの値を０にする。
+    Pos.w = 0.f;
 
-	N = normalize(N);			// 法線ベクトル正規化
-	L = normalize(L);			// 光の方向ベクトル正規化
+    N = normalize(N); // 法線ベクトル正規化
+    
+    // emmisbe
+    float4 emi = Material.Emissive;
 
-	// 拡散反射光の計算
-	float d = max(0.0, dot(L, N));			// ランバート余弦則
-	float4 diffuse = diffuseMaterial * d;	// マテリアル値と掛け算
+    // ambient
+    float4 amb = Material.Ambient;
 
+    // diffuse
+    float4 L = way;
+    float difL = max(dot(N, L), 0);
+    float4 dif = Material.Diffuse * color * difL;
+    
 	// 鏡面反射光の計算（ブリンフォン）
-	float4 H;
-	float4 V = normalize(EyePos - input.WPos);
-	H = normalize(L + V);
+    float4 H;
+    float4 V = normalize(Position - input.Pos);
+    H = normalize(L + V);
+    float specL = pow(max(dot(N, H), 0), Material.Specular.w);
 
-	float s = max(0, dot(N, H));
-	s = pow(s, 50);
-	float4 specular = s * specularMaterial;
+    if (specL < 0)
+        specL = 0;
 
-	float4 texcol = g_Tex.Sample(g_SamplerLinear, input.Tex);
-	float4 col;
-	col.rgb = specular.rgb + diffuse.rgb * texcol.rgb;
-	col.a = 1.f;
+    float3 spec = Material.Specular.xyz * color.xyz * specL;
 
+    float4 texcol = g_Tex.Sample(g_SamplerLinear, input.Tex);
+    float4 col;
+    col.rgb = dif.rgb + (spec.rgb * texcol.rgb) + amb.rgb;// + emi.rgb;
+    col.a = 1.f;
 
-	return col;
+    return col;
 }

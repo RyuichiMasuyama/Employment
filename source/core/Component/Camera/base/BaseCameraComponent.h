@@ -75,6 +75,7 @@ private:
 	//カメラのプロジェクションマトリックスの生成
 	void CreateProjectionMatrix();
 
+public:
 	template<class T>
 	std::weak_ptr<T> AddPostEffectComponent() {
 		static_assert(std::is_base_of<component::BasePostEffectComponent, T>::value, "ポストエフェクトを設定してください");
@@ -82,7 +83,8 @@ private:
 		// ポストエフェクトコンポーネントを生成
 		// 今後、AddComponentではポストエフェクトを
 		// アタッチできないようにしなければいけない
-		auto postEffect = m_transform.lock()->m_gameObject.lock()->AddComponent<T>(m_renderTerget);
+		auto postEffect = m_transform.lock()->m_gameObject->AddComponent<T>(m_renderTerget);
+		return postEffect;
 	}
 };
 

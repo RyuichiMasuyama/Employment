@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="source\Windows\WindowsManager.cpp">
-      <Filter>Windows</Filter>
+      <Filter>Shader\Windows</Filter>
     </ClCompile>
     <ClCompile Include="source\ImGui\imgui.cpp">
       <Filter>ImGui</Filter>
@@ -70,9 +70,6 @@
     <ClCompile Include="source\MyDirectXMath.cpp">
       <Filter>other</Filter>
     </ClCompile>
-    <ClCompile Include="source\TestGameObject.cpp">
-      <Filter>other</Filter>
-    </ClCompile>
     <ClCompile Include="source\TestScene.cpp">
       <Filter>other</Filter>
     </ClCompile>
@@ -113,6 +110,48 @@
     <ClCompile Include="source\AssetManager\MeshLoader.cpp">
       <Filter>Asset</Filter>
     </ClCompile>
+    <ClCompile Include="source\Renderer\PostEffect.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Renderer\PostEffectBase.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Renderer\DirectXPostEffect.cpp">
+      <Filter>DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="source\core\Component\Light\DirectionalLightComponent.cpp">
+      <Filter>core\Component\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="source\core\Component\Camera\ShadowMapCameraComponent.cpp">
+      <Filter>core\Component\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ImGui\ImGuiManager.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\core\JobSystem\JobSystemManager.cpp">
+      <Filter>core\JobSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="source\core\Thread\Thread.cpp">
+      <Filter>core\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="source\core\JobSystem\JobLine.cpp">
+      <Filter>core\JobSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="source\origne\GameObjectGround.cpp">
+      <Filter>origne\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="source\origne\GameObjectLight.cpp">
+      <Filter>origne\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TestGameObject.cpp">
+      <Filter>origne\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="source\DirectX\DirectInput\DirectXInput.cpp">
+      <Filter>DirectX\DirectInput</Filter>
+    </ClCompile>
+    <ClCompile Include="source\core\Input\Input.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="core">
@@ -120,9 +159,6 @@
     </Filter>
     <Filter Include="DirectX">
       <UniqueIdentifier>{756ada3f-74d2-42b5-8ba4-02ef41be7329}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Windows">
-      <UniqueIdentifier>{4ec57b3b-f40e-4a02-9235-546e6c3bdd15}</UniqueIdentifier>
     </Filter>
     <Filter Include="ImGui">
       <UniqueIdentifier>{59a6eb54-0f7d-4f71-9ac0-3720aa894d6d}</UniqueIdentifier>
@@ -169,17 +205,11 @@
     <Filter Include="Shader">
       <UniqueIdentifier>{b0c99414-23be-4f5b-a34e-361c95d75bbf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="other">
-      <UniqueIdentifier>{d5a5efdb-b218-42bd-9740-07b8b1479b47}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Shader\fx">
       <UniqueIdentifier>{adb6891d-473a-43a7-8ea4-f467dd62ab95}</UniqueIdentifier>
     </Filter>
     <Filter Include="Shader\fx\hader">
       <UniqueIdentifier>{f3da803f-3519-4780-875a-5b6e178fd004}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Asset">
-      <UniqueIdentifier>{4712fd61-1eda-4075-b05e-c46fbeb316e0}</UniqueIdentifier>
     </Filter>
     <Filter Include="DirectX\Object">
       <UniqueIdentifier>{63ad00c8-ce2b-4c68-adda-c12b740d0baa}</UniqueIdentifier>
@@ -187,13 +217,46 @@
     <Filter Include="core\Component\Mesh">
       <UniqueIdentifier>{2cfd55fd-8416-4c02-8f15-eb6689c1c67e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="origne">
+      <UniqueIdentifier>{46b9fe4f-e6e4-447b-a914-813e2578f216}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Asset">
+      <UniqueIdentifier>{4712fd61-1eda-4075-b05e-c46fbeb316e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader\Windows">
+      <UniqueIdentifier>{4ec57b3b-f40e-4a02-9235-546e6c3bdd15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\JobSystem">
+      <UniqueIdentifier>{6169e1c2-e0a5-4880-9eed-9552c3d014bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\thread">
+      <UniqueIdentifier>{f9e7777a-436a-4208-8d95-8a9b51e2f213}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader\fx\defferd">
+      <UniqueIdentifier>{d423da73-d9c7-4400-8e7a-8c5ebb51e815}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="other">
+      <UniqueIdentifier>{d5a5efdb-b218-42bd-9740-07b8b1479b47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="origne\GameObject">
+      <UniqueIdentifier>{52a6f872-97da-4f2a-8c80-9a5dbaa9a26a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="origne\Component">
+      <UniqueIdentifier>{c08ad8a6-0329-4889-b7a5-0089b28164d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{cdda6771-2b65-4046-96fc-c281934ee9ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DirectX\DirectInput">
+      <UniqueIdentifier>{0044a1fa-d0f4-4ec7-ad4e-dd0ad29044e0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Windows\WindowsDefineData.h">
-      <Filter>Windows</Filter>
+      <Filter>Shader\Windows</Filter>
     </ClInclude>
     <ClInclude Include="source\Windows\WindowsManager.h">
-      <Filter>Windows</Filter>
+      <Filter>Shader\Windows</Filter>
     </ClInclude>
     <ClInclude Include="source\ImGui\imconfig.h">
       <Filter>ImGui</Filter>
@@ -261,9 +324,6 @@
     <ClInclude Include="source\core\Component\PostEffect\BasePostEffectComponent.h">
       <Filter>core\Component\PostEffect</Filter>
     </ClInclude>
-    <ClInclude Include="source\core\Component\Light\LightComponent.h">
-      <Filter>core\Component\Light</Filter>
-    </ClInclude>
     <ClInclude Include="source\core\Component\Camera\base\BaseCameraComponent.h">
       <Filter>core\Component\Camera\base</Filter>
     </ClInclude>
@@ -289,12 +349,6 @@
       <Filter>other</Filter>
     </ClInclude>
     <ClInclude Include="source\RenderLayer.h">
-      <Filter>other</Filter>
-    </ClInclude>
-    <ClInclude Include="source\TestCompoent.h">
-      <Filter>other</Filter>
-    </ClInclude>
-    <ClInclude Include="source\TestGameObject.h">
       <Filter>other</Filter>
     </ClInclude>
     <ClInclude Include="source\TestScene.h">
@@ -342,6 +396,57 @@
     </ClInclude>
     <ClInclude Include="source\AssetManager\MeshLoader.h">
       <Filter>Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Renderer\PostEffectBase.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Renderer\DirectXPostEffect.h">
+      <Filter>DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\Component\Light\DirectionalLightComponent.h">
+      <Filter>core\Component\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\Component\Light\PointLightComponent.h">
+      <Filter>core\Component\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\Component\Light\SpotLightComponent.h">
+      <Filter>core\Component\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\Component\Camera\ShadowMapCameraComponent.h">
+      <Filter>core\Component\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\JobSystem\JobSystemManager.h">
+      <Filter>core\JobSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\Thread\Thread.h">
+      <Filter>core\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\Thread\ThreadAffinity.h">
+      <Filter>core\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\JobSystem\JobLine.h">
+      <Filter>core\JobSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="source\AssetManager\MeshPrimitive.h">
+      <Filter>Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="source\origne\GameObjectLight.h">
+      <Filter>origne\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="source\origne\GameObjectGround.h">
+      <Filter>origne\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TestCompoent.h">
+      <Filter>origne\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TestGameObject.h">
+      <Filter>origne\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="source\DirectX\DirectInput\DirectXInput.h">
+      <Filter>DirectX\DirectInput</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\Input\Input.h">
+      <Filter>Input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -403,6 +508,24 @@
     </FxCompile>
     <FxCompile Include="shader\psvscommon.fx">
       <Filter>Shader\fx\hader</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\Base\vsRender2DBase.fx">
+      <Filter>Shader\fx</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\Base\psRender2DBase.fx">
+      <Filter>Shader\fx</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\psShadowMap.fx">
+      <Filter>Shader\fx</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\vsShadowMap.fx">
+      <Filter>Shader\fx</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\defferd\psDefferdNormal.fx">
+      <Filter>Shader\fx\defferd</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\pstoon.fx">
+      <Filter>Shader\fx</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

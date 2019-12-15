@@ -1,10 +1,7 @@
 #include "./GameLoopManager.h"
-#include "./DirectX/DirectX11Manager.h"
-#include "./FpsManager.h"
-#include "./Windows/WindowsDefineData.h"
-#include "./directx/SubResourceSendManager.h"
-#include "./Scene/SceneManager.h"
 #include "./GameObjectManager.h"
+
+#include "./Renderer/Render.h" 
 
 #include "imgui/imgui.h"
 #include "imgui/imgui_impl_win32.h"
@@ -14,7 +11,7 @@ namespace mslib {
 GameLoop::GameLoop(){
 	//m_directx11_manager = _directx_manager;
 
-	//m_fps_manager = std::make_unique<FpsManager>(_directx_manager);
+	//m_fpsManager = std::make_unique<FpsManager>(_directx_manager);
 
 	// カメラ変換行列初期化
 	// プロジェクション変換行列初期化
@@ -27,16 +24,14 @@ GameLoop::GameLoop(){
 
 GameLoop::~GameLoop() = default;
 
-void GameLoop::Init() {
-	//m_light.SetWay(math::Vector4(0.f, 1.f, -1.f, 0.f));
-}
+void GameLoop::Init() {}
 
 void GameLoop::Exit() {
 }
 
 void GameLoop::RenderAfter() {
 	// swap
-	//m_directx11_manager->GetSwapChain()->Present(0, 0);
+	directx::DirectX11Manager::GetInstance().GetSwapChain()->Present(0, 0);
 }
 
 void GameLoop::RenderBefore() {
@@ -92,38 +87,35 @@ void GameLoop::ImGuiRenderBefor() {
 
 void GameLoop::Update() {
 	//FPSの制御
-	//m_fps_manager->Update();
+	m_fpsManager.Update();
 
-	//// オブジェクトのアップデート
-	//mslib::manager::GameObjectManager::GetInstance().Update();
+	// オブジェクトのアップデート
+	mslib::manager::GameObjectManager::GetInstance().Update();
 
-	//if (m_fps_manager->GetFixedFlag()) {
-	//	mslib::manager::GameObjectManager::GetInstance().FixedUpdate();
-	//	m_camera.Update();
-	//	m_light.Update();
-	//	PostEffect();
-	//}
+	if (m_fpsManager.GetFixedFlag()) {
+		mslib::manager::GameObjectManager::GetInstance().FixedUpdate();
+	}
 }
 
 void GameLoop::Render() {
-	if (m_fps_manager.GetFixedFlag()) {
+	if (m_fpsManager.GetFixedFlag()) {
+		// m_directx_render->Render();	
+		mslib::render::Render::GetInstance().Rendering();
 
-	//	// m_directx_render->Render();	
-	//	//mslib::directx::DirectXRender::GetInstance().Render();
+		// RenderBefore();
 
-	//	RenderBefore();
+		//mslib::directx::DirectXRender::GetInstance().RenderQuad();
 
-	//	//mslib::directx::DirectXRender::GetInstance().RenderQuad();
+		mslib::render::Render::GetInstance().ImGuiCare();
+		ImGuiRenderBefor();
 
-	//	ImGuiRenderBefor();
+		// ImGuiRender();
 
-	//	// ImGuiRender();
+		mslib::manager::GameObjectManager::GetInstance().ShowImGui();
 
-	//	mslib::manager::GameObjectManager::GetInstance().ShowImGui(); 
+		ImGuiRenderAfter();
 
-	//	ImGuiRenderAfter();
-
-	//	RenderAfter();
+		RenderAfter();
 	}
 }
 

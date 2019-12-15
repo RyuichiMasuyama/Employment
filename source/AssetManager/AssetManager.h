@@ -1,6 +1,7 @@
 #pragma once
 #include <Singleton.h>
 #include <unordered_map>
+#include <any>
 
 #ifdef DIRECTX11
 #include "./TextureLoader.h"
@@ -33,7 +34,7 @@ class AssetsManager :public pattern::Singleton<AssetsManager>{
 public:
 	void UnLoad(std::string);
 private:
-	std::unordered_map<std::string, AssetBase> m_assets;
+	std::unordered_map<std::string, std::any> m_assets;
 
 };
 

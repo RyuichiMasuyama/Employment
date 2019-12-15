@@ -2,8 +2,10 @@
 
 #include "./Singleton.h"
 #include "./MyDirectXMath.h"
+#include "PostEffectBase.h"
 #include <memory>
 #include <vector>
+#include <array>
 
 #ifdef DIRECTX11
 //#include "./DirectX/DirectXRenderTerget.h"
@@ -24,13 +26,14 @@ namespace render {
 using RendringSoftRenderTergetPtr = std::weak_ptr< directx::DirectXRenderTerget >;
 #endif
 
-struct PostEffect;
+class PostEffect;
 
 enum class RenderTergetType :unsigned int{
-	MAIN,
-	SUBCAMERA,
-	SHADOW_MAP,
-	MAX
+	BASIC,		// カメラの概念無しで直書きする
+	MAIN,		// メインカメラ	カメラ系の中でも最後に実行される
+	SUBCAMERA,	// サブカメラ	サブのカメラ
+	SHADOW_MAP, // シャドウマップを使うため 
+	MAX			// MAX
 };
 
 // レンダーターゲット生成
@@ -46,8 +49,6 @@ public:
 	};
 	~RenderTerget();	// unique_ptr使用のため非インライン化
 
-	void Initalize(RendringSoftRenderTergetPtr _softRenderTerget);
-
 	void SetRenderTerget();
 	void SetShaderResorce(int _number);
 	// mslib::directx::RenderTargetView GetRenderTergetView() { return m_renderTergetView; };
@@ -61,6 +62,17 @@ public:
 	void SetPostEffectData(std::weak_ptr<PostEffect> _postEffect);
 
 	void Pipeline();
+
+	void BufferClear();
+
+	void RenderBefor();
+
+	void DrawPostEffect();
+
+	render::CameraTexture GetCameraTexture();
+
+protected:
+	std::weak_ptr<math::Matrix> GetCameraProjection();
 
 private:
 	unsigned int m_inceNum;
@@ -90,9 +102,13 @@ private:
 
 class RenderTergetManager :public pattern::Singleton<RenderTergetManager> {
 public:
+	RenderTergetManager();
+	// 生成など
 	std::weak_ptr<RenderTerget> CreateRenderTerget(const RenderTergetType _renderType);
 	const std::vector<std::shared_ptr<RenderTerget>>& GetRenderTergets() { return m_renderTergets; }
 	const std::vector < std::weak_ptr<RenderTerget>>& GetRenderTergets(const RenderTergetType _renderType);
+
+
 	// レンダーターゲットを渡すと消す処理
 	void ElaseRenderTerget(std::weak_ptr<RenderTerget> _renderTerget);
 
@@ -100,6 +116,8 @@ private:
 	std::vector<std::shared_ptr<RenderTerget>> m_renderTergets;
 
 	// カメラのタイプが変わったら追加
+	// が面倒くさいので、arryですべて一括管理
+	std::vector<std::weak_ptr<RenderTerget>> m_basic;
 	std::vector<std::weak_ptr<RenderTerget>> m_shadowMapRender;
 	std::vector<std::weak_ptr<RenderTerget>> m_subCameraRender;
 	std::vector<std::weak_ptr<RenderTerget>> m_mainCameraRender;

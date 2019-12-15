@@ -157,6 +157,7 @@ public:
 	Vector4 operator/(const Vector4 &_vec) {
 		return Vector4(x / _vec.x, y / _vec.y, z / _vec.z, w / _vec.w);
 	}
+	float *GetPtr() { return &x; }
 };
 
 }  // math

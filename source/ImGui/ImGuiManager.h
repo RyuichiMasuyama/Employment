@@ -4,20 +4,24 @@
 #include "imgui.h"
 #include "imgui_impl_win32.h"
 #include "imgui_impl_dx11.h"
+#include <Windows.h>
 
-void ImGuiSetUp(const HWND& _hwnd,ID3D11Device* _device, ID3D11DeviceContext*_deviceCon) {
+extern const ImWchar glyphRangesJapanese[];
+
+inline void ImGuiSetUp(const HWND& _hwnd,ID3D11Device* _device, ID3D11DeviceContext*_deviceCon) {
 #ifndef _DEBUG
 #else   
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
-	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	ImGuiIO& io = ImGui::GetIO();
 	ImGui::StyleColorsDark();
 	ImGui_ImplWin32_Init(_hwnd);
 	ImGui_ImplDX11_Init(_device, _deviceCon);
+	io.Fonts->AddFontFromFileTTF("assets/HGRGM.TTC", 14.0f, nullptr, glyphRangesJapanese);
 #endif
 }
 
-void ImGuiCreanUp() {
+inline void ImGuiCreanUp() {
 #ifndef _DEBUG
 #else
 	ImGui_ImplDX11_Shutdown();
@@ -25,4 +29,3 @@ void ImGuiCreanUp() {
 	ImGui::DestroyContext();
 #endif
 }
-
