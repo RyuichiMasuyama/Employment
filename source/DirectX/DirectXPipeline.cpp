@@ -73,7 +73,7 @@ void DirectXPipeline::Draw() {
 	for (unsigned int i = 0; i < m_texture.size(); i++) {
 		deviceContext->PSSetShaderResources(i, 1, m_texture[i].GetAddressOf());
 	}
-	SubResourceSendManager::GetInstance().SetMaterialBuffer(material);
+	if (material.size() < 0)SubResourceSendManager::GetInstance().SetMaterialBuffer(&material[0]);
 
 	unsigned int indexCount = static_cast<int>(m_mesh->GetPolygons()->index.size());
 	// 描画！！！
@@ -99,7 +99,7 @@ void DirectXPipeline::NoSetShaderDraw() {
 	for (unsigned int i = 0; i < m_texture.size(); i++) {
 		deviceContext->PSSetShaderResources(i, 1, m_texture[i].GetAddressOf());
 	}
-	SubResourceSendManager::GetInstance().SetMaterialBuffer(material);
+	if(material.size()!=0)	SubResourceSendManager::GetInstance().SetMaterialBuffer(&material[0]);
 
 	unsigned int indexCount = static_cast<int>(m_mesh->GetPolygons()->index.size());
 	// 描画！！！

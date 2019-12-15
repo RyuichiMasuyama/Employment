@@ -5,6 +5,8 @@
 #include "./core/Component/Light/DirectionalLightComponent.h"
 #include <ImGui/imgui.h>
 
+#include "./core/Input/Input.h"
+
 namespace mslib {
 namespace origin {
 
@@ -20,7 +22,7 @@ void TestGameObject::Initialize() {
 	SetUpdateFunction(TestUpdateName);
 
 	mesh::MeshLoader meshLoader;
-	AddComponent<component::RenderComponent>(meshLoader.Load("assets/aaa.mobj"));
+	AddComponent<component::RenderComponent>(meshLoader.Load("assets/dragon.msobj"));
 }
 
 void TestGameObject::ImGuiDraw() {
@@ -46,7 +48,7 @@ void HaveCameraGameObject::Initialize() {
 }
 
 void HaveCameraGameObject::ImGuiDraw() {
-	ImGui::SliderFloat3("CameraPos", m_position.GetPtr(), -100.f, 100.f);
+	//ImGui::SliderFloat3("CameraPos", m_position.GetPtr(), -100.f, 100.f);
 	ImGui::SliderFloat3("CameraRot", m_rotate.GetPtr(), -360.f, 360.f);
 
 	ImGui::SliderFloat("Gauus‚ ‚ ‚ ", &m_gauusePower, 0.f, 1.f);
@@ -57,7 +59,21 @@ void HaveCameraGameObject::ImGuiDraw() {
 
 	m_postEffect.lock()->SetPostEffectFlag(m_gauuseFlag, render::POSTEFFECT_TYPE::GAUSS);
 	m_postEffect.lock()->SetGauusePower(m_gauusePower);
+}
 
+void HaveCameraGameObject::TestUpdate() {
+	if (input::Input::GetKeyStay(MSK_W)) {
+		m_position += m_matrix.GetFront() * 0.1f;
+	};
+	if (input::Input::GetKeyStay(MSK_A)) {
+		m_position += m_matrix.GetRight() * -0.1f;
+	};
+	if (input::Input::GetKeyStay(MSK_S)) {
+		m_position += m_matrix.GetFront() * -0.1f;
+	};
+	if (input::Input::GetKeyStay(MSK_D)) {
+		m_position += m_matrix.GetRight() * 0.1f;
+	};
 }
 
 }

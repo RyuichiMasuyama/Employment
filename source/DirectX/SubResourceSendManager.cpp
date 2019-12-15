@@ -43,6 +43,9 @@ namespace mslib {
 //}
 namespace directx {
 
+//‘O•ûéŒ¾
+unsigned int SubResourceSendManager::m_lightNum;
+
 SubResourceSendManager::SubResourceSendManager() {
 	Initialize();
 }
@@ -58,6 +61,17 @@ void SubResourceSendManager::Initialize() {
 	m_postEffectBuffer= m_buffer_creater.CreateConstantBuffer(sizeof(PostEffectBuffer));
 
 	m_deviceContext = DirectX11Manager::GetInstance().GetDeviceContext();
+}
+
+void SubResourceSendManager::Update() {
+	for (int i = 0; i < m_lightNum; i++) {
+		m_deviceContext->UpdateSubresource(m_lightObjectBuffer.Get(), i, nullptr, &m_lightObject[i], 0, 0);
+	}
+	m_deviceContext->VSSetConstantBuffers(3, m_lightNum, m_lightObjectBuffer.GetAddressOf());
+	m_deviceContext->PSSetConstantBuffers(3, m_lightNum, m_lightObjectBuffer.GetAddressOf());
+	
+	m_lightNum = 0;
+	ZeroMemory(m_lightObject, sizeof(m_lightObject));
 }
 
 void directx::SubResourceSendManager::SetWorldObjectBuffer(const math::Matrix & _world) {
@@ -123,11 +137,11 @@ void SubResourceSendManager::SetMaterialBuffer(const render::Material* _material
 void SubResourceSendManager::SetLightBuffer(
 	const math::Vector4 & _way,
 	const math::Vector4& _color) {
-	m_lightObject.way = _way;
-	m_lightObject.color = _color;
-	m_deviceContext->UpdateSubresource(m_lightObjectBuffer.Get(), 0, nullptr, &m_lightObject, 0, 0);
-	m_deviceContext->VSSetConstantBuffers(3, 1, m_lightObjectBuffer.GetAddressOf());
-	m_deviceContext->PSSetConstantBuffers(3, 1, m_lightObjectBuffer.GetAddressOf());
+	if (!(m_lightNum < LIGHT_MAX))return;
+	m_lightObject[m_lightNum].way = _way;
+	m_lightObject[m_lightNum].color = _color;
+	m_lightObject[m_lightNum].position = _color;
+	m_lightNum++;
 }
 
 void SubResourceSendManager::SetTimeBuffer(

@@ -12,7 +12,7 @@ DirectXPostEffect::DirectXPostEffect(render::CameraTexture _cameraTexture) {
 	mesh::MeshLoader meshLoader;
 	shader::ShaderLoader shaderLoader;
 
-	m_mesh = meshLoader.Load("assets/polygon.mobj");
+	m_mesh = meshLoader.Load("Quad");
 
 	shaderLoader.Load("shader/PSGauss.fx", m_shader[static_cast<unsigned int>(DIRECTX_POSTEFFECT_TYPE::GAUSS)].pixelShader, shader::ShaderType::PS);
 	shaderLoader.Load("shader/VSGauss.fx", m_shader[static_cast<unsigned int>(DIRECTX_POSTEFFECT_TYPE::GAUSS)].vertexShader, shader::ShaderType::VS);
@@ -138,21 +138,21 @@ void DirectXPostEffect::Rendering() {
 		unsigned  offset = 0;
 
 		// バーテックスバッファをセット
-		deviceContext->IASetVertexBuffers(0, 1, m_mesh.lock()->GetPipeline()->m_vertex_buffer.GetAddressOf(), &stride, &offset);
+		deviceContext->IASetVertexBuffers(0, 1, m_mesh->GetPipeline()->m_vertex_buffer.GetAddressOf(), &stride, &offset);
 
 		//インデックスバッファをセット
-		deviceContext->IASetIndexBuffer(m_mesh.lock()->GetPipeline()->m_index_buffer.Get(), DXGI_FORMAT_R32_UINT, 0);
+		deviceContext->IASetIndexBuffer(m_mesh->GetPipeline()->m_index_buffer.Get(), DXGI_FORMAT_R32_UINT, 0);
 
 		// 描画！！！
 		deviceContext->DrawIndexed(
-			static_cast<UINT>(m_mesh.lock()->GetPolygons()->index.size()),					// インデックスの数
+			static_cast<UINT>(m_mesh->GetPolygons()->index.size()),					// インデックスの数
 			0,							// 最初のインデックスバッファの位置
 			0							// 頂点バッファの最初からの位置
 		);
 	}
 
 	// 2．Bloom
-	if (m_postEffectStatus.OnFlag[static_cast<unsigned int>(DIRECTX_POSTEFFECT_TYPE::GAUSS)]) {
+	if (m_postEffectStatus.OnFlag[static_cast<unsigned int>(DIRECTX_POSTEFFECT_TYPE::BLOOM)]) {
 
 		deviceContext->VSSetShader(nullptr, nullptr, 0);
 		deviceContext->PSSetShader(nullptr, nullptr, 0);
@@ -165,14 +165,14 @@ void DirectXPostEffect::Rendering() {
 		unsigned int stride = sizeof(render::Vertex3DModel);
 		unsigned  offset = 0;
 
-		deviceContext->IASetVertexBuffers(0, 1, m_mesh.lock()->GetPipeline()->m_vertex_buffer.GetAddressOf(), &stride, &offset);
+		deviceContext->IASetVertexBuffers(0, 1, m_mesh->GetPipeline()->m_vertex_buffer.GetAddressOf(), &stride, &offset);
 
 		//インデックスバッファをセット
-		deviceContext->IASetIndexBuffer(m_mesh.lock()->GetPipeline()->m_index_buffer.Get(), DXGI_FORMAT_R32_UINT, 0);
+		deviceContext->IASetIndexBuffer(m_mesh->GetPipeline()->m_index_buffer.Get(), DXGI_FORMAT_R32_UINT, 0);
 
 		// 描画！！！
 		deviceContext->DrawIndexed(
-			static_cast<UINT>(m_mesh.lock()->GetPolygons()->index.size()),					// インデックスの数
+			static_cast<UINT>(m_mesh->GetPolygons()->index.size()),					// インデックスの数
 			0,							// 最初のインデックスバッファの位置
 			0							// 頂点バッファの最初からの位置
 		);
@@ -198,13 +198,13 @@ void DirectXPostEffect::Rendering() {
 	unsigned  offset = 0;
 
 	// バーテックスバッファをセット
-	deviceContext->IASetVertexBuffers(0, 1, m_mesh.lock()->GetPipeline()->m_vertex_buffer.GetAddressOf(), &stride, &offset);
+	deviceContext->IASetVertexBuffers(0, 1, m_mesh->GetPipeline()->m_vertex_buffer.GetAddressOf(), &stride, &offset);
 
 	//インデックスバッファをセット
-	deviceContext->IASetIndexBuffer(m_mesh.lock()->GetPipeline()->m_index_buffer.Get(), DXGI_FORMAT_R32_UINT, 0);
+	deviceContext->IASetIndexBuffer(m_mesh->GetPipeline()->m_index_buffer.Get(), DXGI_FORMAT_R32_UINT, 0);
 
 	deviceContext->DrawIndexed(
-		static_cast<UINT>(m_mesh.lock()->GetPolygons()->index.size()),					// インデックスの数
+		static_cast<UINT>(m_mesh->GetPolygons()->index.size()),					// インデックスの数
 		0,							// 最初のインデックスバッファの位置
 		0							// 頂点バッファの最初からの位置
 	);

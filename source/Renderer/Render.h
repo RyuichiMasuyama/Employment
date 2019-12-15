@@ -10,6 +10,7 @@
 
 #include "./Renderer/RenderTerget.h"
 #include "./Renderer/RenderObject.h"
+#include "../AssetManager/MeshLoader.h"
 
 // 最大描画数
 // パーティクル以外？？
@@ -41,7 +42,8 @@ public:
 class Render :public pattern::Singleton<Render>{
 public:
 	Render() { 
-		m_rendering.Load("assets/Quad.mobj");
+		mesh::MeshLoader meshLoader;
+		m_rendering = meshLoader.Load("Quad");
 	};
 	~Render() = default;
 
@@ -55,7 +57,7 @@ public:
 private:
 	std::vector<RenderObjectCommand> m_commandDynamicArray;
 
-	MyMesh m_rendering;
+	std::shared_ptr<MyMesh> m_rendering;
 };
 
 }

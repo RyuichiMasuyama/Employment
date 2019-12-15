@@ -53,7 +53,7 @@ private:
 	directx::InputLayout m_basic2dIL;
 
 	std::array<shader::ShaderResource, static_cast<unsigned int>(DIRECTX_POSTEFFECT_TYPE::MAX)> m_shader;
-	std::weak_ptr<render::MyMesh> m_mesh; 
+	std::shared_ptr<render::MyMesh> m_mesh; 
 	ShaderTexture m_resourceView;
 
 	mslib::directx::RenderTargetView m_gaussRenderTergetView;

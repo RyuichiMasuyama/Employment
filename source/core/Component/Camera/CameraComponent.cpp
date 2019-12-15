@@ -12,7 +12,7 @@ void CameraComponent::Initialize() {
 	base::Initialize();
 
 	// 基本的なプロジェクション行列を設定
-	SetProjection(1.0f, 10000.0f, DirectX::XM_PIDIV2, SCREEN_X, SCREEN_Y);
+	SetProjection(1.0f, 100000.0f, DirectX::XM_PIDIV2, SCREEN_X, SCREEN_Y);
 	SetLength(10.f);
 }
 

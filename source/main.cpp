@@ -13,6 +13,8 @@
 // WinMain生成用
 #include <Windows.h>
 
+#include "./core/Input/Input.h"
+
 // WindowProcedureを含むクラス
 #include "./Windows/WindowsManager.h"
 
@@ -68,6 +70,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	static mslib::scene::SceneManager& sceneManager = mslib::scene::SceneManager::GetInstance();
 	mslib::scene::SceneManager::GetInstance().CreateScnen<mslib::scene::TestScene>();
 
+	// キー操作の生成
+	mslib::input::Input input(hInstance);
+
 	// ゲームループの作成
 	mslib::GameLoop gameLoop;
 	gameLoop.Init();
@@ -84,6 +89,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			}
 		} else {
 			gameLoop.Update();
+
+			input.Update();
 
 			gameLoop.Render();
 		}

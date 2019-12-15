@@ -34,6 +34,9 @@ void Render::Rendering() {
 	auto& main = RenderTergetManager::GetInstance().GetRenderTergets(RenderTergetType::MAIN);
 	auto& sub = RenderTergetManager::GetInstance().GetRenderTergets(RenderTergetType::SUBCAMERA);
 
+	// ライト送信
+	directx::SubResourceSendManager::GetInstance().Update();
+
 	// 全カメラのバッファをクリアする
 	for (auto itr : rendeRtergets) {
 		/*itr->BufferClear();*/
@@ -75,8 +78,8 @@ void Render::Rendering() {
 	}
 
 	basic[0].lock()->BufferClear();
-	m_rendering.GetPipeline()->SetTexture(main[0].lock()->GetCameraTexture(), 0);
-	m_rendering.GetPipeline()->Draw();
+	m_rendering->GetPipeline()->SetTexture(main[0].lock()->GetCameraTexture(), 0);
+	m_rendering->GetPipeline()->Draw();
 
 	m_commandDynamicArray.clear();
 }

@@ -10,7 +10,7 @@ namespace mslib {
 namespace texture {
 
 Texture TextureLoader::Load(std::string _fileName) {
-
+	if (_fileName == "" || _fileName == "null")return nullptr;
 #ifdef DIRECTX11
 	// ƒ[ƒh‚³‚ê‚Ä‚ê‚Î•Ô‚·
 	auto &asset = assets::AssetsManager::GetInstance().m_assets[_fileName];

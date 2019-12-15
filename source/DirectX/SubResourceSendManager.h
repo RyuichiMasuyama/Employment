@@ -13,8 +13,9 @@
 namespace mslib {
 namespace directx{
 class SubResourceSendManager :public pattern::Singleton<SubResourceSendManager> {
-private:
-
+public:
+	static constexpr int LIGHT_MAX = 100;
+private:	
 	// register b0	// 1オブジェクトに一つ
 	struct WorldObjectBuffer {
 		DirectX::XMMATRIX world;
@@ -46,6 +47,7 @@ private:
 	// register b3　// 世界に多数？
 	struct LightObjectBuffer {
 		DirectX::XMFLOAT4 way;
+		DirectX::XMFLOAT4 position;
 		DirectX::XMFLOAT4 color;	// colorのwは光の強さに使う
 	};
 
@@ -69,7 +71,7 @@ private:
 	WorldObjectBuffer m_worldObject;
 	CameraObejctBuffer m_cameraObject;
 	MaterialObjectBuffer m_materialObject;
-	LightObjectBuffer m_lightObject;
+	LightObjectBuffer m_lightObject[LIGHT_MAX]; // 複数ある可能性があるので配列
 	TimeBuffer m_time;
 	PostEffectBuffer m_postEffect;
 
@@ -83,9 +85,12 @@ private:
 
 	DeviceContext m_deviceContext;
 
+	static unsigned int m_lightNum;
 public:
 	SubResourceSendManager();
 	void Initialize();
+
+	void Update();
 
 	void SetWorldObjectBuffer(const math::Matrix& _world);
 	void SetCameraObjectBuffer(

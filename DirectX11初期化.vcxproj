@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -39,10 +39,15 @@
     <ClCompile Include="source\core\Component\Render\RenderComponent.cpp" />
     <ClCompile Include="source\core\FpsManager.cpp" />
     <ClCompile Include="source\core\GameLoopManager.cpp" />
+    <ClCompile Include="source\core\Input\Input.cpp" />
+    <ClCompile Include="source\core\JobSystem\JobLine.cpp" />
+    <ClCompile Include="source\core\JobSystem\JobSystemManager.cpp" />
     <ClCompile Include="source\core\Object\Object.cpp" />
     <ClCompile Include="source\core\Scene\BaseScene.cpp" />
     <ClCompile Include="source\core\Scene\SceneManager.cpp" />
+    <ClCompile Include="source\core\Thread\Thread.cpp" />
     <ClCompile Include="source\DepseBufferRender2DGameObject.cpp" />
+    <ClCompile Include="source\DirectX\DirectInput\DirectXInput.cpp" />
     <ClCompile Include="source\DirectX\DirectX11Manager.cpp" />
     <ClCompile Include="source\DirectX\DirectXPipeline.cpp" />
     <ClCompile Include="source\DirectX\DirectXRenderManager.cpp" />
@@ -77,6 +82,7 @@
   <ItemGroup>
     <ClInclude Include="source\AssetManager\AssetManager.h" />
     <ClInclude Include="source\AssetManager\MeshLoader.h" />
+    <ClInclude Include="source\AssetManager\MeshPrimitive.h" />
     <ClInclude Include="source\AssetManager\TextureLoader.h" />
     <ClInclude Include="source\core\base.h" />
     <ClInclude Include="source\core\Component\Camera\base\BaseCameraComponent.h" />
@@ -94,11 +100,17 @@
     <ClInclude Include="source\core\DesignPattern\Singleton.h" />
     <ClInclude Include="source\core\FpsManager.h" />
     <ClInclude Include="source\core\GameLoopManager.h" />
+    <ClInclude Include="source\core\Input\Input.h" />
+    <ClInclude Include="source\core\JobSystem\JobLine.h" />
+    <ClInclude Include="source\core\JobSystem\JobSystemManager.h" />
     <ClInclude Include="source\core\Object\object.h" />
     <ClInclude Include="source\core\Scene\basescene.h" />
     <ClInclude Include="source\core\Scene\SceneManager.h" />
+    <ClInclude Include="source\core\Thread\Thread.h" />
+    <ClInclude Include="source\core\Thread\ThreadAffinity.h" />
     <ClInclude Include="source\DepseBufferRender2DGameObject.h" />
     <ClInclude Include="source\DirectX\Compointers.h" />
+    <ClInclude Include="source\DirectX\DirectInput\DirectXInput.h" />
     <ClInclude Include="source\DirectX\DirectX11Manager.h" />
     <ClInclude Include="source\DirectX\DirectXPipeline.h" />
     <ClInclude Include="source\DirectX\DirectXRenderManager.h" />
@@ -159,6 +171,9 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="shader\defferd\psDefferdNormal.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="shader\fifo.fx">
@@ -226,6 +241,9 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="shader\pstoon.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="shader\pstriangle.fx">
@@ -438,7 +456,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <PreprocessorDefinitions>DIRECTX11;_DIRECTX11;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>DIRECTX11;_DIRECTX11;WINDOWS;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>

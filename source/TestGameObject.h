@@ -42,7 +42,7 @@ private:
 	bool m_gauuseFlag;
 	bool m_bloomFlag;
 	std::weak_ptr<component::BasePostEffectComponent> m_postEffect;
-	void TestUpdate() {};
+	void TestUpdate();
 };
 }
 }

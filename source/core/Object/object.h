@@ -49,8 +49,12 @@ class Object;
 
 class Object{
 public:
+	// オブジェクトの初期化を行う部分
+	// 継承したクラスにはBASE_CLASS_ISを使ってbaseを設定させる
+	// Initalazieの中でbase::Initialize()を行う事
 	virtual void Initialize() {};
 
+	// InstanceNumberを生成する、ダウンキャストのコストダウン目的
 	Object() { 
 		static unsigned int _incetanceNumber = 0;
 		m_incetanceNumber = _incetanceNumber;
@@ -100,21 +104,19 @@ public:
 
 	virtual void ImGuiDraw() {};
 
+	// 固定フレームアップデートの追加
 	virtual void FixedUpdate();
 
+	// 追加のコンポーネントをアタッチする。
+	// ここでは
 	template<class T, class...LIST>
 	std::weak_ptr<T> AddComponent(LIST&&... _list) {
 		static_assert(std::is_base_of<component::Component, T>::value, "ゲームオブジェクトを継承してください");
 		auto result = std::make_shared<T>(_list...);
-		// component::ComponentSPtr comRes = result;
+
 		result->m_transform = m_transform;
 		m_component.push_back(result);
 		result->Initialize();
-
-		// 優先順位の並び替え今後実装予定
-		/*std::sort(m_component.begin(), m_component.end(), [](auto itr, auto itr2) {
-			return itr.m_priority < itr2.m_priority;
-		});*/
 
 		return result;
 	};
@@ -161,15 +163,28 @@ class Component :public object::Object {
 	// friend transform::Transform;
 	BASE_CLASS_IS(Object)
 private:
-	unsigned int m_priority;	// 優先度
+	float m_priority;	// 優先度
 
 public:
 	virtual void Initialize() {}
 	Component() = default;
 	virtual ~Component() = default;
+	// MultiThreadで動くUpdateは優先度をつけないと、順不同で処理されます。
+	// 優先度変更関数を作成する、変更時にソートを行う
+	// 優先度の設定はJobSystemが行うべきかも
 
+	// 可変フレームレート
+	// (SingleThreadで動くので値の受け渡しなどこちらで行うと安全)
+	virtual void SingleThreadUpdate() {}
+	// 可変フレームレート
+	// (MultiThreadで動くので早い。値の受け渡しは危険)
 	virtual void Update() override {}
+	// 固定フレームレート
+	// (MultiThreadで動くので早い。値の受け渡しは危険)
 	virtual void FixedUpdate() {}
+	// 固定フレームレート
+	// (SingleThreadで動くので値の受け渡しはこちらで行うと安全)
+	virtual void SingleThreadFixedUpdate() {}
 
 protected:
 	transform::TransformPtr m_transform;
@@ -215,7 +230,7 @@ public:
 	// 親の設定
 	void SetParent(TransformPtr _ptr);
 
-	void Update() {};
+	void Update() {}
 };
 
 }
