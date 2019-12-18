@@ -107,6 +107,7 @@ void GameLoop::Render() {
 		//mslib::directx::DirectXRender::GetInstance().RenderQuad();
 
 		mslib::render::Render::GetInstance().ImGuiCare();
+
 		ImGuiRenderBefor();
 
 		// ImGuiRender();
@@ -120,8 +121,7 @@ void GameLoop::Render() {
 }
 
 void GameLoop::ImGuiRender() {
-#ifndef _DEBUG
-#else
+#ifdef _DEBUG
 	ImGui::SetNextWindowPos(ImVec2(650, 20), ImGuiCond_FirstUseEver);
 	ImGui::SetNextWindowSize(ImVec2(550, 680), ImGuiCond_FirstUseEver); 
 	ImGui::Begin("aaa", nullptr);

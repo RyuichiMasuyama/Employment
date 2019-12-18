@@ -38,6 +38,14 @@ public:
 		return result;
 	}
 
+	void DeleteGameObject(object::GameObject *_eleteObject) {
+		for (auto& itr : m_gameObjectList) {
+			if (itr->m_incetanceNumber == _eleteObject->m_incetanceNumber) {
+				itr = nullptr;
+			}
+		}
+	}
+
 	void Update();
 	void FixedUpdate();
 

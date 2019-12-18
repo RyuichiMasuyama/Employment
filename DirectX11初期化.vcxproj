@@ -67,6 +67,10 @@
     <ClCompile Include="source\MyDirectXMath.cpp" />
     <ClCompile Include="source\origne\GameObjectGround.cpp" />
     <ClCompile Include="source\origne\GameObjectLight.cpp" />
+    <ClCompile Include="source\origne\Player\Component\PlayerRgiComponent.cpp" />
+    <ClCompile Include="source\origne\Player\GameObject\PlayerGameObject.cpp" />
+    <ClCompile Include="source\origne\RPGManager\Component\RpgManagerComponent.cpp" />
+    <ClCompile Include="source\origne\RPGManager\GameObject\RpgManagerGameObject.cpp" />
     <ClCompile Include="source\Renderer\DirectXPostEffect.cpp" />
     <ClCompile Include="source\Renderer\PostEffect.cpp" />
     <ClCompile Include="source\Renderer\PostEffectBase.cpp" />
@@ -130,8 +134,14 @@
     <ClInclude Include="source\ImGui\imstb_truetype.h" />
     <ClInclude Include="source\main.h" />
     <ClInclude Include="source\MyDirectXMath.h" />
+    <ClInclude Include="source\origne\Enemy\Component\EnemyComponent.h" />
+    <ClInclude Include="source\origne\Enemy\GameObject\EnemyGameObject.h" />
     <ClInclude Include="source\origne\GameObjectGround.h" />
     <ClInclude Include="source\origne\GameObjectLight.h" />
+    <ClInclude Include="source\origne\Player\Component\PlayerRgiComponent.h" />
+    <ClInclude Include="source\origne\Player\GameObject\PlayerGameObject.h" />
+    <ClInclude Include="source\origne\RPGManager\Component\RpgManagerComponent.h" />
+    <ClInclude Include="source\origne\RPGManager\GameObject\RpgManagerGameObject.h" />
     <ClInclude Include="source\Renderer\DirectXPostEffect.h" />
     <ClInclude Include="source\Renderer\PostEffect.h" />
     <ClInclude Include="source\Renderer\PostEffectBase.h" />
@@ -153,9 +163,11 @@
   <ItemGroup>
     <FxCompile Include="shader\Base\psRender2DBase.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="shader\Base\vsRender2DBase.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="shader\BumpMapPS.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -175,6 +187,7 @@
     </FxCompile>
     <FxCompile Include="shader\defferd\psDefferdNormal.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="shader\fifo.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -226,6 +239,7 @@
     </FxCompile>
     <FxCompile Include="shader\psShadowMap.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="shader\psskydome.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -245,6 +259,7 @@
     </FxCompile>
     <FxCompile Include="shader\pstoon.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="shader\pstriangle.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -305,6 +320,7 @@
     </FxCompile>
     <FxCompile Include="shader\vsShadowMap.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="shader\vstriangle.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -354,6 +370,7 @@
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
+    <ConfigurationType>Application</ConfigurationType>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">

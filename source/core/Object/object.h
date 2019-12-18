@@ -86,6 +86,8 @@ protected:
 
 	// マトリックス
 	math::Matrix m_matrix;
+
+	unsigned int GetInstanceNumber() { return m_incetanceNumber; }
 };
 
 class GameObject :public TransformObejct {
@@ -164,9 +166,12 @@ class Component :public object::Object {
 	BASE_CLASS_IS(Object)
 private:
 	float m_priority;	// 優先度
+	bool m_activeFlag;
 
 public:
-	virtual void Initialize() {}
+	virtual void Initialize() { 
+		m_activeFlag = true;
+	}
 	Component() = default;
 	virtual ~Component() = default;
 	// MultiThreadで動くUpdateは優先度をつけないと、順不同で処理されます。
@@ -185,6 +190,9 @@ public:
 	// 固定フレームレート
 	// (SingleThreadで動くので値の受け渡しはこちらで行うと安全)
 	virtual void SingleThreadFixedUpdate() {}
+
+	void SetActiveFlag(bool flag) { m_activeFlag = flag; }
+	bool &IsAcive() { return m_activeFlag; }
 
 protected:
 	transform::TransformPtr m_transform;

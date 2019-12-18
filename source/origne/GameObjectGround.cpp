@@ -15,7 +15,7 @@ void GameObjectGround::Initialize() {
 	CreateUpdateFunction(GROUND_UPDATE_NAME, &GameObjectGround::GroundUpdate, this);
 	SetUpdateFunction(GROUND_UPDATE_NAME);
 
-	m_rotate = math::Vector3(0.f, 0.f, 0.f);
+	m_rotate = math::Vector3(0.f, 180.f, 0.f);
 	m_scale = math::Vector3(1.f, 1.f, 1.f);
 }
 

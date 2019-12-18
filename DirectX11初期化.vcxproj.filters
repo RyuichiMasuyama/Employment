@@ -137,20 +137,32 @@
     <ClCompile Include="source\core\JobSystem\JobLine.cpp">
       <Filter>core\JobSystem</Filter>
     </ClCompile>
-    <ClCompile Include="source\origne\GameObjectGround.cpp">
-      <Filter>origne\GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="source\origne\GameObjectLight.cpp">
-      <Filter>origne\GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="source\TestGameObject.cpp">
-      <Filter>origne\GameObject</Filter>
-    </ClCompile>
     <ClCompile Include="source\DirectX\DirectInput\DirectXInput.cpp">
       <Filter>DirectX\DirectInput</Filter>
     </ClCompile>
     <ClCompile Include="source\core\Input\Input.cpp">
       <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="source\origne\GameObjectGround.cpp">
+      <Filter>origne</Filter>
+    </ClCompile>
+    <ClCompile Include="source\origne\GameObjectLight.cpp">
+      <Filter>origne</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TestGameObject.cpp">
+      <Filter>origne</Filter>
+    </ClCompile>
+    <ClCompile Include="source\origne\Player\GameObject\PlayerGameObject.cpp">
+      <Filter>origne\Player\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="source\origne\Player\Component\PlayerRgiComponent.cpp">
+      <Filter>origne\Player\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="source\origne\RPGManager\GameObject\RpgManagerGameObject.cpp">
+      <Filter>origne\RPGManager\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="source\origne\RPGManager\Component\RpgManagerComponent.cpp">
+      <Filter>origne\RPGManager\Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -238,17 +250,38 @@
     <Filter Include="other">
       <UniqueIdentifier>{d5a5efdb-b218-42bd-9740-07b8b1479b47}</UniqueIdentifier>
     </Filter>
-    <Filter Include="origne\GameObject">
-      <UniqueIdentifier>{52a6f872-97da-4f2a-8c80-9a5dbaa9a26a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="origne\Component">
-      <UniqueIdentifier>{c08ad8a6-0329-4889-b7a5-0089b28164d1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Input">
       <UniqueIdentifier>{cdda6771-2b65-4046-96fc-c281934ee9ff}</UniqueIdentifier>
     </Filter>
     <Filter Include="DirectX\DirectInput">
       <UniqueIdentifier>{0044a1fa-d0f4-4ec7-ad4e-dd0ad29044e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="origne\Enemy">
+      <UniqueIdentifier>{4755efc3-9e91-4ce9-bc07-96175174e736}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="origne\Player">
+      <UniqueIdentifier>{f4f5ec31-a8f3-45a7-95c2-9da19b871ada}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="origne\Player\GameObject">
+      <UniqueIdentifier>{52a6f872-97da-4f2a-8c80-9a5dbaa9a26a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="origne\Player\Component">
+      <UniqueIdentifier>{c08ad8a6-0329-4889-b7a5-0089b28164d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="origne\Enemy\GameObject">
+      <UniqueIdentifier>{8a62f5fb-2c99-4b87-bdc6-cf555e1a91be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="origne\Enemy\Component">
+      <UniqueIdentifier>{d44f39bf-4cd0-4c0e-8f2a-a6dd1fa8dd68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="origne\RPGManager">
+      <UniqueIdentifier>{151f3a14-ef2e-4270-85dc-fdad975582cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="origne\RPGManager\Component">
+      <UniqueIdentifier>{5f0bdb70-578b-4860-89bc-2194a065b0d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="origne\RPGManager\GameObject">
+      <UniqueIdentifier>{d94c82dd-681f-450b-ba65-bd332fe6f21b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -430,23 +463,41 @@
     <ClInclude Include="source\AssetManager\MeshPrimitive.h">
       <Filter>Asset</Filter>
     </ClInclude>
-    <ClInclude Include="source\origne\GameObjectLight.h">
-      <Filter>origne\GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="source\origne\GameObjectGround.h">
-      <Filter>origne\GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="source\TestCompoent.h">
-      <Filter>origne\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="source\TestGameObject.h">
-      <Filter>origne\GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="source\DirectX\DirectInput\DirectXInput.h">
       <Filter>DirectX\DirectInput</Filter>
     </ClInclude>
     <ClInclude Include="source\core\Input\Input.h">
       <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="source\origne\GameObjectGround.h">
+      <Filter>origne</Filter>
+    </ClInclude>
+    <ClInclude Include="source\origne\GameObjectLight.h">
+      <Filter>origne</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TestGameObject.h">
+      <Filter>origne</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TestCompoent.h">
+      <Filter>origne</Filter>
+    </ClInclude>
+    <ClInclude Include="source\origne\Player\GameObject\PlayerGameObject.h">
+      <Filter>origne\Player\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="source\origne\Player\Component\PlayerRgiComponent.h">
+      <Filter>origne\Player\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="source\origne\RPGManager\Component\RpgManagerComponent.h">
+      <Filter>origne\RPGManager\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="source\origne\RPGManager\GameObject\RpgManagerGameObject.h">
+      <Filter>origne\RPGManager\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="source\origne\Enemy\GameObject\EnemyGameObject.h">
+      <Filter>origne\Enemy\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="source\origne\Enemy\Component\EnemyComponent.h">
+      <Filter>origne\Enemy\Component</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

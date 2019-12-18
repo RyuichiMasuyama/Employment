@@ -1,202 +1,94 @@
 ﻿cl : コマンド ライン warning D9030: '/Gm' はマルチプロセシングと互換性がありません。/MP スイッチを無視します
-  TestGameObject.cpp
-c:\work\git\project\employment\source\directx\directxrendermanager.h(96): error C2039: 'ShaderWark': 'mslib::directx' のメンバーではありません。
-  c:\work\git\project\employment\source\directx\directxrendermanager.h(47): note: 'mslib::directx' の宣言を確認してください
-c:\work\git\project\employment\source\directx\directxrendermanager.h(95): error C2061: 構文エラー: 識別子 'ShaderWark'
-c:\work\git\project\employment\source\testgameobject.cpp(22): error C2079: 'creater' が 未定義の class 'mslib::directx::BufferCreater' で使用しています。
-c:\work\git\project\employment\source\testgameobject.cpp(22): error C2440: '初期化中': 'mslib::directx::Device' から 'int' に変換できません。
-  c:\work\git\project\employment\source\testgameobject.cpp(22): note: この変換を実行可能なユーザー定義変換演算子がないか、または演算子を呼び出せません。
-c:\work\git\project\employment\source\testgameobject.cpp(24): error C2228: '.CreateConstantBuffer' の左側はクラス、構造体、共用体でなければなりません
-  c:\work\git\project\employment\source\testgameobject.cpp(24): note: 型は 'int' です。
-  MyDirectXVertexShader.cpp
-c:\work\git\project\employment\source\shader\mydirectxvertexshader.cpp(131): error C2227: '->CreateVertexShader' : 左側がクラス、構造体、共用体、ジェネリック型へのポインターではありません。
-c:\work\git\project\employment\source\shader\mydirectxvertexshader.cpp(141): error C2227: '->CreateInputLayout' : 左側がクラス、構造体、共用体、ジェネリック型へのポインターではありません。
-  MyDirectXPixelShader.cpp
-c:\work\git\project\employment\source\shader\mydirectxpixelshader.cpp(18): error C2227: '->CreatePixelShader' : 左側がクラス、構造体、共用体、ジェネリック型へのポインターではありません。
-  MyDirectXGeometryShader.cpp
-c:\work\git\project\employment\source\shader\mydirectxgeometryshader.cpp(17): error C2227: '->CreateGeometryShader' : 左側がクラス、構造体、共用体、ジェネリック型へのポインターではありません。
-  RenderObject.cpp
-c:\work\git\project\employment\source\renderer\renderobject.h(81): error C2065: 'UINT': 定義されていない識別子です。
-c:\work\git\project\employment\source\renderer\renderobject.h(81): error C2923: 'std::vector': 'UINT' は、有効な テンプレート 型引数 (パラメーター '_Ty') ではありません。
-c:\work\git\project\employment\source\renderer\renderobject.h(81): error C3203: 'allocator': 非特殊 クラス テンプレート は、テンプレート 引数として テンプレート パラメーター '_Alloc' に使用できません。実際の型を指定してください
-c:\program files (x86)\microsoft visual studio\2017\professional\vc\tools\msvc\14.12.25827\include\vector(682): error C2057: 定数式が必要です。
-c:\work\git\project\employment\source\renderer\renderobject.cpp(67): error C2663: 'std::vector<_Ty,_Alloc>::resize': 2 オーバーロードに 'this' ポインターのための必要な定義がされていません。
-c:\work\git\project\employment\source\renderer\renderobject.cpp(70): error C2678: 二項演算子 '[': 型 'std::vector' の左オペランドを扱う演算子が見つかりません (または変換できません) (新しい動作; ヘルプを参照)。
-  c:\program files (x86)\microsoft visual studio\2017\professional\vc\tools\msvc\14.12.25827\include\vector(1804): note: 'const _Ty &std::vector<_Ty,_Alloc>::operator [](const _Vector_alloc<_Alloc_types>::_Val_types::size_type) const' の可能性があります
-  c:\program files (x86)\microsoft visual studio\2017\professional\vc\tools\msvc\14.12.25827\include\vector(1790): note: または '_Ty &std::vector<_Ty,_Alloc>::operator [](const _Vector_alloc<_Alloc_types>::_Val_types::size_type)'
-  c:\work\git\project\employment\source\renderer\renderobject.cpp(70): note: 引数リスト '(std::vector, UINT)' を一致させようとしているとき
-c:\work\git\project\employment\source\renderer\renderobject.cpp(70): warning C4473: 'fscanf': 書式文字列として渡された引数が不足しています
-  c:\work\git\project\employment\source\renderer\renderobject.cpp(70): note: プレースホルダーとそのパラメーターには 1 の可変個引数が必要ですが、0 が指定されています。
-  c:\work\git\project\employment\source\renderer\renderobject.cpp(70): note: 不足している可変個引数 1 が書式文字列 '%d' に必要です
+  GameObjectLight.cpp
+c:\work\git\project\employment\source\renderer\posteffectbase.h(11): error C2653: 'directx': 識別子がクラス名でも名前空間名でもありません。
+c:\work\git\project\employment\source\renderer\posteffectbase.h(11): error C2504: 'DirectXPostEffect': 定義されていない基底クラスが宣言されています。
+c:\work\git\project\employment\source\renderer\posteffectbase.h(13): error C2061: 構文エラー: 識別子 'CameraTexture'
+c:\work\git\project\employment\source\renderer\posteffectbase.h(16): error C2061: 構文エラー: 識別子 'PostEffectStatus'
+c:\work\git\project\employment\source\renderer\renderterget.h(72): error C2039: 'CameraTexture': 'mslib::render' のメンバーではありません。
+  c:\work\git\project\employment\source\renderer\renderterget.h(23): note: 'mslib::render' の宣言を確認してください
+c:\work\git\project\employment\source\renderer\renderterget.h(72): error C3646: 'GetCameraTexture': 不明なオーバーライド指定子です
+c:\work\git\project\employment\source\renderer\renderterget.h(72): error C2059: 構文エラー: '('
+c:\work\git\project\employment\source\renderer\renderterget.h(72): error C2238: ';' の前に無効なトークンがあります。
+c:\work\git\project\employment\source\renderer\renderterget.h(100): error C3646: 'm_softRenderTerget': 不明なオーバーライド指定子です
+c:\work\git\project\employment\source\renderer\renderterget.h(100): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+c:\work\git\project\employment\source\renderer\posteffect.h(10): error C2061: 構文エラー: 識別子 'CameraTexture'
+c:\work\git\project\employment\source\renderer\posteffect.h(14): error C2061: 構文エラー: 識別子 'PostEffectStatus'
+c:\work\git\project\employment\source\renderer\posteffect.h(10): error C2065: '_cameraTexture': 定義されていない識別子です。
+c:\work\git\project\employment\source\core\component\posteffect\baseposteffectcomponent.h(21): error C2039: 'POSTEFFECT_TYPE': 'mslib::render' のメンバーではありません。
+  c:\work\git\project\employment\source\core\component\posteffect\baseposteffectcomponent.h(7): note: 'mslib::render' の宣言を確認してください
+c:\work\git\project\employment\source\core\component\posteffect\baseposteffectcomponent.h(21): error C2061: 構文エラー: 識別子 'POSTEFFECT_TYPE'
+c:\work\git\project\employment\source\core\component\posteffect\baseposteffectcomponent.h(27): error C2039: 'PostEffectStatus': 'mslib::render' のメンバーではありません。
+  c:\work\git\project\employment\source\core\component\posteffect\baseposteffectcomponent.h(7): note: 'mslib::render' の宣言を確認してください
+c:\work\git\project\employment\source\core\component\posteffect\baseposteffectcomponent.h(27): error C3646: 'm_status': 不明なオーバーライド指定子です
+c:\work\git\project\employment\source\core\component\posteffect\baseposteffectcomponent.h(27): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+  GameObjectGround.cpp
+c:\work\git\project\employment\source\renderer\posteffectbase.h(11): error C2653: 'directx': 識別子がクラス名でも名前空間名でもありません。
+c:\work\git\project\employment\source\renderer\posteffectbase.h(11): error C2504: 'DirectXPostEffect': 定義されていない基底クラスが宣言されています。
+c:\work\git\project\employment\source\renderer\posteffectbase.h(13): error C2061: 構文エラー: 識別子 'CameraTexture'
+c:\work\git\project\employment\source\renderer\posteffectbase.h(16): error C2061: 構文エラー: 識別子 'PostEffectStatus'
+c:\work\git\project\employment\source\renderer\renderterget.h(72): error C2039: 'CameraTexture': 'mslib::render' のメンバーではありません。
+  c:\work\git\project\employment\source\renderer\renderterget.h(23): note: 'mslib::render' の宣言を確認してください
+c:\work\git\project\employment\source\renderer\renderterget.h(72): error C3646: 'GetCameraTexture': 不明なオーバーライド指定子です
+c:\work\git\project\employment\source\renderer\renderterget.h(72): error C2059: 構文エラー: '('
+c:\work\git\project\employment\source\renderer\renderterget.h(72): error C2238: ';' の前に無効なトークンがあります。
+c:\work\git\project\employment\source\renderer\renderterget.h(100): error C3646: 'm_softRenderTerget': 不明なオーバーライド指定子です
+c:\work\git\project\employment\source\renderer\renderterget.h(100): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+c:\work\git\project\employment\source\renderer\renderobject.h(28): error C2653: 'directx': 識別子がクラス名でも名前空間名でもありません。
+c:\work\git\project\employment\source\renderer\renderobject.h(28): error C2061: 構文エラー: 識別子 'DirectXPipeline'
+c:\work\git\project\employment\source\renderer\renderobject.h(106): error C2065: 'UINT': 定義されていない識別子です。
+c:\work\git\project\employment\source\renderer\renderobject.h(106): error C2923: 'std::vector': 'UINT' は、有効な テンプレート 型引数 (パラメーター '_Ty') ではありません。
+c:\work\git\project\employment\source\renderer\renderobject.h(106): error C3203: 'allocator': 非特殊 クラス テンプレート は、テンプレート 引数として テンプレート パラメーター '_Alloc' に使用できません。実際の型を指定してください
+c:\work\git\project\employment\source\renderer\renderobject.h(119): error C3646: 'm_pipeline': 不明なオーバーライド指定子です
+c:\work\git\project\employment\source\renderer\renderobject.h(119): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+c:\work\git\project\employment\source\renderer\renderobject.h(129): error C2143: 構文エラー: ';' が '*' の前にありません。
+c:\work\git\project\employment\source\renderer\renderobject.h(129): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+c:\work\git\project\employment\source\renderer\renderobject.h(129): error C2238: ';' の前に無効なトークンがあります。
+c:\work\git\project\employment\source\renderer\render.h(30): error C2143: 構文エラー: ';' が '*' の前にありません。
+c:\work\git\project\employment\source\renderer\render.h(30): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+c:\work\git\project\employment\source\renderer\render.h(30): error C2238: ';' の前に無効なトークンがあります。
+c:\work\git\project\employment\source\renderer\render.h(38): error C2061: 構文エラー: 識別子 'Pipeline'
+c:\work\git\project\employment\source\renderer\render.h(39): error C2065: '_pipelinePtr': 定義されていない識別子です。
+c:\work\git\project\employment\source\renderer\render.h(39): error C2614: 'mslib::render::RenderObjectCommand': イニシャライズ リスト内のクラス 'm_pipelinePtr' が基底クラスでもメンバーでもありません。
+c:\work\git\project\employment\source\renderer\render.h(51): error C2061: 構文エラー: 識別子 'Pipeline'
   main.cpp
-c:\work\git\project\employment\source\directx\directxrendermanager.h(96): error C2039: 'ShaderWark': 'mslib::directx' のメンバーではありません。
-  c:\work\git\project\employment\source\directx\directxrendermanager.h(47): note: 'mslib::directx' の宣言を確認してください
-c:\work\git\project\employment\source\directx\directxrendermanager.h(95): error C2061: 構文エラー: 識別子 'ShaderWark'
-c:\work\git\project\employment\source\main.cpp(75): error C2039: 'TextureLoder': 'mslib::directx' のメンバーではありません。
-  c:\work\git\project\employment\source\core\gameloopmanager.h(13): note: 'mslib::directx' の宣言を確認してください
-c:\work\git\project\employment\source\main.cpp(75): error C2065: 'TextureLoder': 定義されていない識別子です。
-c:\work\git\project\employment\source\main.cpp(75): error C2065: 'texture_loader': 定義されていない識別子です。
-c:\work\git\project\employment\source\main.cpp(75): error C3083: 'TextureLoder': '::' の左側のシンボルには、型を指定しなければなりません
-c:\work\git\project\employment\source\main.cpp(75): error C2039: 'GetInstance': 'mslib::directx' のメンバーではありません。
-  c:\work\git\project\employment\source\core\gameloopmanager.h(13): note: 'mslib::directx' の宣言を確認してください
-c:\work\git\project\employment\source\main.cpp(75): error C3861: 'GetInstance': 識別子が見つかりませんでした
-c:\work\git\project\employment\source\main.cpp(79): error C2065: 'texture_loader': 定義されていない識別子です。
-  DirectXTextureManager.cpp
-  DirectXRenderManager.cpp
-c:\work\git\project\employment\source\directx\directxrendermanager.h(96): error C2039: 'ShaderWark': 'mslib::directx' のメンバーではありません。
-  c:\work\git\project\employment\source\directx\directxrendermanager.h(47): note: 'mslib::directx' の宣言を確認してください
-c:\work\git\project\employment\source\directx\directxrendermanager.h(95): error C2061: 構文エラー: 識別子 'ShaderWark'
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(91): error C2882: 'directx': 式の中で名前空間の識別子が正しく使用されていません。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(91): error C2143: 構文エラー: ';' が 'for' の前にありません。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(92): error C2882: 'texture': 式の中で名前空間の識別子が正しく使用されていません。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(92): error C2228: '.GetAddressOf' の左側はクラス、構造体、共用体でなければなりません
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(92): error C2660: 'ID3D11DeviceContext::PSSetShaderResources': 関数に 2 個の引数を指定できません。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(252): error C2511: 'mslib::directx::DirectXRenderObjectLoder::DirectXRenderObjectLoder(mslib::directx::Device,mslib::shader::ShaderWark *,mslib::directx::DirectXRenderObjectWarehouse *,mslib::texture::TextureLoder *)': オーバーロードされたメンバー関数が 'mslib::directx::DirectXRenderObjectLoder' にありません。
-  c:\work\git\project\employment\source\directx\directxrendermanager.h(93): note: 'mslib::directx::DirectXRenderObjectLoder' の宣言を確認してください
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(252): error C2027: 認識できない型 'mslib::shader::ShaderWark' が使われています。
-  c:\work\git\project\employment\source\directx\directxrendermanager.h(19): note: 'mslib::shader::ShaderWark' の宣言を確認してください
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(252): error C2227: '->GetVertexShaderManager' : 左側がクラス、構造体、共用体、ジェネリック型へのポインターではありません。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(253): error C2027: 認識できない型 'mslib::shader::ShaderWark' が使われています。
-  c:\work\git\project\employment\source\directx\directxrendermanager.h(19): note: 'mslib::shader::ShaderWark' の宣言を確認してください
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(253): error C2227: '->GetPixelShaderManager' : 左側がクラス、構造体、共用体、ジェネリック型へのポインターではありません。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(254): error C2027: 認識できない型 'mslib::shader::ShaderWark' が使われています。
-  c:\work\git\project\employment\source\directx\directxrendermanager.h(19): note: 'mslib::shader::ShaderWark' の宣言を確認してください
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(254): error C2227: '->GetGeometryShaderManager' : 左側がクラス、構造体、共用体、ジェネリック型へのポインターではありません。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(257): error C2550: 'mslib::directx::DirectXRenderObjectLoder::{ctor}': コンストラクターの初期化子リストはコンストラクターの定義だけに許されます。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(258): error C2597: 静的でないメンバー 'mslib::directx::DirectXRenderObjectLoder::m_buffer_creater' への参照が正しくありません。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(269): error C2664: 'void mslib::directx::DirectXRenderObject::SetGeometory(std::string)': 引数 1 を 'mslib::directx::GeometryShader' から 'std::string' へ変換できません。
-  c:\work\git\project\employment\source\directx\directxrendermanager.cpp(269): note: この変換を実行可能なユーザー定義変換演算子がないか、または演算子を呼び出せません。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(271): error C2248: 'mslib::directx::DirectXRenderObject::m_mesh': private メンバー (クラス 'mslib::directx::DirectXRenderObject' で宣言されている) にアクセスできません。
-  c:\work\git\project\employment\source\directx\directxrendermanager.h(64): note: 'mslib::directx::DirectXRenderObject::m_mesh' の宣言を確認してください
-  c:\work\git\project\employment\source\directx\directxrendermanager.h(60): note: 'mslib::directx::DirectXRenderObject' の宣言を確認してください
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(274): error C2248: 'mslib::directx::DirectXRenderObject::m_mesh': private メンバー (クラス 'mslib::directx::DirectXRenderObject' で宣言されている) にアクセスできません。
-  c:\work\git\project\employment\source\directx\directxrendermanager.h(64): note: 'mslib::directx::DirectXRenderObject::m_mesh' の宣言を確認してください
-  c:\work\git\project\employment\source\directx\directxrendermanager.h(60): note: 'mslib::directx::DirectXRenderObject' の宣言を確認してください
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(275): error C2248: 'mslib::directx::DirectXRenderObject::m_mesh': private メンバー (クラス 'mslib::directx::DirectXRenderObject' で宣言されている) にアクセスできません。
-  c:\work\git\project\employment\source\directx\directxrendermanager.h(64): note: 'mslib::directx::DirectXRenderObject::m_mesh' の宣言を確認してください
-  c:\work\git\project\employment\source\directx\directxrendermanager.h(60): note: 'mslib::directx::DirectXRenderObject' の宣言を確認してください
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(276): error C2248: 'mslib::directx::DirectXRenderObject::m_mesh': private メンバー (クラス 'mslib::directx::DirectXRenderObject' で宣言されている) にアクセスできません。
-  c:\work\git\project\employment\source\directx\directxrendermanager.h(64): note: 'mslib::directx::DirectXRenderObject::m_mesh' の宣言を確認してください
-  c:\work\git\project\employment\source\directx\directxrendermanager.h(60): note: 'mslib::directx::DirectXRenderObject' の宣言を確認してください
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(276): error C2882: 'texture': 式の中で名前空間の識別子が正しく使用されていません。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(279): error C2248: 'mslib::directx::DirectXRenderObject::m_mesh': private メンバー (クラス 'mslib::directx::DirectXRenderObject' で宣言されている) にアクセスできません。
-  c:\work\git\project\employment\source\directx\directxrendermanager.h(64): note: 'mslib::directx::DirectXRenderObject::m_mesh' の宣言を確認してください
-  c:\work\git\project\employment\source\directx\directxrendermanager.h(60): note: 'mslib::directx::DirectXRenderObject' の宣言を確認してください
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(281): error C2248: 'mslib::directx::DirectXRenderObject::m_mesh': private メンバー (クラス 'mslib::directx::DirectXRenderObject' で宣言されている) にアクセスできません。
-  c:\work\git\project\employment\source\directx\directxrendermanager.h(64): note: 'mslib::directx::DirectXRenderObject::m_mesh' の宣言を確認してください
-  c:\work\git\project\employment\source\directx\directxrendermanager.h(60): note: 'mslib::directx::DirectXRenderObject' の宣言を確認してください
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(291): error C2248: 'mslib::directx::DirectXRenderObject::m_mesh': private メンバー (クラス 'mslib::directx::DirectXRenderObject' で宣言されている) にアクセスできません。
-  c:\work\git\project\employment\source\directx\directxrendermanager.h(64): note: 'mslib::directx::DirectXRenderObject::m_mesh' の宣言を確認してください
-  c:\work\git\project\employment\source\directx\directxrendermanager.h(60): note: 'mslib::directx::DirectXRenderObject' の宣言を確認してください
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(293): error C2248: 'mslib::directx::DirectXRenderObject::m_mesh': private メンバー (クラス 'mslib::directx::DirectXRenderObject' で宣言されている) にアクセスできません。
-  c:\work\git\project\employment\source\directx\directxrendermanager.h(64): note: 'mslib::directx::DirectXRenderObject::m_mesh' の宣言を確認してください
-  c:\work\git\project\employment\source\directx\directxrendermanager.h(60): note: 'mslib::directx::DirectXRenderObject' の宣言を確認してください
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(294): error C2248: 'mslib::directx::DirectXRenderObject::m_mesh': private メンバー (クラス 'mslib::directx::DirectXRenderObject' で宣言されている) にアクセスできません。
-  c:\work\git\project\employment\source\directx\directxrendermanager.h(64): note: 'mslib::directx::DirectXRenderObject::m_mesh' の宣言を確認してください
-  c:\work\git\project\employment\source\directx\directxrendermanager.h(60): note: 'mslib::directx::DirectXRenderObject' の宣言を確認してください
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(295): error C2248: 'mslib::directx::DirectXRenderObject::m_mesh': private メンバー (クラス 'mslib::directx::DirectXRenderObject' で宣言されている) にアクセスできません。
-  c:\work\git\project\employment\source\directx\directxrendermanager.h(64): note: 'mslib::directx::DirectXRenderObject::m_mesh' の宣言を確認してください
-  c:\work\git\project\employment\source\directx\directxrendermanager.h(60): note: 'mslib::directx::DirectXRenderObject' の宣言を確認してください
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(295): error C2882: 'texture': 式の中で名前空間の識別子が正しく使用されていません。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(298): error C2248: 'mslib::directx::DirectXRenderObject::m_mesh': private メンバー (クラス 'mslib::directx::DirectXRenderObject' で宣言されている) にアクセスできません。
-  c:\work\git\project\employment\source\directx\directxrendermanager.h(64): note: 'mslib::directx::DirectXRenderObject::m_mesh' の宣言を確認してください
-  c:\work\git\project\employment\source\directx\directxrendermanager.h(60): note: 'mslib::directx::DirectXRenderObject' の宣言を確認してください
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(300): error C2248: 'mslib::directx::DirectXRenderObject::m_mesh': private メンバー (クラス 'mslib::directx::DirectXRenderObject' で宣言されている) にアクセスできません。
-  c:\work\git\project\employment\source\directx\directxrendermanager.h(64): note: 'mslib::directx::DirectXRenderObject::m_mesh' の宣言を確認してください
-  c:\work\git\project\employment\source\directx\directxrendermanager.h(60): note: 'mslib::directx::DirectXRenderObject' の宣言を確認してください
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(362): error C2065: 'm_vertex_shader_manager': 定義されていない識別子です。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(362): error C2227: '->GetVertexShader' : 左側がクラス、構造体、共用体、ジェネリック型へのポインターではありません。
-  c:\work\git\project\employment\source\directx\directxrendermanager.cpp(362): note: 型は 'unknown-type' です。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(363): error C2065: 'm_vertex_shader_manager': 定義されていない識別子です。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(363): error C2227: '->GetInputLayer' : 左側がクラス、構造体、共用体、ジェネリック型へのポインターではありません。
-  c:\work\git\project\employment\source\directx\directxrendermanager.cpp(363): note: 型は 'unknown-type' です。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(364): error C2065: 'm_pixel_shader_manager': 定義されていない識別子です。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(364): error C2227: '->GetShader' : 左側がクラス、構造体、共用体、ジェネリック型へのポインターではありません。
-  c:\work\git\project\employment\source\directx\directxrendermanager.cpp(364): note: 型は 'unknown-type' です。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(361): error C2672: 'std::make_shared': 一致するオーバーロードされた関数が見つかりませんでした。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(366): error C3536: 'new_object': 初期化前に使用することはできません
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(366): error C2227: '->SetGeometory' : 左側がクラス、構造体、共用体、ジェネリック型へのポインターではありません。
-  c:\work\git\project\employment\source\directx\directxrendermanager.cpp(366): note: 型は 'int' です。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(366): error C2065: 'm_geometry_shader_manager': 定義されていない識別子です。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(366): error C2227: '->GetShader' : 左側がクラス、構造体、共用体、ジェネリック型へのポインターではありません。
-  c:\work\git\project\employment\source\directx\directxrendermanager.cpp(366): note: 型は 'unknown-type' です。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(368): error C2227: '->m_mesh' : 左側がクラス、構造体、共用体、ジェネリック型へのポインターではありません。
-  c:\work\git\project\employment\source\directx\directxrendermanager.cpp(368): note: 型は 'int' です。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(368): error C2228: '.Load' の左側はクラス、構造体、共用体でなければなりません
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(371): error C2227: '->m_mesh' : 左側がクラス、構造体、共用体、ジェネリック型へのポインターではありません。
-  c:\work\git\project\employment\source\directx\directxrendermanager.cpp(371): note: 型は 'int' です。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(371): error C2228: '.GetMaterial' の左側はクラス、構造体、共用体でなければなりません
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(371): error C2227: '->textureName' : 左側がクラス、構造体、共用体、ジェネリック型へのポインターではありません。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(371): error C2228: '.size' の左側はクラス、構造体、共用体でなければなりません
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(372): error C2227: '->m_mesh' : 左側がクラス、構造体、共用体、ジェネリック型へのポインターではありません。
-  c:\work\git\project\employment\source\directx\directxrendermanager.cpp(372): note: 型は 'int' です。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(372): error C2228: '.GetMaterial' の左側はクラス、構造体、共用体でなければなりません
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(372): error C2227: '->textureName' : 左側がクラス、構造体、共用体、ジェネリック型へのポインターではありません。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(373): error C2227: '->m_mesh' : 左側がクラス、構造体、共用体、ジェネリック型へのポインターではありません。
-  c:\work\git\project\employment\source\directx\directxrendermanager.cpp(373): note: 型は 'int' です。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(373): error C2228: '.GetMaterial' の左側はクラス、構造体、共用体でなければなりません
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(373): error C2227: '->texture' : 左側がクラス、構造体、共用体、ジェネリック型へのポインターではありません。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(373): error C2065: 'm_texture_loader': 定義されていない識別子です。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(373): error C2227: '->Load' : 左側がクラス、構造体、共用体、ジェネリック型へのポインターではありません。
-  c:\work\git\project\employment\source\directx\directxrendermanager.cpp(373): note: 型は 'unknown-type' です。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(373): error C2227: '->textureName' : 左側がクラス、構造体、共用体、ジェネリック型へのポインターではありません。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(373): error C2228: '.c_str' の左側はクラス、構造体、共用体でなければなりません
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(376): error C2227: '->SetVertexBuffer' : 左側がクラス、構造体、共用体、ジェネリック型へのポインターではありません。
-  c:\work\git\project\employment\source\directx\directxrendermanager.cpp(376): note: 型は 'int' です。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(376): error C2065: 'm_buffer_creater': 定義されていない識別子です。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(376): error C2227: '->CreateVertexBuffer' : 左側がクラス、構造体、共用体、ジェネリック型へのポインターではありません。
-  c:\work\git\project\employment\source\directx\directxrendermanager.cpp(376): note: 型は 'unknown-type' です。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(376): error C2227: '->m_mesh' : 左側がクラス、構造体、共用体、ジェネリック型へのポインターではありません。
-  c:\work\git\project\employment\source\directx\directxrendermanager.cpp(376): note: 型は 'int' です。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(376): error C2228: '.GetPolygons' の左側はクラス、構造体、共用体でなければなりません
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(376): error C2227: '->vertex' : 左側がクラス、構造体、共用体、ジェネリック型へのポインターではありません。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(376): error C2228: '.at' の左側はクラス、構造体、共用体でなければなりません
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(376): error C2228: '.size' の左側はクラス、構造体、共用体でなければなりません
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(378): error C2227: '->SetIndexBuffer' : 左側がクラス、構造体、共用体、ジェネリック型へのポインターではありません。
-  c:\work\git\project\employment\source\directx\directxrendermanager.cpp(378): note: 型は 'int' です。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(378): error C2065: 'm_buffer_creater': 定義されていない識別子です。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(378): error C2227: '->CreateIndexBuffer' : 左側がクラス、構造体、共用体、ジェネリック型へのポインターではありません。
-  c:\work\git\project\employment\source\directx\directxrendermanager.cpp(378): note: 型は 'unknown-type' です。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(378): error C2227: '->m_mesh' : 左側がクラス、構造体、共用体、ジェネリック型へのポインターではありません。
-  c:\work\git\project\employment\source\directx\directxrendermanager.cpp(378): note: 型は 'int' です。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(378): error C2228: '.GetPolygons' の左側はクラス、構造体、共用体でなければなりません
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(378): error C2227: '->index' : 左側がクラス、構造体、共用体、ジェネリック型へのポインターではありません。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(378): error C2228: '.at' の左側はクラス、構造体、共用体でなければなりません
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(378): error C2228: '.size' の左側はクラス、構造体、共用体でなければなりません
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(380): error C2065: 'm_directx_render_object_warehouse': 定義されていない識別子です。
-c:\work\git\project\employment\source\directx\directxrendermanager.cpp(380): error C2227: '->PushRenderObject' : 左側がクラス、構造体、共用体、ジェネリック型へのポインターではありません。
-  c:\work\git\project\employment\source\directx\directxrendermanager.cpp(380): note: 型は 'unknown-type' です。
-  CameraComponent.cpp
-c:\work\git\project\employment\source\core\component\camera\cameracomponent.cpp(11): error C2838: 'NORMAL': メンバー宣言内の限定名が間違っています
-c:\work\git\project\employment\source\core\component\camera\cameracomponent.cpp(11): error C2065: 'NORMAL': 定義されていない識別子です。
-  コードを生成中...
-  コンパイル中...
-  BaseCameraComponent.cpp
-  コードを生成中...
-  コンパイル中...
-  RenderTerget.cpp
-  BasePostEffectComponent.cpp
-  コードを生成中...
-c:\work\git\project\employment\source\renderterget.cpp(244): warning C4715: 'mslib::render::RenderTergetManager::GetRenderTergets': 値を返さないコントロール パスがあります。
-  コンパイル中...
-  Shader.cpp
-  MyDirectXLight.cpp
-  MyDirectXCamera.cpp
-c:\work\git\project\employment\source\core\designpattern\singleton.h(29): warning C4316: 'mslib::Transform::TransformSendContext': ヒープで割り当てられたオブジェクトが 16 にアラインメントされていない可能性があります
-  c:\work\git\project\employment\source\core\designpattern\singleton.h(29): note: クラス テンプレート のメンバー関数 'mslib::Transform::TransformSendContext *mslib::pattern::Singleton<mslib::Transform::TransformSendContext>::Create(void)' のコンパイル中
-  c:\work\git\project\employment\source\core\designpattern\singleton.h(15): note: コンパイル対象の関数 テンプレート インスタンス化 'mslib::Transform::TransformSendContext *mslib::pattern::Singleton<mslib::Transform::TransformSendContext>::Create(void)' のリファレンスを確認してください
-  c:\work\git\project\employment\source\directx\subresourcesendmanager.h(10): note: コンパイル対象の クラス テンプレート インスタンス化 'mslib::pattern::Singleton<mslib::Transform::TransformSendContext>' のリファレンスを確認してください
-  SubResourceSendManager.cpp
+c:\work\git\project\employment\source\core\input\input.h(30): error C2504: 'InputDirectXConnect': 定義されていない基底クラスが宣言されています。
+c:\program files (x86)\microsoft visual studio\2017\professional\vc\tools\msvc\14.12.25827\include\any(14): fatal error C1189: #error:  class any is only available with C++17.
+  Thread.cpp
+c:\work\git\project\employment\source\core\thread\threadaffinity.h(9): error C2061: 構文エラー: 識別子 'DWORD'
+c:\work\git\project\employment\source\core\thread\thread.cpp(18): error C2660: 'mslib::thread::ThreadAffinity': 関数に 2 個の引数を指定できません。
+  Input.cpp
+c:\work\git\project\employment\source\core\input\input.h(30): error C2504: 'InputDirectXConnect': 定義されていない基底クラスが宣言されています。
+c:\work\git\project\employment\source\core\input\input.h(32): error C2061: 構文エラー: 識別子 'HINSTANCE'
+c:\work\git\project\employment\source\core\input\input.h(33): error C2535: 'mslib::input::Input::Input(void)': メンバー関数は、既に定義または宣言されています。
+  c:\work\git\project\employment\source\core\input\input.h(32): note: 'mslib::input::Input::Input' の宣言を確認してください
+c:\work\git\project\employment\source\core\input\input.cpp(6): error C2653: 'directx': 識別子がクラス名でも名前空間名でもありません。
+c:\work\git\project\employment\source\core\input\input.cpp(6): error C2653: 'InputDirectXConnect': 識別子がクラス名でも名前空間名でもありません。
+c:\work\git\project\employment\source\core\input\input.cpp(6): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+c:\work\git\project\employment\source\core\input\input.cpp(6): error C2146: 構文エラー: ';' が、識別子 'dxInput' の前に必要です。
+c:\work\git\project\employment\source\core\input\input.cpp(8): error C2653: 'InputDirectXConnect': 識別子がクラス名でも名前空間名でもありません。
+c:\work\git\project\employment\source\core\input\input.cpp(8): error C2065: 'HINSTANCE': 定義されていない識別子です。
+c:\work\git\project\employment\source\core\input\input.cpp(8): error C2146: 構文エラー: ')' が、識別子 '_hIncetance' の前に必要です。
+c:\work\git\project\employment\source\core\input\input.cpp(8): error C2143: 構文エラー: ';' が '{' の前にありません。
+c:\work\git\project\employment\source\core\input\input.cpp(8): error C2447: '{': 対応する関数ヘッダーがありません (旧形式の仮引数リスト?)
+c:\work\git\project\employment\source\core\input\input.cpp(12): error C2653: 'InputDirectXConnect': 識別子がクラス名でも名前空間名でもありません。
+c:\work\git\project\employment\source\core\input\input.cpp(13): error C2065: 'dxInput': 定義されていない識別子です。
+c:\work\git\project\employment\source\core\input\input.cpp(13): error C2228: '.GetKeyEnter' の左側はクラス、構造体、共用体でなければなりません
+  c:\work\git\project\employment\source\core\input\input.cpp(13): note: 型は 'unknown-type' です。
+c:\work\git\project\employment\source\core\input\input.cpp(16): error C2653: 'InputDirectXConnect': 識別子がクラス名でも名前空間名でもありません。
+c:\work\git\project\employment\source\core\input\input.cpp(17): error C2065: 'dxInput': 定義されていない識別子です。
+c:\work\git\project\employment\source\core\input\input.cpp(17): error C2228: '.GetKeyExit' の左側はクラス、構造体、共用体でなければなりません
+  c:\work\git\project\employment\source\core\input\input.cpp(17): note: 型は 'unknown-type' です。
+c:\work\git\project\employment\source\core\input\input.cpp(20): error C2653: 'InputDirectXConnect': 識別子がクラス名でも名前空間名でもありません。
+c:\work\git\project\employment\source\core\input\input.cpp(21): error C2065: 'dxInput': 定義されていない識別子です。
+c:\work\git\project\employment\source\core\input\input.cpp(21): error C2228: '.GetKeyStay' の左側はクラス、構造体、共用体でなければなりません
+  c:\work\git\project\employment\source\core\input\input.cpp(21): note: 型は 'unknown-type' です。
+c:\work\git\project\employment\source\core\input\input.cpp(24): error C2653: 'InputDirectXConnect': 識別子がクラス名でも名前空間名でもありません。
+c:\work\git\project\employment\source\core\input\input.cpp(25): error C2065: 'dxInput': 定義されていない識別子です。
+c:\work\git\project\employment\source\core\input\input.cpp(25): error C2228: '.Update' の左側はクラス、構造体、共用体でなければなりません
+  c:\work\git\project\employment\source\core\input\input.cpp(25): note: 型は 'unknown-type' です。
+c:\work\git\project\employment\source\core\input\input.cpp(28): error C2065: 'HINSTANCE': 定義されていない識別子です。
+c:\work\git\project\employment\source\core\input\input.cpp(28): error C2146: 構文エラー: ')' が、識別子 '_hIncetance' の前に必要です。
+c:\work\git\project\employment\source\core\input\input.cpp(28): error C2065: '_hIncetance': 定義されていない識別子です。
+c:\work\git\project\employment\source\core\input\input.cpp(28): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+c:\work\git\project\employment\source\core\input\input.cpp(28): error C2448: 'mslib::input::InputDirectXConnect': 関数の定義が間違っています。
   GameLoopManager.cpp
-c:\work\git\project\employment\source\directx\directxrendermanager.h(96): error C2039: 'ShaderWark': 'mslib::directx' のメンバーではありません。
-  c:\work\git\project\employment\source\directx\directxrendermanager.h(47): note: 'mslib::directx' の宣言を確認してください
-c:\work\git\project\employment\source\directx\directxrendermanager.h(95): error C2061: 構文エラー: 識別子 'ShaderWark'
-  FpsManager.cpp
-  BaseLightComponent.cpp
-  コードを生成中...
-  コンパイル中...
-  DepseBufferRender2DGameObject.cpp
-c:\work\git\project\employment\source\directx\directxrendermanager.h(96): error C2039: 'ShaderWark': 'mslib::directx' のメンバーではありません。
-  c:\work\git\project\employment\source\directx\directxrendermanager.h(47): note: 'mslib::directx' の宣言を確認してください
-c:\work\git\project\employment\source\directx\directxrendermanager.h(95): error C2061: 構文エラー: 識別子 'ShaderWark'
-  コードを生成中...
