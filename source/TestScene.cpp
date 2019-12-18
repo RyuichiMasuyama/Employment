@@ -7,6 +7,7 @@
 
 // originのRPG部分のインクルード
 #include "./origne/RPGManager/GameObject/RpgManagerGameObject.h"
+#include "./origne/Player/GameObject/PlayerGameObject.h"
 
 namespace mslib {
 namespace scene {
@@ -29,6 +30,7 @@ void TestScene::Load() {
 	CREATE_GAME_OBJECT(origin::GameObjectGround)
 	CREATE_GAME_OBJECT(origin::GameObjectLight)
 	CREATE_GAME_OBJECT(origin::manager::RpgManagerGameObject)
+	CREATE_GAME_OBJECT(origin::game::PlayerGameObject)
 }
 
 void TestScene::UnLoad() {

@@ -14,6 +14,8 @@ void GameObjectLight::Initialize() {
 	auto light = AddComponent<component::DirectionalLightComponent>();
 	light.lock()->AddShadowMapComponent < component::ShadowMapCameraComponent >();
 	m_lightComponent = light;
+
+	m_rotate.x = -90.f;
 }
 
 void GameObjectLight::ImGuiDraw() {
