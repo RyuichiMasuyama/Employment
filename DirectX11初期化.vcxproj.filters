@@ -4,24 +4,6 @@
     <ClCompile Include="source\Windows\WindowsManager.cpp">
       <Filter>Shader\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="source\ImGui\imgui.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="source\ImGui\imgui_demo.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="source\ImGui\imgui_draw.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="source\ImGui\imgui_impl_dx11.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="source\ImGui\imgui_impl_win32.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="source\ImGui\imgui_widgets.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
     <ClCompile Include="source\DirectX\DirectX11Manager.cpp">
       <Filter>DirectX</Filter>
     </ClCompile>
@@ -125,9 +107,6 @@
     <ClCompile Include="source\core\Component\Camera\ShadowMapCameraComponent.cpp">
       <Filter>core\Component\Camera</Filter>
     </ClCompile>
-    <ClCompile Include="source\ImGui\ImGuiManager.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
     <ClCompile Include="source\core\JobSystem\JobSystemManager.cpp">
       <Filter>core\JobSystem</Filter>
     </ClCompile>
@@ -164,6 +143,48 @@
     <ClCompile Include="source\origne\RPGManager\Component\RpgManagerComponent.cpp">
       <Filter>origne\RPGManager\Component</Filter>
     </ClCompile>
+    <ClCompile Include="source\AssetManager\MaterialLoader.cpp">
+      <Filter>Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="source\AssetManager\ShaderLoader.cpp">
+      <Filter>Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ImGui\imgui.cpp">
+      <Filter>Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ImGui\imgui_demo.cpp">
+      <Filter>Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ImGui\imgui_draw.cpp">
+      <Filter>Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ImGui\imgui_impl_dx11.cpp">
+      <Filter>Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ImGui\imgui_impl_win32.cpp">
+      <Filter>Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ImGui\imgui_widgets.cpp">
+      <Filter>Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ImGui\ImGuiManager.cpp">
+      <Filter>Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Assimp\AssimpScene.cpp">
+      <Filter>Assimp</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Assimp\AssimpAnimation.cpp">
+      <Filter>Assimp</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Renderer\Mesh.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="source\DirectX\DirectXMesh.cpp">
+      <Filter>DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Renderer\Model.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="core">
@@ -171,9 +192,6 @@
     </Filter>
     <Filter Include="DirectX">
       <UniqueIdentifier>{756ada3f-74d2-42b5-8ba4-02ef41be7329}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ImGui">
-      <UniqueIdentifier>{59a6eb54-0f7d-4f71-9ac0-3720aa894d6d}</UniqueIdentifier>
     </Filter>
     <Filter Include="DirectX\TextureLoader">
       <UniqueIdentifier>{bfaa0250-c7ca-412e-85f2-33561cad7e00}</UniqueIdentifier>
@@ -232,9 +250,6 @@
     <Filter Include="origne">
       <UniqueIdentifier>{46b9fe4f-e6e4-447b-a914-813e2578f216}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Asset">
-      <UniqueIdentifier>{4712fd61-1eda-4075-b05e-c46fbeb316e0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Shader\Windows">
       <UniqueIdentifier>{4ec57b3b-f40e-4a02-9235-546e6c3bdd15}</UniqueIdentifier>
     </Filter>
@@ -283,6 +298,18 @@
     <Filter Include="origne\RPGManager\GameObject">
       <UniqueIdentifier>{d94c82dd-681f-450b-ba65-bd332fe6f21b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assimp">
+      <UniqueIdentifier>{45552691-278f-4dc2-8aed-83eac57a3c1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader\fx\geometry">
+      <UniqueIdentifier>{8651c321-88ed-4935-bb8e-9ba05aa48ade}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Asset">
+      <UniqueIdentifier>{4712fd61-1eda-4075-b05e-c46fbeb316e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Imgui">
+      <UniqueIdentifier>{5449e55e-b4c7-4431-b269-be5413de9792}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Windows\WindowsDefineData.h">
@@ -290,33 +317,6 @@
     </ClInclude>
     <ClInclude Include="source\Windows\WindowsManager.h">
       <Filter>Shader\Windows</Filter>
-    </ClInclude>
-    <ClInclude Include="source\ImGui\imconfig.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="source\ImGui\imgui.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="source\ImGui\imgui_impl_dx11.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="source\ImGui\imgui_impl_win32.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="source\ImGui\imgui_internal.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="source\ImGui\ImGuiManager.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="source\ImGui\imstb_rectpack.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="source\ImGui\imstb_textedit.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="source\ImGui\imstb_truetype.h">
-      <Filter>ImGui</Filter>
     </ClInclude>
     <ClInclude Include="source\DirectX\Compointers.h">
       <Filter>DirectX</Filter>
@@ -499,11 +499,54 @@
     <ClInclude Include="source\origne\Enemy\Component\EnemyComponent.h">
       <Filter>origne\Enemy\Component</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="source\ImGui\imgui.ini">
-      <Filter>ImGui</Filter>
-    </None>
+    <ClInclude Include="source\Renderer\Pipeline.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="source\AssetManager\MaterialLoader.h">
+      <Filter>Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="source\AssetManager\ShaderLoader.h">
+      <Filter>Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ImGui\imconfig.h">
+      <Filter>Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ImGui\imgui.h">
+      <Filter>Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ImGui\imgui_impl_dx11.h">
+      <Filter>Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ImGui\imgui_impl_win32.h">
+      <Filter>Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ImGui\imgui_internal.h">
+      <Filter>Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ImGui\ImGuiManager.h">
+      <Filter>Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Assimp\AssimpSecen.h">
+      <Filter>Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Assimp\AssimpAnimation.h">
+      <Filter>Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Renderer\Mesh.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Renderer\BaseMesh.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="source\DirectX\DirectXMesh.h">
+      <Filter>DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Renderer\Model.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Renderer\BaseShader.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="shader\BumpMapPS.fx">
@@ -554,9 +597,6 @@
     <FxCompile Include="shader\vstriangle.fx">
       <Filter>Shader\fx</Filter>
     </FxCompile>
-    <FxCompile Include="shader\Geometry\gs.fx">
-      <Filter>Shader\fx</Filter>
-    </FxCompile>
     <FxCompile Include="shader\psvscommon.fx">
       <Filter>Shader\fx\hader</Filter>
     </FxCompile>
@@ -577,6 +617,9 @@
     </FxCompile>
     <FxCompile Include="shader\pstoon.fx">
       <Filter>Shader\fx</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\Geometry\gs.fx">
+      <Filter>Shader\fx\geometry</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

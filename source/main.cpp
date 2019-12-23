@@ -27,7 +27,7 @@
 
 #include "./core/GameLoopManager.h"
 
-#include <ImGui/ImGuiManager.h>
+#include "./imgui/ImGuiManager.h"
 
 #include <any>
 
@@ -38,6 +38,14 @@
 #pragma comment(lib, "dxgi.lib")			// リンク対象ライブラリにdxgxi.libを追加
 #pragma comment(lib, "D3DCompiler.lib")		// リンク対象ライブラリにd3dcompiler.libを追加
 #pragma comment(lib, "winmm.lib")			// リンク対象ライブラリにwinmm.libを追加
+
+#ifdef _DEBUG
+#pragma comment (lib,"assimp-vc141-mtd.lib")// リンク対象ライブラリにassimp-vc141-mtd.libを追加
+#else
+#pragma comment (lib,"assimp-vc141-mt.lib")// リンク対象ライブラリにassimp-vc141-mtd.libを追加
+#endif // _DEBUG
+
+
 
 // -----------------------------------------------------------------------------
 //  プロトタイプ宣言

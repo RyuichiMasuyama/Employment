@@ -4,6 +4,8 @@
 
 #include "./Windows/WindowsDefineData.h"
 
+#include "./AssetManager/ShaderLoader.h"
+
 namespace mslib {
 namespace directx {
 
@@ -336,7 +338,7 @@ ShadowMapDirectXRenderTerget::ShadowMapDirectXRenderTerget()
 		&smpDesc,
 		m_samplerState.GetAddressOf());
 
-	shader::ShaderLoader shaderLoader;
+	loader::ShaderLoader shaderLoader;
 	shaderLoader.Load("shader/psShadowMap.fx", m_ps, shader::ShaderType::PS);
 	shaderLoader.Load("shader/vsShadowMap.fx", m_vs, shader::ShaderType::VS);
 	shaderLoader.Load("shader/vsShadowMap.fx", m_il, shader::ShaderType::IL);

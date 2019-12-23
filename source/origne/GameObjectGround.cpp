@@ -9,8 +9,11 @@ namespace origin {
 void GameObjectGround::Initialize() {
 	base::Initialize();
 
-	mesh::MeshLoader loader;
-	AddComponent<component::RenderComponent>(loader.Load("assets/testGround.msobj"));
+	loader::MeshLoader load;
+	auto renderComponent = AddComponent<component::RenderComponent>(load.Load("assets/testGround.msobj"));
+	renderComponent.lock()->SetTexture("ground.jpg", 0);
+	renderComponent.lock()->SetShader("shader/pstest.fx", shader::ShaderType::PS);
+	renderComponent.lock()->SetShader("shader/Geometry/gs.fx", shader::ShaderType::GS);
 
 	CreateUpdateFunction(GROUND_UPDATE_NAME, &GameObjectGround::GroundUpdate, this);
 	SetUpdateFunction(GROUND_UPDATE_NAME);

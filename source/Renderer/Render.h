@@ -42,7 +42,7 @@ public:
 class Render :public pattern::Singleton<Render>{
 public:
 	Render() { 
-		mesh::MeshLoader meshLoader;
+		loader::MeshLoader meshLoader;
 		m_rendering = meshLoader.Load("Quad");
 	};
 	~Render() = default;

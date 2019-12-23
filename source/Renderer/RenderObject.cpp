@@ -18,22 +18,50 @@ namespace mslib {
 namespace render {
 
 MyMesh::MyMesh() :m_pipeline(this){
-
+	m_polygons = std::make_shared<render::Polygons>();
 }
 
-const std::vector<Material> & MyMesh::GetMaterial(){
+const std::vector<std::shared_ptr<Material>> & MyMesh::GetMaterial(){
 	return m_material;
 }
 
-Material *MyMesh::GetMaterial(int num) {
+std::shared_ptr<Material> MyMesh::GetMaterial(int num) {
 	if (num < m_material.size())
-		return &m_material[num];
+		return m_material[num];
 	else
 		return nullptr;
 }
 
-Polygons * MyMesh::GetPolygons() {
-	return &m_polygons;
+std::shared_ptr<Polygons> MyMesh::GetPolygons() {
+	return m_polygons;
+}
+
+void MyMesh::SetShader(std::string _shaderName, shader::ShaderType _shaderType) {
+	switch (_shaderType)
+	{
+	case mslib::shader::ShaderType::VS:
+		m_pipeline.SetVertexShader(_shaderName);
+		break;
+	case mslib::shader::ShaderType::PS:
+		m_pipeline.SetPixelShader(_shaderName);
+		break;
+	case mslib::shader::ShaderType::GS:
+		m_pipeline.SetGeometory(_shaderName);
+		break;
+	case mslib::shader::ShaderType::DS:
+		m_pipeline.SetDomainShader(_shaderName);
+		break;
+	case mslib::shader::ShaderType::HS:
+		m_pipeline.SetHullShader(_shaderName);
+		break;
+	default:
+		break;
+	}
+}
+
+void MyMesh::SetTexture(std::string _textureName, int textureNumber) {
+	loader::TextureLoader textureLoader;
+	m_pipeline.SetTexture(textureLoader.Load(_textureName), textureNumber);
 }
 
 Pipeline * MyMesh::GetPipeline()
@@ -81,25 +109,25 @@ void MyMesh::Load(std::string _file_name) {
 		std::vector<InputVertex> InVers;
 
 		InVers.resize(VectorSize);
-		m_polygons.vertex.resize(VectorSize);
+		m_polygons->vertex.resize(VectorSize);
 
 		// 3. 頂点情報
 		file.read(reinterpret_cast<char*>(const_cast<InputVertex*>(InVers.data())), sizeof(InputVertex) * VectorSize);
 
 		// 頂点情報を格納
 		for (int i = 0; i < VectorSize; i++) {
-			m_polygons.vertex[i].normal = InVers[i].normal;
-			m_polygons.vertex[i].pos = InVers[i].pos;
-			m_polygons.vertex[i].uv = InVers[i].tex;
+			m_polygons->vertex[i].normal = InVers[i].normal;
+			m_polygons->vertex[i].pos = InVers[i].pos;
+			m_polygons->vertex[i].uv = InVers[i].tex;
 		}
 
 		// 4．インデックスのサイズ
 		int IndexSize;
 		file.read(CHAR_PTR_CAST(IndexSize), sizeof(int));
-		m_polygons.index.resize(IndexSize);
+		m_polygons->index.resize(IndexSize);
 
 		// 5. インデックス情報
-		file.read(reinterpret_cast<char*>(const_cast<UINT*>(m_polygons.index.data())), sizeof(UINT)*IndexSize);
+		file.read(reinterpret_cast<char*>(const_cast<UINT*>(m_polygons->index.data())), sizeof(UINT)*IndexSize);
 	}
 
 	int MaterialNum;
@@ -110,18 +138,18 @@ void MyMesh::Load(std::string _file_name) {
 		InputMaterial InMats;
 		// 7. マテリアルのデータ
 		file.read(CHAR_PTR_CAST(InMats), sizeof(InputMaterial));
-		m_material.push_back(Material());
-		m_material[i].ambient = InMats.ambient;
-		m_material[i].bump = InMats.bump;
-		m_material[i].diffuse = InMats.diffuse;
-		m_material[i].emissive = InMats.emissive;
-		m_material[i].reflectivity = InMats.reflectivity;
-		m_material[i].shininess = InMats.shininess;
-		m_material[i].specular = InMats.specular;
-		m_material[i].specular.w = InMats.specular_power;
-		m_material[i].transparency = InMats.transparency;
+		m_material.push_back(std::make_shared<Material>());
+		m_material[i]->ambient = InMats.ambient;
+		m_material[i]->bump = InMats.bump;
+		m_material[i]->diffuse = InMats.diffuse;
+		m_material[i]->emissive = InMats.emissive;
+		m_material[i]->reflectivity = InMats.reflectivity;
+		m_material[i]->shininess = InMats.shininess;
+		m_material[i]->specular = InMats.specular;
+		m_material[i]->specular.w = InMats.specular_power;
+		m_material[i]->transparency = InMats.transparency;
 
-		for (auto& itr : m_material[i].textureName) {
+		for (auto& itr : m_material[i]->textureName) {
 			int FilePathNameSize;
 			// 8. 各テクスチャのファイルパスのデータのサイズ
 			file.read(CHAR_PTR_CAST(FilePathNameSize), sizeof(int));
@@ -132,7 +160,7 @@ void MyMesh::Load(std::string _file_name) {
 			itr = filePaht;
 		}
 
-		for (auto& itr : m_material[i].shaderName) {
+		for (auto& itr : m_material[i]->shaderName) {
 			int FilePathNameSize;
 			// 10.各シェーダのファイルパスの文字のデータのサイズ
 			file.read(CHAR_PTR_CAST(FilePathNameSize), sizeof(int));
@@ -144,28 +172,29 @@ void MyMesh::Load(std::string _file_name) {
 		}
 	}
 
-	m_pipeline.CreateIndexBuffer(m_polygons.index.size(), &m_polygons.index[0]);
-	m_pipeline.CreateVertexBuffer(sizeof(m_polygons.vertex[0]), m_polygons.vertex.size(), &m_polygons.vertex.at(0));
+	m_pipeline.CreateIndexBuffer(m_polygons->index.size(), &m_polygons->index[0]);
+	m_pipeline.CreateVertexBuffer(sizeof(m_polygons->vertex[0]), m_polygons->vertex.size(), &m_polygons->vertex.at(0));
 
 	if (0 < m_material.size()) {
-		for (auto itr : m_material[0].textureName) {
+		for (auto itr : m_material[0]->textureName) {
 			m_pipeline.LoadTexture(itr);
 		}
 		// シェーダーロード
 		m_pipeline.SetVertexPixcle(
-			m_material[0].shaderName[static_cast<int>(SHADER_ENUM::VERTEX_SHADER)],
-			m_material[0].shaderName[static_cast<int>(SHADER_ENUM::PIXEL_SHADER)]
+			m_material[0]->shaderName[static_cast<int>(SHADER_ENUM::VERTEX_SHADER)],
+			m_material[0]->shaderName[static_cast<int>(SHADER_ENUM::PIXEL_SHADER)]
 		);
-		m_pipeline.SetGeometory(m_material[0].shaderName[static_cast<int>(SHADER_ENUM::GEOMETRY_SHADER)]);
+		m_pipeline.SetGeometory(m_material[0]->shaderName[static_cast<int>(SHADER_ENUM::GEOMETRY_SHADER)]);
 		m_pipeline.SetHullDomainShader(
-			m_material[0].shaderName[static_cast<int>(SHADER_ENUM::HULL_SHADER)],
-			m_material[0].shaderName[static_cast<int>(SHADER_ENUM::DOMAIN_SHADER)]
+			m_material[0]->shaderName[static_cast<int>(SHADER_ENUM::HULL_SHADER)],
+			m_material[0]->shaderName[static_cast<int>(SHADER_ENUM::DOMAIN_SHADER)]
 		);
 	}
 
 	// ファイルを閉じる
 	file.close();
 }
+
 //void MyMesh::Load(std::string _file_name) {
 //	FILE*p_file;
 //	p_file = fopen(_file_name.c_str(), "r");

@@ -21,7 +21,7 @@ void TestGameObject::Initialize() {
 	CreateUpdateFunction(TestUpdateName, &TestGameObject::TestUpdate, this);
 	SetUpdateFunction(TestUpdateName);
 
-	mesh::MeshLoader meshLoader;
+	loader::MeshLoader meshLoader;
 	AddComponent<component::RenderComponent>(meshLoader.Load("assets/dragon.msobj"));
 }
 

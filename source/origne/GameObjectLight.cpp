@@ -1,5 +1,5 @@
 #include "./GameObjectLight.h"
-#include "../ImGui/imgui.h"
+#include <imgui\imgui.h>
 #include "./core/Component/Camera/ShadowMapCameraComponent.h"
 
 namespace mslib {

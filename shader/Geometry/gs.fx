@@ -62,7 +62,7 @@ void main(triangle VS_OUTPUT input[3], inout TriangleStream<VS_OUTPUT> TriStr)
 
         //out_vertex.Pos.xy *= 1.2f;
         float4 normal = out_vertex.Normal;
-        out_vertex.Pos += out_vertex.Normal * 0.03f;
+        out_vertex.Pos += out_vertex.Normal * 0.8f;
         out_vertex.Color = float4(0.f, 0.f, 0.f, 1.f);
         out_vertex.Normal = float4(0.f, 0.f, 0.f, 0.f);
 

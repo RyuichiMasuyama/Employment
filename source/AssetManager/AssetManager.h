@@ -7,18 +7,12 @@
 #include "./TextureLoader.h"
 #endif // DIRECTX11
 
-
+// LoaderŠÖŒW‚Ì–¼‘O‹óŠÔ“ˆê‚·‚é‚×‚«‚¾‚Á‚½c
 namespace mslib {
-namespace texture {
+namespace loader {
 class TextureLoader;
-}
-namespace shader {
 class ShaderLoader;
-}
-namespace mesh {
 class MeshLoader;
-}
-namespace render {
 class MyMesh;
 }
 
@@ -29,21 +23,14 @@ using AssetBase = directx::D3D11BaseComptr;
 #endif
 
 class AssetsManager :public pattern::Singleton<AssetsManager>{
-	friend texture::TextureLoader;
-	friend shader::ShaderLoader;
+	friend loader::TextureLoader;
+	friend loader::ShaderLoader;
+	friend loader::MeshLoader;
 public:
 	void UnLoad(std::string);
 private:
 	std::unordered_map<std::string, std::any> m_assets;
 
-};
-
-class AssetsMeshs :public pattern::Singleton<AssetsMeshs> {
-	friend mesh::MeshLoader;
-public:
-	void UnLoad(std::string);
-private:
-	std::unordered_map<std::string, std::shared_ptr<render::MyMesh>> m_assets;
 };
 
 }

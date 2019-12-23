@@ -121,7 +121,7 @@ void SubResourceSendManager::SetMaterialBuffer(
 	m_deviceContext->VSSetConstantBuffers(2, 1, m_materialObjectBuffer.GetAddressOf());
 	m_deviceContext->PSSetConstantBuffers(2, 1, m_materialObjectBuffer.GetAddressOf());
 }
-void SubResourceSendManager::SetMaterialBuffer(const render::Material* _material) {
+void SubResourceSendManager::SetMaterialBuffer(const std::shared_ptr<render::Material> _material) {
 	m_materialObject.ambient = math::Vector4(_material->ambient);
 	m_materialObject.diffuse = math::Vector4(_material->diffuse);
 	m_materialObject.emissive = math::Vector4(_material->emissive);

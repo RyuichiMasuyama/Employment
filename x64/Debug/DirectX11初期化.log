@@ -1,0 +1,3 @@
+﻿C:\work\git\project\employment\shader\Base\psRender2DBase.fx(9,32-42): error X4502: invalid vs_2_0 output semantic 'SV_Target'
+  
+  compilation failed; no code produced

@@ -4,13 +4,14 @@
 
 #include "./DirectXPostEffect.h"
 #include "./DirectX/SubResourceSendManager.h"
+#include "./AssetManager/ShaderLoader.h"
 
 namespace mslib {
 namespace directx {
 DirectXPostEffect::DirectXPostEffect(render::CameraTexture _cameraTexture) {
 	auto device = directx::DirectX11Manager::GetInstance().GetDevice();
-	mesh::MeshLoader meshLoader;
-	shader::ShaderLoader shaderLoader;
+	loader::MeshLoader meshLoader;
+	loader::ShaderLoader shaderLoader;
 
 	m_mesh = meshLoader.Load("Quad");
 

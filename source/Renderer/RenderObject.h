@@ -106,31 +106,43 @@ struct Polygons {
 	std::vector<UINT>	index;
 };
 
+// メッシュにMaterialとかテクスチャを持たせるあらパイプラインを
+// 保持しなければいけないような状況になってしまっている
 class MyMesh {
 	friend Primitive::Primitive;
 private:
 	//Materialデータ
-	std::vector<Material>	m_material;
+	std::vector<std::shared_ptr<Material>>	m_material;
 
 	//ポリゴンデータ
-	Polygons	m_polygons;
+	std::shared_ptr<Polygons>	m_polygons;
 
 	// render用のパインライン
 	Pipeline m_pipeline;
 public:
 	MyMesh();
 
-	const std::vector<Material>&  GetMaterial();
+	const std::vector<std::shared_ptr<Material>>&  GetMaterial();
 
-	Material * GetMaterial(int num);
+	// Materialのsharedを渡す
+	// 既存のMaterialの数より超えた数字を要求した時、nullWeakが帰ってくる
+	std::shared_ptr<Material> GetMaterial(int num);
 
-	Polygons * GetPolygons();
+	// ポリゴンを取得する
+	std::shared_ptr<Polygons> GetPolygons();
 
+	// void SetMaterial();
+	// メッシュに設定されているシェーダーから自分で設定
+	void SetShader(std::string _shaderName, shader::ShaderType _shaderType);
+
+	// メッシュに設定されているテクスチャから自分で設定
+	void SetTexture(std::string _textureName, int textureNumber);
+
+	// レンダリング用にパイプラインを取得(綺麗じゃないから変更する)
 	Pipeline * GetPipeline();
-
+	
+	// 初期のモデルをセット
 	void Load(std::string _file_name);
-
 };
-
 }
 }

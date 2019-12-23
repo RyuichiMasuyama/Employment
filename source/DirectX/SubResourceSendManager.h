@@ -107,7 +107,7 @@ public:
 		const float& _transparency,
 		const float& _shininess,
 		const float& _reflectivity);
-	void SetMaterialBuffer(const render::Material* _material);
+	void SetMaterialBuffer(const std::shared_ptr<render::Material> _material);
 	void SetLightBuffer(
 		const math::Vector4& _way,
 		const math::Vector4& _color);

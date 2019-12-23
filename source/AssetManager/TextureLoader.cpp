@@ -7,20 +7,20 @@
 #endif
 
 namespace mslib {
-namespace texture {
+namespace loader {
 
-Texture TextureLoader::Load(std::string _fileName) {
+texture::Texture TextureLoader::Load(std::string _fileName) {
 	if (_fileName == "" || _fileName == "null")return nullptr;
 #ifdef DIRECTX11
 	// ロードされてれば返す
 	auto &asset = assets::AssetsManager::GetInstance().m_assets[_fileName];
 	if (asset.has_value()) {
-		return std::any_cast<Texture>(asset);
+		return std::any_cast<texture::Texture>(asset);
 	}
 
 	// されていないのでロードする
 	HRESULT hr;
-	Texture texture;
+	texture::Texture texture;
 	char current_path[1024];
 	GetCurrentDirectory(1024, current_path);	// 当初のカレントフォルダの記録
 

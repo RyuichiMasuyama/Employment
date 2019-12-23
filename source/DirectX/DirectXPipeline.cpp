@@ -1,26 +1,43 @@
 #include "./DirectXPipeline.h"
 #include "./Renderer/RenderObject.h"
 #include "./SubResourceSendManager.h"
+#include "./AssetManager/ShaderLoader.h"
 
 namespace mslib {
 namespace directx {
-
+void DirectXPipeline::SetVertexShader(std::string _vs) {
+	loader::ShaderLoader shaderLoader;
+	shaderLoader.Load(_vs, m_shaderResource.vertexShader, shader::ShaderType::VS);
+	shaderLoader.Load(_vs, m_shaderResource.inputLayer, shader::ShaderType::IL);
+}
+void DirectXPipeline::SetPixelShader(std::string _ps) {
+	loader::ShaderLoader shaderLoader;
+	shaderLoader.Load(_ps, m_shaderResource.pixelShader, shader::ShaderType::PS);
+}
 void DirectXPipeline::SetVertexPixcle(std::string _vs, std::string _ps) {
-	shader::ShaderLoader shaderLoader;
+	loader::ShaderLoader shaderLoader;
 	shaderLoader.Load(_vs, m_shaderResource.vertexShader, shader::ShaderType::VS);
 	shaderLoader.Load(_ps, m_shaderResource.pixelShader, shader::ShaderType::PS);
 	shaderLoader.Load(_vs, m_shaderResource.inputLayer, shader::ShaderType::IL);
 }
 
 void DirectXPipeline::SetGeometory(std::string _gs) {
-	shader::ShaderLoader shaderLoader;
+	loader::ShaderLoader shaderLoader;
 	shaderLoader.Load(_gs, m_shaderResource.geometryShader, shader::ShaderType::GS);
 }
 
 void DirectXPipeline::SetHullDomainShader(std::string _ds, std::string _hs) {
-	shader::ShaderLoader shaderLoader;
+	loader::ShaderLoader shaderLoader;
 	shaderLoader.Load(_ds, m_shaderResource.domainShader, shader::ShaderType::DS);
 	shaderLoader.Load(_hs, m_shaderResource.hullShader, shader::ShaderType::HS);
+}
+void DirectXPipeline::SetHullShader(std::string _hs) {
+	loader::ShaderLoader shaderLoader;
+	shaderLoader.Load(_hs, m_shaderResource.hullShader, shader::ShaderType::HS);
+}
+void DirectXPipeline::SetDomainShader(std::string _ds) {
+	loader::ShaderLoader shaderLoader;
+	shaderLoader.Load(_ds, m_shaderResource.domainShader, shader::ShaderType::DS);
 }
 void DirectXPipeline::SetTexture(texture::Texture _texture, int _setNumber) {
 	if (_setNumber < m_texture.size()) m_texture[_setNumber] = _texture;
@@ -73,7 +90,7 @@ void DirectXPipeline::Draw() {
 	for (unsigned int i = 0; i < m_texture.size(); i++) {
 		deviceContext->PSSetShaderResources(i, 1, m_texture[i].GetAddressOf());
 	}
-	if (material.size() < 0)SubResourceSendManager::GetInstance().SetMaterialBuffer(&material[0]);
+	if (material.size() < 0)SubResourceSendManager::GetInstance().SetMaterialBuffer(material[0]);
 
 	unsigned int indexCount = static_cast<int>(m_mesh->GetPolygons()->index.size());
 	// 描画！！！
@@ -99,7 +116,7 @@ void DirectXPipeline::NoSetShaderDraw() {
 	for (unsigned int i = 0; i < m_texture.size(); i++) {
 		deviceContext->PSSetShaderResources(i, 1, m_texture[i].GetAddressOf());
 	}
-	if(material.size()!=0)	SubResourceSendManager::GetInstance().SetMaterialBuffer(&material[0]);
+	if(material.size()!=0)	SubResourceSendManager::GetInstance().SetMaterialBuffer(material[0]);
 
 	unsigned int indexCount = static_cast<int>(m_mesh->GetPolygons()->index.size());
 	// 描画！！！
@@ -159,8 +176,8 @@ void DirectXPipeline::CreateIndexBuffer(size_t _indexNum, void* _indexFrontAddre
 
 void DirectXPipeline::LoadTexture(std::string _textureName) {
 	if (!(_textureName == "null" || _textureName == " ")) {
-		texture::TextureLoader loader;
-		m_texture.push_back(loader.Load(_textureName));
+		loader::TextureLoader load;
+		m_texture.push_back(load.Load(_textureName));
 	} else {
 		m_texture.push_back(nullptr);
 	}

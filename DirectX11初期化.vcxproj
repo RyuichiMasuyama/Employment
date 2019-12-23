@@ -27,8 +27,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\AssetManager\MaterialLoader.cpp" />
     <ClCompile Include="source\AssetManager\MeshLoader.cpp" />
+    <ClCompile Include="source\AssetManager\ShaderLoader.cpp" />
     <ClCompile Include="source\AssetManager\TextureLoader.cpp" />
+    <ClCompile Include="source\Assimp\AssimpAnimation.cpp" />
+    <ClCompile Include="source\Assimp\AssimpScene.cpp" />
     <ClCompile Include="source\core\Component\Camera\base\BaseCameraComponent.cpp" />
     <ClCompile Include="source\core\Component\Camera\CameraComponent.cpp" />
     <ClCompile Include="source\core\Component\Camera\ShadowMapCameraComponent.cpp" />
@@ -49,6 +53,7 @@
     <ClCompile Include="source\DepseBufferRender2DGameObject.cpp" />
     <ClCompile Include="source\DirectX\DirectInput\DirectXInput.cpp" />
     <ClCompile Include="source\DirectX\DirectX11Manager.cpp" />
+    <ClCompile Include="source\DirectX\DirectXMesh.cpp" />
     <ClCompile Include="source\DirectX\DirectXPipeline.cpp" />
     <ClCompile Include="source\DirectX\DirectXRenderManager.cpp" />
     <ClCompile Include="source\DirectX\DirectXRenderTerget.cpp" />
@@ -72,6 +77,8 @@
     <ClCompile Include="source\origne\RPGManager\Component\RpgManagerComponent.cpp" />
     <ClCompile Include="source\origne\RPGManager\GameObject\RpgManagerGameObject.cpp" />
     <ClCompile Include="source\Renderer\DirectXPostEffect.cpp" />
+    <ClCompile Include="source\Renderer\Mesh.cpp" />
+    <ClCompile Include="source\Renderer\Model.cpp" />
     <ClCompile Include="source\Renderer\PostEffect.cpp" />
     <ClCompile Include="source\Renderer\PostEffectBase.cpp" />
     <ClCompile Include="source\Renderer\Render.cpp" />
@@ -85,9 +92,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\AssetManager\AssetManager.h" />
+    <ClInclude Include="source\AssetManager\MaterialLoader.h" />
     <ClInclude Include="source\AssetManager\MeshLoader.h" />
     <ClInclude Include="source\AssetManager\MeshPrimitive.h" />
+    <ClInclude Include="source\AssetManager\ShaderLoader.h" />
     <ClInclude Include="source\AssetManager\TextureLoader.h" />
+    <ClInclude Include="source\Assimp\AssimpAnimation.h" />
+    <ClInclude Include="source\Assimp\AssimpSecen.h" />
     <ClInclude Include="source\core\base.h" />
     <ClInclude Include="source\core\Component\Camera\base\BaseCameraComponent.h" />
     <ClInclude Include="source\core\Component\Camera\CameraComponent.h" />
@@ -116,6 +127,7 @@
     <ClInclude Include="source\DirectX\Compointers.h" />
     <ClInclude Include="source\DirectX\DirectInput\DirectXInput.h" />
     <ClInclude Include="source\DirectX\DirectX11Manager.h" />
+    <ClInclude Include="source\DirectX\DirectXMesh.h" />
     <ClInclude Include="source\DirectX\DirectXPipeline.h" />
     <ClInclude Include="source\DirectX\DirectXRenderManager.h" />
     <ClInclude Include="source\DirectX\DirectXRenderTerget.h" />
@@ -129,9 +141,6 @@
     <ClInclude Include="source\ImGui\imgui_impl_dx11.h" />
     <ClInclude Include="source\ImGui\imgui_impl_win32.h" />
     <ClInclude Include="source\ImGui\imgui_internal.h" />
-    <ClInclude Include="source\ImGui\imstb_rectpack.h" />
-    <ClInclude Include="source\ImGui\imstb_textedit.h" />
-    <ClInclude Include="source\ImGui\imstb_truetype.h" />
     <ClInclude Include="source\main.h" />
     <ClInclude Include="source\MyDirectXMath.h" />
     <ClInclude Include="source\origne\Enemy\Component\EnemyComponent.h" />
@@ -142,7 +151,12 @@
     <ClInclude Include="source\origne\Player\GameObject\PlayerGameObject.h" />
     <ClInclude Include="source\origne\RPGManager\Component\RpgManagerComponent.h" />
     <ClInclude Include="source\origne\RPGManager\GameObject\RpgManagerGameObject.h" />
+    <ClInclude Include="source\Renderer\BaseMesh.h" />
+    <ClInclude Include="source\Renderer\BaseShader.h" />
     <ClInclude Include="source\Renderer\DirectXPostEffect.h" />
+    <ClInclude Include="source\Renderer\Mesh.h" />
+    <ClInclude Include="source\Renderer\Model.h" />
+    <ClInclude Include="source\Renderer\Pipeline.h" />
     <ClInclude Include="source\Renderer\PostEffect.h" />
     <ClInclude Include="source\Renderer\PostEffectBase.h" />
     <ClInclude Include="source\Renderer\Render.h" />
@@ -156,9 +170,6 @@
     <ClInclude Include="source\TestScene.h" />
     <ClInclude Include="source\Windows\WindowsDefineData.h" />
     <ClInclude Include="source\Windows\WindowsManager.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="source\ImGui\imgui.ini" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="shader\Base\psRender2DBase.fx">
@@ -397,13 +408,15 @@
     <IncludePath>$(ProjectDir)source;$(ProjectDir)source/core/DesignPattern;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(ProjectDir)source;$(ProjectDir)source/core/DesignPattern;$(IncludePath)</IncludePath>
+    <IncludePath>C:\work\git\project\ExternalLibrary;$(ProjectDir)source;$(ProjectDir)source/core/DesignPattern;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(ProjectDir)source;$(ProjectDir)source/core/DesignPattern;$(IncludePath)</IncludePath>
+    <IncludePath>C:\work\git\project\ExternalLibrary;$(ProjectDir)source;$(ProjectDir)source/core/DesignPattern;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">
-    <IncludePath>$(ProjectDir)source/core/DesignPattern;$(ProjectDir)source;$(IncludePath)</IncludePath>
+    <IncludePath>C:\work\git\project\ExternalLibrary;$(ProjectDir)source/core/DesignPattern;$(ProjectDir)source;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\work\git\project\ExternalLibrary\assimp\lib;$(LibraryPath)</LibraryPath>
+    <ReferencePath>C:\work\git\project\ExternalLibrary\assimp\lib;$(ReferencePath)</ReferencePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

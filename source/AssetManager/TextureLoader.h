@@ -9,12 +9,13 @@ namespace texture {
 #ifdef DIRECTX11
 using Texture = directx::ShaderTexture;
 #endif
-
+}
+namespace loader {
 class TextureLoader {
 public:
 	TextureLoader() = default;
 
-	Texture Load(std::string _fileName);
+	texture::Texture Load(std::string _fileName);
 
 private:
 	//bool CrateTexture();
