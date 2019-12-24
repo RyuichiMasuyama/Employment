@@ -20,14 +20,17 @@ namespace mslib {
 namespace render { 
 using PipelineFunction = std::function<void(void)>;
 
+// モデルのポインタを渡すための前方宣言
+class ModelData;
+
 class Render;
 
 class RenderObjectCommand {
 	friend Render;
 private:
 	const PipelineFunction m_function;
-
-	Pipeline* m_pipelinePtr;
+	ModelData* m_modelDataPtr;
+	// Pipeline* m_pipelinePtr;
 
 	math::Matrix& m_mat;
 
@@ -35,8 +38,9 @@ public:
 	// コンストラクタ
 	/*RenderObjectCommand(math::Matrix& _mat, const PipelineFunction _pipelineFunction) :
 		m_mat(_mat), m_function(_pipelineFunction) {};*/
-	RenderObjectCommand(math::Matrix& _mat, Pipeline* _pipelinePtr) :
-		m_mat(_mat), m_pipelinePtr(_pipelinePtr) {};
+	//RenderObjectCommand(math::Matrix& _mat, Pipeline* _pipelinePtr) :
+	//	m_mat(_mat), m_pipelinePtr(_pipelinePtr) {};
+	RenderObjectCommand(math::Matrix&_mat, ModelData *_modelDataPtr);
 };
 
 class Render :public pattern::Singleton<Render>{
@@ -48,11 +52,11 @@ public:
 	~Render() = default;
 
 	// commandを保持する
-	void Draw( math::Matrix& _mat, Pipeline* _pipelineFunction);
+	void Draw( math::Matrix& _mat, ModelData* _modelData);
 	
 	void Rendering();
 	void ImGuiCare();
-	void AfterCare();
+	//void AfterCare();
 
 private:
 	std::vector<RenderObjectCommand> m_commandDynamicArray;

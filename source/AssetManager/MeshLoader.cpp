@@ -29,9 +29,6 @@ std::shared_ptr<render::MyMesh> MeshLoader::Load(std::string _fileName){
 	// シェアードのメッシュを返す
 	return loadModel;
 }
-std::shared_ptr<render::Mesh> MeshLoader::Load(std::string _fileName, int test) {
 
-	return std::shared_ptr<render::Mesh>();
-}
 }
 }

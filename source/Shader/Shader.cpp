@@ -56,11 +56,48 @@ ID3D11Buffer * BufferCreater::CreateIndexBuffer(UINT* _index, UINT _index_num)
 }
 
 namespace shader{
+void Shaders::Send() {
+	auto deviceContext = directx::DirectX11Manager::GetInstance().GetDeviceContext();
+
+	//描画用のシェーダーやレイアウト、頂点データーを送信
+	// 頂点フォーマットをセット
+	deviceContext->IASetInputLayout(m_inputLayout.Get());
+
+	// 頂点シェーダーをセット
+	deviceContext->VSSetShader(m_vertexShader.Get(), nullptr, 0);
+
+	// ピクセルシェーダーをセット
+	deviceContext->PSSetShader(m_pixelShader.Get(), nullptr, 0);
+
+	//// サンプラーステートを転送
+	//deviceContext->PSSetSamplers(0, 1, .lock()->GetAddressOf());
+
+	//ジオメトリシェーダーをセット
+	deviceContext->GSSetShader(m_geometryShader.Get(), nullptr, 0);
+
+	//ハルシェーダーをセット
+	deviceContext->HSSetShader(m_hullShader.Get(), nullptr, 0);
+
+	//ドメインシェーダーをセット
+	deviceContext->DSSetShader(m_domainShader.Get(), nullptr, 0);
+}
 void Shaders::SetVertexShader(VertexShader _shader) {
 	m_vertexShader = _shader;
 }
-void Shaders::SetPixelShader(PixelShader _shader)
-{
+void Shaders::SetPixelShader(PixelShader _shader) {
+	m_pixelShader = _shader;
+}
+void Shaders::SetGeometryShader(GeometryShader _shader) {
+	m_geometryShader = _shader;
+}
+void Shaders::SetDomainShader(DomainShader _shader) {
+	m_domainShader = _shader;
+}
+void Shaders::SetHullShader(HullShader _shader) {
+	m_hullShader = _shader;
+}
+void Shaders::SetInputLayout(InputLayer _inputLayout) {
+	m_inputLayout = _inputLayout;
 }
 }
 }

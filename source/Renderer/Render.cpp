@@ -9,11 +9,12 @@
 #endif
 
 #include "RenderTerget.h"
+#include "./Model.h"
 
 namespace mslib {
 namespace render {
 
-void Render::Draw( math::Matrix& _mat,  Pipeline* _pipelineFunction) {
+void Render::Draw( math::Matrix& _mat, ModelData* _pipelineFunction) {
 	// RenderObjectCommand command(_mat, std::bind(&Pipeline::Draw, _pipelineFunction));
 	RenderObjectCommand command(_mat, _pipelineFunction);
 	m_commandDynamicArray.push_back(command);
@@ -49,7 +50,7 @@ void Render::Rendering() {
 		for (auto pipe : m_commandDynamicArray) {
 			directx::SubResourceSendManager::GetInstance().SetWorldObjectBuffer(pipe.m_mat);
 			// pipe.m_function();
-			pipe.m_pipelinePtr->NoSetShaderDraw();
+			//pipe.m_pipelinePtr->NoSetShaderDraw();
 		}
 	}
 
@@ -60,7 +61,7 @@ void Render::Rendering() {
 		for (auto pipe : m_commandDynamicArray) {
 			directx::SubResourceSendManager::GetInstance().SetWorldObjectBuffer(pipe.m_mat);
 			// pipe.m_function();
-			pipe.m_pipelinePtr->Draw();
+			pipe.m_modelDataPtr->Draw();
 		}
 		itr.lock()->DrawPostEffect();
 	}
@@ -72,7 +73,7 @@ void Render::Rendering() {
 		for (auto pipe : m_commandDynamicArray) {
 			directx::SubResourceSendManager::GetInstance().SetWorldObjectBuffer(pipe.m_mat);
 			// pipe.m_function();
-			pipe.m_pipelinePtr->Draw();
+			pipe.m_modelDataPtr->Draw();
 		}
 		itr.lock()->DrawPostEffect();
 	}
@@ -91,6 +92,12 @@ void Render::ImGuiCare() {
 	context->HSSetShader(nullptr, nullptr, 0);
 	context->DSSetShader(nullptr, nullptr, 0);
 #endif
+}
+
+RenderObjectCommand::RenderObjectCommand(
+	math::Matrix & _mat, 
+	ModelData * _modelDataPtr) 
+	:m_mat(_mat) {
 }
 
 }

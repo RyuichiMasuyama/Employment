@@ -17,7 +17,6 @@ public:
 	~MeshLoader() = default;
 
 	std::shared_ptr<render::MyMesh> Load(std::string _fileName);
-	std::shared_ptr<render::Mesh> Load(std::string _fileName, int test);
 };
 
 }

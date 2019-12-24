@@ -29,6 +29,7 @@
   <ItemGroup>
     <ClCompile Include="source\AssetManager\MaterialLoader.cpp" />
     <ClCompile Include="source\AssetManager\MeshLoader.cpp" />
+    <ClCompile Include="source\AssetManager\ModelLoader.cpp" />
     <ClCompile Include="source\AssetManager\ShaderLoader.cpp" />
     <ClCompile Include="source\AssetManager\TextureLoader.cpp" />
     <ClCompile Include="source\Assimp\AssimpAnimation.cpp" />
@@ -95,6 +96,7 @@
     <ClInclude Include="source\AssetManager\MaterialLoader.h" />
     <ClInclude Include="source\AssetManager\MeshLoader.h" />
     <ClInclude Include="source\AssetManager\MeshPrimitive.h" />
+    <ClInclude Include="source\AssetManager\ModelLoader.h" />
     <ClInclude Include="source\AssetManager\ShaderLoader.h" />
     <ClInclude Include="source\AssetManager\TextureLoader.h" />
     <ClInclude Include="source\Assimp\AssimpAnimation.h" />

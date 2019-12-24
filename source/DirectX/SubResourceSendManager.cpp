@@ -166,5 +166,13 @@ void SubResourceSendManager::SetPostEffect(
 	m_deviceContext->PSSetConstantBuffers(5, 1, m_postEffectBuffer.GetAddressOf());
 }
 
+void SubResourceSendManager::SetBone(const std::vector<math::Matrix>& _matrix) {
+	for (int i = 0; i < m_boneNum; i++) {
+		m_bone.boneMatrix[i] = _matrix[i];
+	}
+	m_deviceContext->UpdateSubresource(m_boneBuffer.Get(), 0, nullptr, &m_bone, 0, 0);
+	m_deviceContext->VSSetConstantBuffers(6, 1, m_boneBuffer.GetAddressOf());
+}
+
 }
 }

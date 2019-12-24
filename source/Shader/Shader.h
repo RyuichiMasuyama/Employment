@@ -58,19 +58,23 @@ public:
 	Shaders() = default;
 	~Shaders() = default;
 
+	// シェーダを送る
+	void Send();
+
 	// シェーダのセット
 	void SetVertexShader(VertexShader _shader);
 	void SetPixelShader(PixelShader _shader);
 	void SetGeometryShader(GeometryShader _shader);
 	void SetDomainShader(DomainShader _shader);
 	void SetHullShader(HullShader _shader);
+	void SetInputLayout(InputLayer _inputLayout);
 private:
 	VertexShader m_vertexShader = nullptr;
-	InputLayer inputLayer = nullptr;
-	PixelShader pixelShader = nullptr;
-	GeometryShader geometryShader = nullptr;
-	DomainShader domainShader = nullptr;
-	HullShader hullShader = nullptr;
+	InputLayer m_inputLayout = nullptr;
+	PixelShader m_pixelShader = nullptr;
+	GeometryShader m_geometryShader = nullptr;
+	DomainShader m_domainShader = nullptr;
+	HullShader m_hullShader = nullptr;
 };
 }
 }

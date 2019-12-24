@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include "./Math/Vector.h"
+#include "../MyDirectXMath.h"
 
 namespace mslib {
 namespace render {
@@ -17,14 +17,24 @@ struct PolygonVertex {
 struct PolygonAnimationVertex {
 	math::Vector3 pos;			// 頂点位置
 	math::Vector3 normal;		// 法線
+	math::Vector2 tex;			// テクスチャuv
 	math::Vector4 color;		// 色
 	math::Vector3 tangent;		// タンジェント
 	int			  boneIndex[4];	// ウェイトインデックス
-	math::Vector4 boneWeight;	// インデックスに対応したウェイト
+	float		  boneWeight[4];// インデックスに対応したウェイト
+	int			  boneNum;		// ボーン数
 };
 
 // インデックス
-typedef int PolygonIndex;
+typedef unsigned int PolygonIndex;
+
+// ボーン情報
+struct Bone {
+	unsigned int idx = -1;			// ボーン配列のインデックス番号
+	math::Matrix matrix;			// 初期配置行列
+	math::Matrix animationMatrix;	// ボーン行列
+	math::Matrix offsetMatrix;		// ボーンオフセット行列
+};
 
 }  // namespace render
 namespace base {

@@ -185,6 +185,9 @@
     <ClCompile Include="source\Renderer\Model.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="source\AssetManager\ModelLoader.cpp">
+      <Filter>Asset</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="core">
@@ -546,6 +549,9 @@
     </ClInclude>
     <ClInclude Include="source\Renderer\BaseShader.h">
       <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="source\AssetManager\ModelLoader.h">
+      <Filter>Asset</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

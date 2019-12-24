@@ -67,13 +67,18 @@ private:
 		// float bloom;
 	};
 
+	struct BoneBuffer {
+		DirectX::XMFLOAT4X4 boneMatrix[400];
+	};
+
 	// 実数構造体
 	WorldObjectBuffer m_worldObject;
 	CameraObejctBuffer m_cameraObject;
 	MaterialObjectBuffer m_materialObject;
 	LightObjectBuffer m_lightObject[LIGHT_MAX]; // 複数ある可能性があるので配列
 	TimeBuffer m_time;
-	PostEffectBuffer m_postEffect;
+	PostEffectBuffer m_postEffect; 
+	BoneBuffer m_bone;
 
 	// コンスタントバッファ
 	ConstantBuffer m_worldObjectBuffer;
@@ -82,10 +87,12 @@ private:
 	ConstantBuffer m_lightObjectBuffer;
 	ConstantBuffer m_timeBuffer;
 	ConstantBuffer m_postEffectBuffer;
+	ConstantBuffer m_boneBuffer;
 
 	DeviceContext m_deviceContext;
 
 	static unsigned int m_lightNum;
+	unsigned int m_boneNum;
 public:
 	SubResourceSendManager();
 	void Initialize();
@@ -119,6 +126,7 @@ public:
 		const std::array<float, 8>& _bloomDiffuse,
 		const float& _bloomSpecular
 	);
+	void SetBone(const std::vector<math::Matrix>& _matrix);
 };
 
 }	// namespace directx
