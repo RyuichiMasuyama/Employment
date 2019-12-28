@@ -5,6 +5,7 @@
 
 #include "./core/Object/object.h"
 #include "./imgui/imgui.h"
+#include "./Renderer/Model.h"
 #include "./core/Component/PostEffect/BasePostEffectComponent.h"
 
 namespace mslib {
@@ -21,6 +22,7 @@ public:
 
 
 private:
+	render::ModelData m_modelData;
 	mslib::directx::ConstantBuffer buff;
 	void TestUpdate();
 

@@ -188,6 +188,15 @@
     <ClCompile Include="source\AssetManager\ModelLoader.cpp">
       <Filter>Asset</Filter>
     </ClCompile>
+    <ClCompile Include="source\core\Component\Render\ModelRenderComponent.cpp">
+      <Filter>core\Component\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="source\DirectX\DirectXTexture.cpp">
+      <Filter>DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Renderer\Texture.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="core">
@@ -235,15 +244,6 @@
     <Filter Include="Renderer">
       <UniqueIdentifier>{141f8b30-68fb-4eb0-afdd-0c3b1141e368}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Shader">
-      <UniqueIdentifier>{b0c99414-23be-4f5b-a34e-361c95d75bbf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Shader\fx">
-      <UniqueIdentifier>{adb6891d-473a-43a7-8ea4-f467dd62ab95}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Shader\fx\hader">
-      <UniqueIdentifier>{f3da803f-3519-4780-875a-5b6e178fd004}</UniqueIdentifier>
-    </Filter>
     <Filter Include="DirectX\Object">
       <UniqueIdentifier>{63ad00c8-ce2b-4c68-adda-c12b740d0baa}</UniqueIdentifier>
     </Filter>
@@ -253,17 +253,11 @@
     <Filter Include="origne">
       <UniqueIdentifier>{46b9fe4f-e6e4-447b-a914-813e2578f216}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Shader\Windows">
-      <UniqueIdentifier>{4ec57b3b-f40e-4a02-9235-546e6c3bdd15}</UniqueIdentifier>
-    </Filter>
     <Filter Include="core\JobSystem">
       <UniqueIdentifier>{6169e1c2-e0a5-4880-9eed-9552c3d014bb}</UniqueIdentifier>
     </Filter>
     <Filter Include="core\thread">
       <UniqueIdentifier>{f9e7777a-436a-4208-8d95-8a9b51e2f213}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Shader\fx\defferd">
-      <UniqueIdentifier>{d423da73-d9c7-4400-8e7a-8c5ebb51e815}</UniqueIdentifier>
     </Filter>
     <Filter Include="other">
       <UniqueIdentifier>{d5a5efdb-b218-42bd-9740-07b8b1479b47}</UniqueIdentifier>
@@ -304,14 +298,32 @@
     <Filter Include="Assimp">
       <UniqueIdentifier>{45552691-278f-4dc2-8aed-83eac57a3c1d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Shader\fx\geometry">
-      <UniqueIdentifier>{8651c321-88ed-4935-bb8e-9ba05aa48ade}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Asset">
       <UniqueIdentifier>{4712fd61-1eda-4075-b05e-c46fbeb316e0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Imgui">
       <UniqueIdentifier>{5449e55e-b4c7-4431-b269-be5413de9792}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer\base">
+      <UniqueIdentifier>{5cee64c0-399b-4754-90b8-d2e6991b7574}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader">
+      <UniqueIdentifier>{b0c99414-23be-4f5b-a34e-361c95d75bbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader\fx">
+      <UniqueIdentifier>{adb6891d-473a-43a7-8ea4-f467dd62ab95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader\fx\hader">
+      <UniqueIdentifier>{f3da803f-3519-4780-875a-5b6e178fd004}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader\fx\defferd">
+      <UniqueIdentifier>{d423da73-d9c7-4400-8e7a-8c5ebb51e815}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader\fx\geometry">
+      <UniqueIdentifier>{8651c321-88ed-4935-bb8e-9ba05aa48ade}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader\Windows">
+      <UniqueIdentifier>{4ec57b3b-f40e-4a02-9235-546e6c3bdd15}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -538,20 +550,32 @@
     <ClInclude Include="source\Renderer\Mesh.h">
       <Filter>Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="source\Renderer\BaseMesh.h">
-      <Filter>Renderer</Filter>
-    </ClInclude>
     <ClInclude Include="source\DirectX\DirectXMesh.h">
       <Filter>DirectX</Filter>
     </ClInclude>
     <ClInclude Include="source\Renderer\Model.h">
       <Filter>Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="source\Renderer\BaseShader.h">
-      <Filter>Renderer</Filter>
-    </ClInclude>
     <ClInclude Include="source\AssetManager\ModelLoader.h">
       <Filter>Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\Component\Render\ModelRenderComponent.h">
+      <Filter>core\Component\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Renderer\BaseMesh.h">
+      <Filter>Renderer\base</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Renderer\BaseShader.h">
+      <Filter>Renderer\base</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Renderer\BaseTexture.h">
+      <Filter>Renderer\base</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Renderer\Texture.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="source\DirectX\DirectXTexture.h">
+      <Filter>DirectX</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

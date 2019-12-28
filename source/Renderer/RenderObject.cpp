@@ -118,7 +118,7 @@ void MyMesh::Load(std::string _file_name) {
 		for (int i = 0; i < VectorSize; i++) {
 			m_polygons->vertex[i].normal = InVers[i].normal;
 			m_polygons->vertex[i].pos = InVers[i].pos;
-			m_polygons->vertex[i].uv = InVers[i].tex;
+			m_polygons->vertex[i].tex = InVers[i].tex;
 		}
 
 		// 4．インデックスのサイズ

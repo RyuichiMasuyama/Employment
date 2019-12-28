@@ -78,6 +78,7 @@ void directx::SubResourceSendManager::SetWorldObjectBuffer(const math::Matrix & 
 	auto xmmat = _world;
 
 	m_worldObject.world = xmmat.ToMATRIX();
+	//m_CBWorld.World = XMMatrixTranspose(mat);
 	m_deviceContext->UpdateSubresource(m_worldObjectBuffer.Get(), 0, nullptr, &m_worldObject, 0, 0);
 	m_deviceContext->VSSetConstantBuffers(0, 1, m_worldObjectBuffer.GetAddressOf());
 	m_deviceContext->PSSetConstantBuffers(0, 1, m_worldObjectBuffer.GetAddressOf());

@@ -96,8 +96,8 @@ void Render::ImGuiCare() {
 
 RenderObjectCommand::RenderObjectCommand(
 	math::Matrix & _mat, 
-	ModelData * _modelDataPtr) 
-	:m_mat(_mat) {
+	ModelData*  _modelDataPtr)
+	:m_mat(_mat) , m_modelDataPtr(_modelDataPtr){
 }
 
 }

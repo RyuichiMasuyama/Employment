@@ -5,7 +5,7 @@ namespace mslib {
 namespace component {
 
 void Render2DComponent::FixedUpdate() {
-	render::Render::GetInstance().Draw(m_transform.lock()->m_matrix, m_mesh.lock()->GetPipeline());
+	//render::Render::GetInstance().Draw(m_transform.lock()->m_matrix, m_mesh.lock()->GetPipeline());
 }
 
 }

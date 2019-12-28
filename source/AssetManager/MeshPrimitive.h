@@ -40,11 +40,11 @@ protected:
 class QuadPrimitive :public Primitive {
 public:
 	QuadPrimitive() {
-		render::Vertex3DModel model[]{
-			{ math::Vector3(-1.f,1.f,0.f),math::Vector3(0.f,0.f,-1.f) ,math::Vector3() ,math::Vector2(0.f,0.f) },
-			{ math::Vector3(1.f,1.f,0.f),math::Vector3(0.f,0.f,-1.f) ,math::Vector3() ,math::Vector2(1.f,0.f) },
-			{ math::Vector3(-1.f,-1.f,0.f),math::Vector3(0.f,0.f,-1.f) ,math::Vector3() ,math::Vector2(0.f,1.f) },
-			{ math::Vector3(1.f,-1.f,0.f),math::Vector3(0.f,0.f,-1.f) ,math::Vector3() ,math::Vector2(1.f,1.f) },
+		render::PolygonAnimationVertex model[]{
+			{ math::Vector3(-1.f,1.f,0.f),math::Vector3(0.f,0.f,-1.f) ,math::Vector2(0.f,0.f) },
+			{ math::Vector3(1.f,1.f,0.f),math::Vector3(0.f,0.f,-1.f)  ,math::Vector2(1.f,0.f) },
+			{ math::Vector3(-1.f,-1.f,0.f),math::Vector3(0.f,0.f,-1.f) ,math::Vector2(0.f,1.f) },
+			{ math::Vector3(1.f,-1.f,0.f),math::Vector3(0.f,0.f,-1.f)  ,math::Vector2(1.f,1.f) },
 		};
 
 		int index[]{

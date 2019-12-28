@@ -5,20 +5,16 @@
 //--------------------------------------------------------------------------------------
 // 頂点シェーダー
 //--------------------------------------------------------------------------------------
-VS2D_OUTPUT main(float4 Pos		:	POSITION,
-	float4 Normal : NORMAL,
-    float4 Tangent : TANGENT,
-    float2 Tex : TEXCOORD)
+VS2D_OUTPUT main(VS_INPUT_ANIMETION _input)
 {
     VS2D_OUTPUT output = (VS2D_OUTPUT) 0;
-
-    output.Pos = mul(Pos, World);
-   // output.Pos = Pos;
+    
+    output.Pos = mul(_input.Pos, World);
     output.Pos.w = 1.f;
+    
+    output.Color = output.Pos;
 
-    output.Color = float4(1.0f, 1.0f, 1.0f, 1.0f);
-
-    output.Tex = Tex;
+    output.Tex = _input.Tex;
     
     return output;
 }

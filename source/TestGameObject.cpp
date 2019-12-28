@@ -6,6 +6,7 @@
 #include <ImGui/imgui.h>
 
 #include "./core/Input/Input.h"
+#include "./core/Component/Render/ModelRenderComponent.h"
 
 namespace mslib {
 namespace origin {
@@ -21,8 +22,16 @@ void TestGameObject::Initialize() {
 	CreateUpdateFunction(TestUpdateName, &TestGameObject::TestUpdate, this);
 	SetUpdateFunction(TestUpdateName);
 
-	loader::MeshLoader meshLoader;
-	AddComponent<component::RenderComponent>(meshLoader.Load("assets/dragon.msobj"));
+	/*m_modelData.Load("assets/box.fbx");
+	m_modelData.SetVertexShader("shader/vs2d.fx");
+	m_modelData.SetPixelShader("shader/ps2d.fx");
+	m_modelData.SetTexture("Dragon_Bump_Col2.jpg", 0);*/
+
+	//loader::MeshLoader load;
+	//loader::TextureLoader textureLoader;
+	auto renderComponent = AddComponent<component::ModelRenderComponent>(&m_modelData);
+	//loader::MeshLoader meshLoader;
+	//AddComponent<component::RenderComponent>(meshLoader.Load("assets/dragon.msobj"));
 }
 
 void TestGameObject::ImGuiDraw() {
@@ -43,7 +52,7 @@ void HaveCameraGameObject::Initialize() {
 	// カメラをセット
 	auto cameraCom = AddComponent<component::CameraComponent>();
 	// ポストエフェクトを追加
-	m_postEffect = cameraCom.lock()->AddPostEffectComponent<component::BasePostEffectComponent>();
+	// m_postEffect = cameraCom.lock()->AddPostEffectComponent<component::BasePostEffectComponent>();
 	
 }
 
@@ -51,28 +60,28 @@ void HaveCameraGameObject::ImGuiDraw() {
 	//ImGui::SliderFloat3("CameraPos", m_position.GetPtr(), -100.f, 100.f);
 	ImGui::SliderFloat3("CameraRot", m_rotate.GetPtr(), -360.f, 360.f);
 
-	ImGui::SliderFloat("Gauusあああ", &m_gauusePower, 0.f, 1.f);
+	ImGui::SliderFloat("Gauus", &m_gauusePower, 0.f, 1.f);
 	ImGui::Checkbox("GaussFlag",&m_gauuseFlag);
 
 	ImGui::SliderFloat("Bloom", &m_bloomPower, 0.f, 1.f);
 	ImGui::Checkbox("BloomFlag", &m_bloomFlag);
 
-	m_postEffect.lock()->SetPostEffectFlag(m_gauuseFlag, render::POSTEFFECT_TYPE::GAUSS);
-	m_postEffect.lock()->SetGauusePower(m_gauusePower);
+	//m_postEffect.lock()->SetPostEffectFlag(m_gauuseFlag, render::POSTEFFECT_TYPE::GAUSS);
+	//m_postEffect.lock()->SetGauusePower(m_gauusePower);
 }
 
 void HaveCameraGameObject::TestUpdate() {
 	if (input::Input::GetKeyStay(MSK_W)) {
-		m_position += m_matrix.GetFront() * 0.1f;
+		m_position += m_matrix.GetFront() * 0.01f;
 	};
 	if (input::Input::GetKeyStay(MSK_A)) {
-		m_position += m_matrix.GetRight() * -0.1f;
+		m_position += m_matrix.GetRight() * -0.01f;
 	};
 	if (input::Input::GetKeyStay(MSK_S)) {
-		m_position += m_matrix.GetFront() * -0.1f;
+		m_position += m_matrix.GetFront() * -0.01f;
 	};
 	if (input::Input::GetKeyStay(MSK_D)) {
-		m_position += m_matrix.GetRight() * 0.1f;
+		m_position += m_matrix.GetRight() * 0.01f;
 	};
 }
 

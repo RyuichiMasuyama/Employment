@@ -38,9 +38,9 @@ public:
 	// コンストラクタ
 	/*RenderObjectCommand(math::Matrix& _mat, const PipelineFunction _pipelineFunction) :
 		m_mat(_mat), m_function(_pipelineFunction) {};*/
-	//RenderObjectCommand(math::Matrix& _mat, Pipeline* _pipelinePtr) :
-	//	m_mat(_mat), m_pipelinePtr(_pipelinePtr) {};
-	RenderObjectCommand(math::Matrix&_mat, ModelData *_modelDataPtr);
+		//RenderObjectCommand(math::Matrix& _mat, Pipeline* _pipelinePtr) :
+		//	m_mat(_mat), m_pipelinePtr(_pipelinePtr) {};
+	RenderObjectCommand(math::Matrix&_mat, ModelData*_modelDataPtr);
 };
 
 class Render :public pattern::Singleton<Render>{

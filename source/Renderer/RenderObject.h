@@ -4,6 +4,8 @@
 #include <vector>
 #include <array>
 
+
+#include "./BaseMesh.h"
 #ifdef DIRECTX11
 #include "./DirectX/DirectXPipeline.h"
 #endif
@@ -97,7 +99,7 @@ struct Material {
 
 struct Polygons {
 	//頂点データ
-	std::vector<Vertex3DModel>	vertex;
+	std::vector<PolygonAnimationVertex>	vertex;
 
 	//法線データ
 	//std::vector<Vector3>	normal;

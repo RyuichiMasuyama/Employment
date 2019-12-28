@@ -20,10 +20,57 @@ void ModelData::Load(std::string _fileName) {
 	}
 	// aiノードを解析する
 	ProcessNode(m_assimpScene.GetScene()->mRootNode, m_assimpScene.GetScene());
+	//auto mesh = std::make_shared< render::Mesh >();
+
+	//std::vector<PolygonAnimationVertex> vertices;			// 頂点
+	//std::vector<PolygonIndex> indices;		// 面の構成情報
+	//PolygonAnimationVertex ver;
+	//PolygonIndex ind;
+	//
+	//ver.pos.x = -0.5f;
+	//ver.pos.y = 0.5f;
+	//ver.pos.z = 0.f;
+
+	//ver.normal.x = 0.f;
+	//ver.normal.y = 0.f;
+	//ver.normal.z = -1.f;
+
+	//vertices.push_back(ver);
+	//indices.push_back(0);
+
+	//ver.pos.x = 0.5f;
+	//ver.pos.y = 0.5f;
+	//ver.pos.z = 0.f;
+
+	//ver.normal.x = 0.f; 
+	//ver.normal.y = 0.f;
+	//ver.normal.z = -1.f;
+
+	//vertices.push_back(ver);
+	//indices.push_back(1);
+
+	//ver.pos.x = -0.5f;
+	//ver.pos.y = -0.5f;
+	//ver.pos.z = 0.f;
+
+	//ver.normal.x = 0.f;
+	//ver.normal.y = 0.f;
+	//ver.normal.z = -1.f;
+
+	//vertices.push_back(ver);
+	//indices.push_back(2);
+
+	//mesh->Load(vertices, indices);
+	//m_meshs.push_back(mesh);
 
 	return;
 }
 void ModelData::Draw() {
+	m_shaders.Send();
+	for (int i = 0; i < m_texture.size(); i++) {
+		m_texture[i].Send(i);
+	}
+
 	for (auto& itr : m_meshs) {
 		itr->Draw();
 	}
@@ -100,48 +147,94 @@ void ModelData::AnimationUpdate(unsigned int _animeNo, unsigned int _animeFileNo
 	m_cnt++;
 }
 
-void ModelData::SetTexture(texture::Texture _texture, int _number) {
+void ModelData::SetTexture(std::string _fileName, int _number) {
 	if (_number<m_texture.size()) {
-		m_texture[_number] = _texture;
+		m_texture[_number].Load(_fileName);
 	}
 }
 
-void ModelData::SetVertexShader(std::string _shadeName) {
+void ModelData::SetVertexShader(std::string _shaderName) {
 	loader::ShaderLoader loader;
 	shader::VertexShader vs;
 	shader::InputLayer il;
-	loader.Load(_shadeName, il, shader::ShaderType::IL);
-	loader.Load(_shadeName, vs, shader::ShaderType::VS);
+	loader.Load(_shaderName, il, shader::ShaderType::IL);
+	loader.Load(_shaderName, vs, shader::ShaderType::VS);
 	m_shaders.SetInputLayout(il);
 	m_shaders.SetVertexShader(vs);
 }
 
-void ModelData::SetPixelShader(std::string _shadeName) {
+void ModelData::SetPixelShader(std::string _shaderName) {
 	loader::ShaderLoader loader;
 	shader::PixelShader ps;
-	loader.Load(_shadeName, ps, shader::ShaderType::PS);
+	loader.Load(_shaderName, ps, shader::ShaderType::PS);
 	m_shaders.SetPixelShader(ps);
 }
 
-void ModelData::SetGeometryShader(std::string _shadeName) {
+void ModelData::SetGeometryShader(std::string _shaderName) {
 	loader::ShaderLoader loader;
 	shader::GeometryShader gs;
-	loader.Load(_shadeName, gs, shader::ShaderType::GS);
+	loader.Load(_shaderName, gs, shader::ShaderType::GS);
 	m_shaders.SetGeometryShader(gs);
 }
 
-void ModelData::SetHullShader(std::string _shadeName) {
+void ModelData::SetHullShader(std::string _shaderName) {
 	loader::ShaderLoader loader;
 	shader::HullShader hl;
-	loader.Load(_shadeName, hl, shader::ShaderType::HS);
+	loader.Load(_shaderName, hl, shader::ShaderType::HS);
 	m_shaders.SetHullShader(hl);
 }
 
-void ModelData::SetDomainShader(std::string _shadeName) {
+void ModelData::SetDomainShader(std::string _shaderName) {
 	loader::ShaderLoader loader;
 	shader::DomainShader ds;
-	loader.Load(_shadeName, ds, shader::ShaderType::DS);
+	loader.Load(_shaderName, ds, shader::ShaderType::DS);
 	m_shaders.SetDomainShader(ds);
+}
+
+void ModelData::SetShader(std::string _shaderName, shader::ShaderType _shaderType) {
+	loader::ShaderLoader loader;
+	switch(_shaderType) {
+	case shader::ShaderType::VS: {
+		shader::VertexShader vs;
+		shader::InputLayer il;
+		loader.Load(_shaderName, il, shader::ShaderType::IL);
+		loader.Load(_shaderName, vs, shader::ShaderType::VS);
+		m_shaders.SetInputLayout(il);
+		m_shaders.SetVertexShader(vs);
+
+	}
+		break;
+	case shader::ShaderType::PS: {
+		shader::PixelShader ps;
+		loader.Load(_shaderName, ps, shader::ShaderType::PS);
+		m_shaders.SetPixelShader(ps);
+
+	}
+		break;
+	case shader::ShaderType::GS: {
+		shader::GeometryShader gs;
+		loader.Load(_shaderName, gs, shader::ShaderType::GS);
+		m_shaders.SetGeometryShader(gs);
+
+	}
+		break;
+	case shader::ShaderType::HS: {
+		shader::HullShader hl;
+		loader.Load(_shaderName, hl, shader::ShaderType::HS);
+		m_shaders.SetHullShader(hl);
+
+	}
+		break;
+	case shader::ShaderType::DS: {
+		shader::DomainShader ds;
+		loader.Load(_shaderName, ds, shader::ShaderType::DS);
+		m_shaders.SetDomainShader(ds);
+
+	}
+		break;
+
+	}
+	return ;
 }
 
 void ModelData::CreateBone(aiNode *node) {
@@ -206,14 +299,14 @@ std::shared_ptr< Mesh > ModelData::ProcessMesh(aiMesh * _mesh, const aiScene * _
 			vertex.tex.x = _mesh->mTextureCoords[0][i].x;
 			vertex.tex.y = _mesh->mTextureCoords[0][i].y;
 		}
-
+/*
 		vertex.boneNum = 0;
 
 		for (unsigned int b = 0; b < 4; b++)
 		{
 			vertex.boneIndex[b] = -1;
 			vertex.boneWeight[b] = 0.0f;
-		}
+		}*/
 
 		vertices.push_back(vertex);
 	}
@@ -243,22 +336,22 @@ std::shared_ptr< Mesh > ModelData::ProcessMesh(aiMesh * _mesh, const aiScene * _
 		}
 
 		// ボーンに関連づいている頂点を選び､ウェイト値をセットする
-		for (unsigned int widx = 0; widx < bone->mNumWeights; widx++)
-		{
-			aiVertexWeight weight = bone->mWeights[widx];
+		//for (unsigned int widx = 0; widx < bone->mNumWeights; widx++)
+		//{
+		//	aiVertexWeight weight = bone->mWeights[widx];
 
-			unsigned int vidx = weight.mVertexId;			// このウエイトに関連づいてる頂点idx
+		//	unsigned int vidx = weight.mVertexId;			// このウエイトに関連づいてる頂点idx
 
-															// メッシュの中の何番目か
-			vertices[vidx].boneWeight[vertices[vidx].boneNum] = weight.mWeight;
-			// vertices[vidx].m_BoneName[vertices[vidx].boneNum] = bone->mName.C_Str();
-			// 該当するボーン名のインデックス値をセット
-			vertices[vidx].boneIndex[vertices[vidx].boneNum] = m_bone[bone->mName.C_Str()].idx;
+		//													// メッシュの中の何番目か
+		//	vertices[vidx].boneWeight[vertices[vidx].boneNum] = weight.mWeight;
+		//	// vertices[vidx].m_BoneName[vertices[vidx].boneNum] = bone->mName.C_Str();
+		//	// 該当するボーン名のインデックス値をセット
+		//	vertices[vidx].boneIndex[vertices[vidx].boneNum] = m_bone[bone->mName.C_Str()].idx;
 
-			vertices[vidx].boneNum++;
+		//	vertices[vidx].boneNum++;
 
-			assert(vertices[vidx].boneNum <= 4);
-		}
+		//	assert(vertices[vidx].boneNum <= 4);
+		//}
 	}
 
 	// テクスチャ情報を取得する
@@ -319,9 +412,8 @@ void ModelData::LoadMaterialTextures(aiMaterial * _mat, aiTextureType _type, std
 		// マテリアルからｉ番目のテクスチャファイル名を取得する
 		_mat->GetTexture(_type, i, &str);
 
-		loader::TextureLoader textureLoader;
 		for (auto &itr : m_texture) {
-			itr = textureLoader.Load(texFileName);
+			itr.Load(texFileName);
 		}
 	}
 

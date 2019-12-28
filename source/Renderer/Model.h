@@ -12,7 +12,7 @@
 #include <assimp/postprocess.h>
 #include <assimp/cimport.h>
 #include "./AssetManager/ModelLoader.h"
-#include "./AssetManager/TextureLoader.h"
+#include "./Texture.h"
 
 namespace mslib {
 namespace render {
@@ -33,14 +33,15 @@ public:
 	void AnimationUpdate(unsigned int _animeNo,unsigned int _animeFileNo);
 
 	// シェーダのセット
-	void SetTexture(texture::Texture _texture, int _number);
+	void SetTexture(std::string _fileName, int _number);
 
 	// 各種シェーダのセット
-	void SetVertexShader(std::string _shadeName);
-	void SetPixelShader(std::string _shadeName);
-	void SetGeometryShader(std::string _shadeName);
-	void SetHullShader(std::string _shadeName);
-	void SetDomainShader(std::string _shadeName);
+	void SetVertexShader(std::string _shaderName);
+	void SetPixelShader(std::string _shaderName);
+	void SetGeometryShader(std::string _shaderName);
+	void SetHullShader(std::string _shaderName);
+	void SetDomainShader(std::string _shaderName);
+	void SetShader(std::string _shaderrName, shader::ShaderType _shaderType);
 private:
 	// メッシュ情報
 	std::vector<std::shared_ptr<Mesh>> m_meshs;
@@ -49,7 +50,7 @@ private:
 	// シェーダー(内部でスマートポインタにしている)
 	shader::Shaders m_shaders;
 	// テクスチャ
-	std::array< texture::Texture, TEXTURE_MAX > m_texture;
+	std::array< texture::MyTexture, TEXTURE_MAX > m_texture;
 	// ボーンデータ
 	std::map<std::string, render::Bone> m_bone;
 	// アシンプ導入

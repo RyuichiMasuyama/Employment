@@ -94,7 +94,7 @@ assets::AssetBase ShaderCompiler::Load(std::string _shaderName, ShaderType _shad
 		std::vector<D3D11_INPUT_ELEMENT_DESC >element;
 		directx::InputLayout shader;
 	
-		InputLayoutPick(INPUT_LAYOUT_POS_NORMAL_TANGENT_TEXCOORD, element);
+		InputLayoutPick(INPUT_LAYOUT_POS_NORMAL_TEXCOORD, element);
 
 		HRESULT hr = directx::CompileShaderFromFile(_shaderName.c_str(), "main", "vs_5_0", &blob);
 
@@ -221,7 +221,7 @@ directx::InputLayout ShaderCompiler::ILLoad(std::string _shaderName) {
 	std::vector<D3D11_INPUT_ELEMENT_DESC >element;
 	directx::InputLayout shader;
 
-	InputLayoutPick(INPUT_LAYOUT_POS_NORMAL_TANGENT_TEXCOORD, element);
+	InputLayoutPick(INPUT_LAYOUT_POS_NORMAL_TEXCOORD, element);
 
 	HRESULT hr = directx::CompileShaderFromFile(_shaderName.c_str(), "main", "vs_5_0", &blob);
 
@@ -232,7 +232,7 @@ directx::InputLayout ShaderCompiler::ILLoad(std::string _shaderName) {
 	//頂点データ定義生成
 	hr = device->CreateInputLayout(&element.at(0), static_cast<UINT>(element.size()), blob->GetBufferPointer(), blob->GetBufferSize(), shader.GetAddressOf());
 	if (FAILED(hr)) {
-		MessageBox(nullptr, "CreateInputLayer error", "error", MB_OK);
+		MessageBox(nullptr, "CreateInputLayout error", "error", MB_OK);
 
 		blob->Release();
 		return nullptr;
@@ -311,9 +311,9 @@ void ShaderCompiler::InputLayoutPick(INPUT_LAYOUT_NAME _input_layout_name, std::
 
 		break;
 	case INPUT_LAYOUT_POS_NORMAL_TEXCOORD:
-		element.push_back({ "POSITION",	0, DXGI_FORMAT_R32G32B32_FLOAT,		0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 });
-		element.push_back({ "NORMAL",	0, DXGI_FORMAT_R32G32B32_FLOAT,	    0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 });
-		element.push_back({ "TEXCOORD",	0, DXGI_FORMAT_R32G32_FLOAT,		0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 });
+		element.push_back({ "POSITION",	0, DXGI_FORMAT_R32G32B32A32_FLOAT,		0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 });
+		element.push_back({ "NORMAL",	0, DXGI_FORMAT_R32G32B32A32_FLOAT,	    0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 });
+		element.push_back({ "TEXCOORD",	0, DXGI_FORMAT_R32G32_FLOAT,			0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 });
 
 		//*_element = element;
 
@@ -368,6 +368,17 @@ void ShaderCompiler::InputLayoutPick(INPUT_LAYOUT_NAME _input_layout_name, std::
 		//	};
 
 		//	break;
+	case INPUT_LAYOUT_POS_NORMAL_TEXCOORD_COLOR_TANGENT_BONEINDEX_BONEWIGHT_BONENUM:
+		element.push_back({ "POSITION",		0, DXGI_FORMAT_R32G32B32_FLOAT,	    0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 });
+		element.push_back({ "NORMAL",		0, DXGI_FORMAT_R32G32B32_FLOAT,	    0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 });
+		element.push_back({ "TEXCOORD",		0, DXGI_FORMAT_R32G32_FLOAT,		0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 });
+		element.push_back({ "COLOR",		0, DXGI_FORMAT_R32G32B32A32_FLOAT,	0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 });
+		element.push_back({ "TANGENT",		0, DXGI_FORMAT_R32G32B32_FLOAT,		0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 });
+		element.push_back({ "BONEINDEX",	0, DXGI_FORMAT_R32G32B32A32_SINT,	0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 });
+		element.push_back({ "BONEWIGHT",	0, DXGI_FORMAT_R32G32B32A32_FLOAT,	0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 });
+		element.push_back({ "BONENUM",		0, DXGI_FORMAT_R32_SINT,			0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 });
+
+		break;
 	case INPUT_LAYOUT_MAX:
 		break;
 	default:

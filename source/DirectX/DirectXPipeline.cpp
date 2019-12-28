@@ -2,6 +2,7 @@
 #include "./Renderer/RenderObject.h"
 #include "./SubResourceSendManager.h"
 #include "./AssetManager/ShaderLoader.h"
+#include "./Renderer/BaseMesh.h"
 
 namespace mslib {
 namespace directx {
@@ -79,11 +80,11 @@ void DirectXPipeline::Draw() {
 	//↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 
 	// 頂点バッファをセットする
-	unsigned int stride = sizeof(render::Vertex3DModel);
+	unsigned int stride = sizeof(render::PolygonAnimationVertex);
 	unsigned  offset = 0;
 
 	deviceContext->IASetVertexBuffers(0, 1, m_vertex_buffer.GetAddressOf(), &stride, &offset);
-
+	
 	//インデックスバッファをセット
 	deviceContext->IASetIndexBuffer(m_index_buffer.Get(), DXGI_FORMAT_R32_UINT, 0);
 	auto material = m_mesh->GetMaterial();
@@ -92,7 +93,7 @@ void DirectXPipeline::Draw() {
 	}
 	if (material.size() < 0)SubResourceSendManager::GetInstance().SetMaterialBuffer(material[0]);
 
-	unsigned int indexCount = static_cast<int>(m_mesh->GetPolygons()->index.size());
+	unsigned int indexCount = static_cast<unsigned int>(m_mesh->GetPolygons()->index.size());
 	// 描画！！！
 	deviceContext->DrawIndexed(
 		indexCount,					// インデックスの数
@@ -105,7 +106,7 @@ void DirectXPipeline::NoSetShaderDraw() {
 	auto deviceContext = DirectX11Manager::GetInstance().GetDeviceContext();
 
 	// 頂点バッファをセットする
-	unsigned int stride = sizeof(render::Vertex3DModel);
+	unsigned int stride = sizeof(render::PolygonAnimationVertex);
 	unsigned  offset = 0;
 
 	deviceContext->IASetVertexBuffers(0, 1, m_vertex_buffer.GetAddressOf(), &stride, &offset);

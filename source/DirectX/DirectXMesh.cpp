@@ -11,7 +11,7 @@ void DirectXMesh::Draw() {
 	auto deviceContext = DirectX11Manager::GetInstance().GetDeviceContext();
 
 	// 頂点バッファをセットする
-	unsigned int stride = sizeof(render::PolygonVertex);
+	unsigned int stride = sizeof(render::PolygonAnimationVertex);
 	unsigned  offset = 0;
 
 	// バーテックスバッファをセット
@@ -45,7 +45,7 @@ bool DirectXMesh::Load(const std::vector<render::PolygonAnimationVertex>& _vecVe
 	auto verIndexSize = _vecIndex.size();
 
 	// (void*)はstatic_castはしない
-	auto ans1 = CreateVertexBuffer(sizeof(m_animationWight[0]), verVecSize, (void*)&m_animationWight[0]);
+	auto ans1 = CreateVertexBuffer(sizeof(render::PolygonAnimationVertex), verVecSize, (void*)&m_animationWight[0]);
 	auto ans2 = CreateIndexBuffer(verIndexSize, (void*)&m_index[0]);
 
 	// 両方とも成功すればtrue
@@ -84,7 +84,7 @@ bool DirectXMesh::CreateIndexBuffer(size_t _indexNum, void * _indexFrontAddress)
 
 	ZeroMemory(&bd, sizeof(bd));
 	bd.Usage = D3D11_USAGE_DEFAULT;								// バッファ使用方
-	bd.ByteWidth = sizeof(unsigned int) * static_cast<UINT>(_indexNum);				// バッファの大き
+	bd.ByteWidth = sizeof(int) * static_cast<int>(_indexNum);				// バッファの大き
 	bd.BindFlags = D3D11_BIND_INDEX_BUFFER;						// インデックスバッファ
 	bd.CPUAccessFlags = 0;										// CPUアクセス不要
 

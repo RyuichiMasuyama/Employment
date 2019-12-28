@@ -43,6 +43,8 @@ texture::Texture TextureLoader::Load(std::string _fileName) {
 	// ロードをミスするとnullを返す
 	if (FAILED(hr)) {
 		asset = nullptr;
+		std::string fall = "Not Found this file [ " + _fileName + "]";
+		MessageBox(nullptr, fall.c_str(), "error", MB_OK);
 		return nullptr; 
 	}
 	// ロードができたのでアセットManagerにセット

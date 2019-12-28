@@ -15,14 +15,14 @@ struct PolygonVertex {
 
 // アニメーション頂点情報
 struct PolygonAnimationVertex {
-	math::Vector3 pos;			// 頂点位置
-	math::Vector3 normal;		// 法線
+	math::Vector4 pos;			// 頂点位置
+	math::Vector4 normal;		// 法線
 	math::Vector2 tex;			// テクスチャuv
-	math::Vector4 color;		// 色
-	math::Vector3 tangent;		// タンジェント
-	int			  boneIndex[4];	// ウェイトインデックス
-	float		  boneWeight[4];// インデックスに対応したウェイト
-	int			  boneNum;		// ボーン数
+	//math::Vector4 color;		// 色
+	//math::Vector3 tangent;		// タンジェント
+	//int			  boneIndex[4];	// ウェイトインデックス
+	//float		  boneWeight[4];// インデックスに対応したウェイト
+	//int			  boneNum;		// ボーン数
 };
 
 // インデックス

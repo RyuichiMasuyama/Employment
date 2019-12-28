@@ -40,6 +40,7 @@
     <ClCompile Include="source\core\Component\Light\base\BaseLightComponent.cpp" />
     <ClCompile Include="source\core\Component\Light\DirectionalLightComponent.cpp" />
     <ClCompile Include="source\core\Component\PostEffect\BasePostEffectComponent.cpp" />
+    <ClCompile Include="source\core\Component\Render\ModelRenderComponent.cpp" />
     <ClCompile Include="source\core\Component\Render\Render2DComponent.cpp" />
     <ClCompile Include="source\core\Component\Render\RenderComponent.cpp" />
     <ClCompile Include="source\core\FpsManager.cpp" />
@@ -58,6 +59,7 @@
     <ClCompile Include="source\DirectX\DirectXPipeline.cpp" />
     <ClCompile Include="source\DirectX\DirectXRenderManager.cpp" />
     <ClCompile Include="source\DirectX\DirectXRenderTerget.cpp" />
+    <ClCompile Include="source\DirectX\DirectXTexture.cpp" />
     <ClCompile Include="source\DirectX\math\HelperFunction.cpp" />
     <ClCompile Include="source\DirectX\SubResourceSendManager.cpp" />
     <ClCompile Include="source\DirectX\TextureLoader\WICTextureLoader.cpp" />
@@ -85,6 +87,7 @@
     <ClCompile Include="source\Renderer\Render.cpp" />
     <ClCompile Include="source\Renderer\RenderObject.cpp" />
     <ClCompile Include="source\Renderer\RenderTerget.cpp" />
+    <ClCompile Include="source\Renderer\Texture.cpp" />
     <ClCompile Include="source\Shader\Shader.cpp" />
     <ClCompile Include="source\Shader\ShaderCompiler.cpp" />
     <ClCompile Include="source\TestGameObject.cpp" />
@@ -111,6 +114,7 @@
     <ClInclude Include="source\core\Component\Light\SpotLightComponent.h" />
     <ClInclude Include="source\core\Component\Mesh\MeshComponent.h" />
     <ClInclude Include="source\core\Component\PostEffect\BasePostEffectComponent.h" />
+    <ClInclude Include="source\core\Component\Render\ModelRenderComponent.h" />
     <ClInclude Include="source\core\Component\Render\Render2DComponent.h" />
     <ClInclude Include="source\core\Component\Render\RenderComponent.h" />
     <ClInclude Include="source\core\DesignPattern\FarmBase.h" />
@@ -133,6 +137,7 @@
     <ClInclude Include="source\DirectX\DirectXPipeline.h" />
     <ClInclude Include="source\DirectX\DirectXRenderManager.h" />
     <ClInclude Include="source\DirectX\DirectXRenderTerget.h" />
+    <ClInclude Include="source\DirectX\DirectXTexture.h" />
     <ClInclude Include="source\DirectX\math\HelperFunction.h" />
     <ClInclude Include="source\DirectX\SubResourceSendManager.h" />
     <ClInclude Include="source\DirectX\TextureLoader\WICTextureLoader.h" />
@@ -155,6 +160,7 @@
     <ClInclude Include="source\origne\RPGManager\GameObject\RpgManagerGameObject.h" />
     <ClInclude Include="source\Renderer\BaseMesh.h" />
     <ClInclude Include="source\Renderer\BaseShader.h" />
+    <ClInclude Include="source\Renderer\BaseTexture.h" />
     <ClInclude Include="source\Renderer\DirectXPostEffect.h" />
     <ClInclude Include="source\Renderer\Mesh.h" />
     <ClInclude Include="source\Renderer\Model.h" />
@@ -164,6 +170,7 @@
     <ClInclude Include="source\Renderer\Render.h" />
     <ClInclude Include="source\Renderer\RenderObject.h" />
     <ClInclude Include="source\Renderer\RenderTerget.h" />
+    <ClInclude Include="source\Renderer\Texture.h" />
     <ClInclude Include="source\RenderLayer.h" />
     <ClInclude Include="source\Shader\Shader.h" />
     <ClInclude Include="source\Shader\ShaderCompiler.h" />

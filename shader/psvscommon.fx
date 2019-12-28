@@ -82,6 +82,18 @@ struct VS_INPUT
     float2 Tex : TEXCOORD;
 };
 
+struct VS_INPUT_ANIMETION
+{
+    float4 Pos : POSITION;
+    float4 Normal : NORMAL;
+    float2 Tex : TEXCOORD;
+    //float4 Color : COLOR;
+    //float3 Tangent : TANGENT;
+    //int4 BoneIndex : BONEINDEX;
+    //float4 BoneWight : BONEWIGHT;
+    //int BoneNum : BONENUM;
+};
+
 struct VS_OUTPUT
 {
 	float4 Pos : SV_POSITION;

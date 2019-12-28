@@ -21,14 +21,11 @@ float4 ShadowMadrixChange(float4 pro)
 //--------------------------------------------------------------------------------------
 // 頂点シェーダー
 //--------------------------------------------------------------------------------------
-VS_OUTPUT main(float4 Pos : POSITION,
-	float4 Normal : NORMAL,
-    float4 Tangent : TANGENT,
-    float2 Tex : TEXCOORD)
+VS_OUTPUT main(VS_INPUT_ANIMETION _input)
 {
 	VS_OUTPUT output = (VS_OUTPUT)0;
 
-	output.Pos = mul(Pos, World);
+    output.Pos = mul(_input.Pos, World);
 	output.WPos = output.Pos;
 	output.Pos = mul(output.Pos, View);
 	output.Pos = mul(output.Pos, Projection);

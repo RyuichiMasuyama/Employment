@@ -14,12 +14,12 @@ namespace component {
 class ModelRenderComponent :public Component {
 	BASE_CLASS_IS(Component)
 public:
-	ModelRenderComponent(std::shared_ptr<render::ModelData> _model) :m_model(_model) {}
+	ModelRenderComponent(render::ModelData* _model) :m_model(_model) {}
 
 	void FixedUpdate()override;
 
 private:
-	std::shared_ptr<render::ModelData> m_model;
+	render::ModelData* m_model;
 };
 
 }

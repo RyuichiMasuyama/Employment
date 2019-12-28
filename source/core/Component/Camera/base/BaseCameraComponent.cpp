@@ -79,7 +79,6 @@ void BaseCameraComponent::CreateCameraMatrix() {
 	ALIGN16 DirectX::XMVECTOR up = DirectX::XMVectorSet(upVec.x, upVec.y, upVec.z, 0.0f);
 
 	ALIGN16 DirectX::XMMATRIX camera;
-	math::Matrix getMat;
 	camera = DirectX::XMMatrixLookAtLH(eye, at, up);
 
 	XMStoreFloat4x4(&mat, camera); 

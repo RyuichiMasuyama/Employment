@@ -254,7 +254,7 @@ void DirectX11Manager::Init(HWND hWnd, bool fullscreen) {
 	//描画する方法とポリゴンを決定するラスターの説明を設定します(グーグル先生)
 	raster_desc.AntialiasedLineEnable = false;
 	//raster_desc.CullMode = D3D11_CULL_BACK;
-	//raster_desc.CullMode = D3D11_CULL_NONE;//裏表描画
+	raster_desc.CullMode = D3D11_CULL_NONE;//裏表描画
 	raster_desc.DepthBias = 0;
 	raster_desc.DepthBiasClamp = 0.f;
 	raster_desc.DepthClipEnable = true;

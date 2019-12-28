@@ -6,7 +6,7 @@ namespace mslib {
 namespace component {
 
 void RenderComponent::FixedUpdate() {
-	render::Render::GetInstance().Draw(m_transform.lock()->m_matrix, m_mesh.GetPipeline());
+	//render::Render::GetInstance().Draw(m_transform.lock()->m_matrix, m_mesh.GetPipeline());
 }
 
 void RenderComponent::SetShader(std::string _shaderName, shader::ShaderType _shaderType) {
