@@ -134,7 +134,21 @@ void SubResourceSendManager::SetMaterialBuffer(const std::shared_ptr<render::Mat
 	m_deviceContext->UpdateSubresource(m_materialObjectBuffer.Get(), 0, nullptr, &m_materialObject, 0, 0);
 	m_deviceContext->VSSetConstantBuffers(2, 1, m_materialObjectBuffer.GetAddressOf());
 	m_deviceContext->PSSetConstantBuffers(2, 1, m_materialObjectBuffer.GetAddressOf());
-};
+}
+void SubResourceSendManager::SetMaterialBuffer(const render::MaterialData & _material) {
+	m_materialObject.ambient = math::Vector4(_material.ambient);
+	m_materialObject.diffuse = math::Vector4(_material.diffuse);
+	m_materialObject.emissive = math::Vector4(_material.emissive);
+	m_materialObject.bump = math::Vector4(_material.bump);
+	m_materialObject.specular = _material.specular;
+	m_materialObject.sub.x = _material.transparency;
+	m_materialObject.sub.y = _material.shininess;
+	m_materialObject.sub.z = _material.reflectivity;
+	m_deviceContext->UpdateSubresource(m_materialObjectBuffer.Get(), 0, nullptr, &m_materialObject, 0, 0);
+	m_deviceContext->VSSetConstantBuffers(2, 1, m_materialObjectBuffer.GetAddressOf());
+	m_deviceContext->PSSetConstantBuffers(2, 1, m_materialObjectBuffer.GetAddressOf());
+}
+;
 void SubResourceSendManager::SetLightBuffer(
 	const math::Vector4 & _way,
 	const math::Vector4& _color) {

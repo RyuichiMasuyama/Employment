@@ -253,8 +253,8 @@ void DirectX11Manager::Init(HWND hWnd, bool fullscreen) {
 
 	//描画する方法とポリゴンを決定するラスターの説明を設定します(グーグル先生)
 	raster_desc.AntialiasedLineEnable = false;
-	//raster_desc.CullMode = D3D11_CULL_BACK;
-	raster_desc.CullMode = D3D11_CULL_NONE;//裏表描画
+	raster_desc.CullMode = D3D11_CULL_BACK;
+	//raster_desc.CullMode = D3D11_CULL_NONE;//裏表描画
 	raster_desc.DepthBias = 0;
 	raster_desc.DepthBiasClamp = 0.f;
 	raster_desc.DepthClipEnable = true;
@@ -292,20 +292,42 @@ void DirectX11Manager::Init(HWND hWnd, bool fullscreen) {
 	blendStateDescription.IndependentBlendEnable = FALSE;
 
 	//ブレンドステート設定（アルファブレンド可）
+	//blendStateDescription.RenderTarget[0].BlendEnable = TRUE;
+	////blendStateDescription.RenderTarget[0].SrcBlend = D3D11_BLEND_ONE;
+	//blendStateDescription.RenderTarget[0] .SrcBlend = D3D11_BLEND_SRC_ALPHA;
+	////blendStateDescription.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
+	//blendStateDescription.RenderTarget[0].DestBlend = D3D11_BLEND_DEST_COLOR;
+	//blendStateDescription.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+
+	////blendStateDescription.RenderTarget[0].DestBlend = D3D11_BLEND_ONE;
+	//blendStateDescription.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
+	////blendStateDescription.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_INV_SRC_ALPHA;
+	//blendStateDescription.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
+	//blendStateDescription.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+	//blendStateDescription.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+
 	blendStateDescription.RenderTarget[0].BlendEnable = TRUE;
-	blendStateDescription.RenderTarget[0].SrcBlend = D3D11_BLEND_ONE;
-	//blendStateDescription.RenderTarget[0 .SrcBlend = D3D11_BLEND_SRC_ALPHA;
+	blendStateDescription.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
 	blendStateDescription.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
 	blendStateDescription.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
-
-	//blendStateDescription.RenderTarget[0].DestBlend = D3D11_BLEND_ONE;
 	blendStateDescription.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
-	blendStateDescription.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_INV_SRC_ALPHA;
+	blendStateDescription.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
 	blendStateDescription.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
 	blendStateDescription.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
 
+	/*blendStateDescription.AlphaToCoverageEnable = FALSE;
+	blendStateDescription.IndependentBlendEnable = FALSE;
+	blendStateDescription.RenderTarget[0].BlendEnable = TRUE;
+	blendStateDescription.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
+	blendStateDescription.RenderTarget[0].DestBlend = D3D11_BLEND_ONE;
+	blendStateDescription.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+	blendStateDescription.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_SRC_ALPHA;
+	blendStateDescription.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_DEST_ALPHA;
+	blendStateDescription.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+	blendStateDescription.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;*/
+
 	//ブレンドステート作成
-	hr = m_device->CreateBlendState(&blendStateDescription, &m_alpha_enable_blending_state);
+	hr = m_device->CreateBlendState(&blendStateDescription, m_alpha_disable_blending_state.GetAddressOf());
 	if (FAILED(hr))
 	{
 		//return false;
@@ -313,6 +335,13 @@ void DirectX11Manager::Init(HWND hWnd, bool fullscreen) {
 
 	//ブレンドステート設定（アルファブレンド不可）
 	blendStateDescription.RenderTarget[0].BlendEnable = false;
+
+	//ブレンドステート作成
+	hr = m_device->CreateBlendState(&blendStateDescription, m_alpha_enable_blending_state.GetAddressOf());
+	if (FAILED(hr))
+	{
+		//return false;
+	}
 
 	// サンプラーステートの設定
 	D3D11_SAMPLER_DESC smpDesc;
@@ -391,7 +420,7 @@ void DirectX11Manager::TurnOffAlphaBlending()
 	blendFactor[3] = 0.0f;
 
 	//アルファブレンドをOFFにする
-	m_device_context->OMSetBlendState(m_alpha_disable_blending_state.Get(), blendFactor, 0xffffffff);
+	m_device_context->OMSetBlendState(m_alpha_enable_blending_state.Get(), blendFactor, 0xffffffff);
 	return;
 }
 }

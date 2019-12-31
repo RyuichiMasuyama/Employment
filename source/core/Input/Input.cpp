@@ -21,6 +21,14 @@ bool InputDirectXConnect::GetKeyStay(unsigned int _key) {
 	return dxInput.GetKeyStay(_key);
 }
 
+bool InputDirectXConnect::GetAnyEnter() {
+	return dxInput.GetAnyEnter();
+}
+
+bool InputDirectXConnect::GetAnyStay() {
+	return dxInput.GetAnyStay();
+}
+
 void InputDirectXConnect::Update() {
 	dxInput.Update();
 }

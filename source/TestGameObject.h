@@ -9,6 +9,10 @@
 #include "./core/Component/PostEffect/BasePostEffectComponent.h"
 
 namespace mslib {
+namespace component {
+class FeadComponent;
+using FeadComponentPtr = std::weak_ptr<FeadComponent>;
+}
 namespace origin {
 
 class TestGameObject :public object::GameObject {
@@ -45,6 +49,8 @@ private:
 	bool m_bloomFlag;
 	std::weak_ptr<component::BasePostEffectComponent> m_postEffect;
 	void TestUpdate();
+	float m_feadLevel ;
+	component::FeadComponentPtr m_feadComponent;
 };
 }
 }

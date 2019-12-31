@@ -21,6 +21,12 @@ public:
 	static bool GetKeyExit(unsigned int _key);
 	static bool GetKeyStay(unsigned int _key);
 
+	// 何かキーが押された時
+	static bool GetAnyEnter();
+	// 何かキーが押されている時
+	static bool GetAnyStay();
+
+
 	void Update();
 protected:
 	static directx::DirectXInput dxInput;

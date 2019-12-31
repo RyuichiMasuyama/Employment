@@ -3,6 +3,7 @@
 #include "./MyDirectXMath.h"
 #include "./DirectX/DirectX11Manager.h"
 #include "./Renderer/RenderObject.h"
+#include "./renderer/MaterialData.h"
 #include <Singleton.h>
 #include <array>
 
@@ -115,6 +116,7 @@ public:
 		const float& _shininess,
 		const float& _reflectivity);
 	void SetMaterialBuffer(const std::shared_ptr<render::Material> _material);
+	void SetMaterialBuffer(const render::MaterialData& _material);
 	void SetLightBuffer(
 		const math::Vector4& _way,
 		const math::Vector4& _color);

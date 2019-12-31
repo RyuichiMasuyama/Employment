@@ -8,7 +8,7 @@
 VS_OUTPUT main(VS_INPUT_ANIMETION _input)
 {
 	VS_OUTPUT output = (VS_OUTPUT)0;
-    _input.Pos.w = 0.f;
+    _input.Pos.w = 1.f;
     output.Pos = mul(_input.Pos, World);
 	output.WPos = output.Pos;
 	output.Pos = mul(output.Pos, View);

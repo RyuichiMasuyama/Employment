@@ -17,11 +17,11 @@ private:
 public:
 	// 必須関数
 	virtual void Update() = 0;
-	virtual void Draw() {};
-	virtual void ImGuiDraw() = 0;
 
 	// 任意関数
-	// モデルなどのロードに使う
+	// ロード
+	virtual void ImGuiDraw() {};	// 現在使用予定はない
+	virtual void Draw() {};			// 現在使用予定はない
 	virtual void Load() {};
 	virtual void UnLoad() {};
 

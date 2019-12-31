@@ -171,6 +171,8 @@
 
 #define MSK_CIRCUMFLEX      DIK_PREVTRACK     
 
+#define MSK_MAX				256
+
 namespace mslib {
 namespace directx {
 class DirectXInput {
@@ -187,6 +189,11 @@ public:
 	// キー入力中
 	bool GetKeyStay(unsigned int _key);
 
+	// 何かキーが押された時
+	bool GetAnyEnter();
+	// 何かキーが押されている時
+	bool GetAnyStay();
+
 	void Update();
 private:
 	LPDIRECTINPUT8    m_dxInput= nullptr;        // DirectInputオブジェクト
@@ -195,8 +202,8 @@ private:
 	// staticで宣言したいのでInitを一度しかできないようにする
 	bool m_once = true;
 																	  // キーの入力
-	BYTE m_key[256];
-	BYTE m_oldKey[256];
+	BYTE m_key[MSK_MAX];
+	BYTE m_oldKey[MSK_MAX];
 };
 }
 }

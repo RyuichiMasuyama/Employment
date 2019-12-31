@@ -55,6 +55,7 @@
     <ClCompile Include="source\DepseBufferRender2DGameObject.cpp" />
     <ClCompile Include="source\DirectX\DirectInput\DirectXInput.cpp" />
     <ClCompile Include="source\DirectX\DirectX11Manager.cpp" />
+    <ClCompile Include="source\DirectX\DirectXMaterial.cpp" />
     <ClCompile Include="source\DirectX\DirectXMesh.cpp" />
     <ClCompile Include="source\DirectX\DirectXPipeline.cpp" />
     <ClCompile Include="source\DirectX\DirectXRenderManager.cpp" />
@@ -73,13 +74,16 @@
     <ClCompile Include="source\ImGui\imgui_widgets.cpp" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\MyDirectXMath.cpp" />
+    <ClCompile Include="source\origne\Fead\FeadComponent.cpp" />
     <ClCompile Include="source\origne\GameObjectGround.cpp" />
     <ClCompile Include="source\origne\GameObjectLight.cpp" />
     <ClCompile Include="source\origne\Player\Component\PlayerRgiComponent.cpp" />
     <ClCompile Include="source\origne\Player\GameObject\PlayerGameObject.cpp" />
     <ClCompile Include="source\origne\RPGManager\Component\RpgManagerComponent.cpp" />
     <ClCompile Include="source\origne\RPGManager\GameObject\RpgManagerGameObject.cpp" />
+    <ClCompile Include="source\origne\Scene\TitleScene.cpp" />
     <ClCompile Include="source\Renderer\DirectXPostEffect.cpp" />
+    <ClCompile Include="source\Renderer\Material.cpp" />
     <ClCompile Include="source\Renderer\Mesh.cpp" />
     <ClCompile Include="source\Renderer\Model.cpp" />
     <ClCompile Include="source\Renderer\PostEffect.cpp" />
@@ -133,6 +137,7 @@
     <ClInclude Include="source\DirectX\Compointers.h" />
     <ClInclude Include="source\DirectX\DirectInput\DirectXInput.h" />
     <ClInclude Include="source\DirectX\DirectX11Manager.h" />
+    <ClInclude Include="source\DirectX\DirectXMaterial.h" />
     <ClInclude Include="source\DirectX\DirectXMesh.h" />
     <ClInclude Include="source\DirectX\DirectXPipeline.h" />
     <ClInclude Include="source\DirectX\DirectXRenderManager.h" />
@@ -152,16 +157,22 @@
     <ClInclude Include="source\MyDirectXMath.h" />
     <ClInclude Include="source\origne\Enemy\Component\EnemyComponent.h" />
     <ClInclude Include="source\origne\Enemy\GameObject\EnemyGameObject.h" />
+    <ClInclude Include="source\origne\Fead\FeadComponent.h" />
     <ClInclude Include="source\origne\GameObjectGround.h" />
     <ClInclude Include="source\origne\GameObjectLight.h" />
     <ClInclude Include="source\origne\Player\Component\PlayerRgiComponent.h" />
     <ClInclude Include="source\origne\Player\GameObject\PlayerGameObject.h" />
     <ClInclude Include="source\origne\RPGManager\Component\RpgManagerComponent.h" />
     <ClInclude Include="source\origne\RPGManager\GameObject\RpgManagerGameObject.h" />
+    <ClInclude Include="source\origne\Scene\TitleScene.h" />
+    <ClInclude Include="source\origne\Title\TitleSceneManagerGameObject.h" />
+    <ClInclude Include="source\Renderer\BaseMaterial.h" />
     <ClInclude Include="source\Renderer\BaseMesh.h" />
     <ClInclude Include="source\Renderer\BaseShader.h" />
     <ClInclude Include="source\Renderer\BaseTexture.h" />
     <ClInclude Include="source\Renderer\DirectXPostEffect.h" />
+    <ClInclude Include="source\Renderer\Material.h" />
+    <ClInclude Include="source\Renderer\MaterialData.h" />
     <ClInclude Include="source\Renderer\Mesh.h" />
     <ClInclude Include="source\Renderer\Model.h" />
     <ClInclude Include="source\Renderer\Pipeline.h" />
@@ -209,14 +220,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </FxCompile>
-    <FxCompile Include="shader\fifo.fx">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
-    </FxCompile>
     <FxCompile Include="shader\Geometry\gs.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -247,6 +250,9 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="shader\psfead.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="shader\PSGauss.fx">

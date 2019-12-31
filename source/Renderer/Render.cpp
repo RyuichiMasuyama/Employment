@@ -14,10 +14,15 @@
 namespace mslib {
 namespace render {
 
-void Render::Draw( math::Matrix& _mat, ModelData* _pipelineFunction) {
+void Render::Draw( math::Matrix& _mat, ModelData* _modelData) {
 	// RenderObjectCommand command(_mat, std::bind(&Pipeline::Draw, _pipelineFunction));
-	RenderObjectCommand command(_mat, _pipelineFunction);
+	RenderObjectCommand command(_mat, _modelData);
 	m_commandDynamicArray.push_back(command);
+}
+
+void Render::AfterDraw(math::Matrix& _mat, ModelData* _modelData) {
+	RenderObjectCommand command(_mat, _modelData);
+	m_commandAfterDynamicArray.push_back(command);
 }
 
 // 1．すべてのカメラを綺麗にする
@@ -52,6 +57,11 @@ void Render::Rendering() {
 			// pipe.m_function();
 			//pipe.m_pipelinePtr->NoSetShaderDraw();
 		}
+		for (auto pipe : m_commandAfterDynamicArray) {
+			directx::SubResourceSendManager::GetInstance().SetWorldObjectBuffer(pipe.m_mat);
+			// pipe.m_function();
+			pipe.m_modelDataPtr->Draw();
+		}
 	}
 
 	// サブカメラ
@@ -63,14 +73,7 @@ void Render::Rendering() {
 			// pipe.m_function();
 			pipe.m_modelDataPtr->Draw();
 		}
-		itr.lock()->DrawPostEffect();
-	}
-
-	// メインカメラ
-	for (auto& itr : main) {
-		itr.lock()->BufferClear();
-		itr.lock()->RenderBefor();
-		for (auto pipe : m_commandDynamicArray) {
+		for (auto pipe : m_commandAfterDynamicArray) {
 			directx::SubResourceSendManager::GetInstance().SetWorldObjectBuffer(pipe.m_mat);
 			// pipe.m_function();
 			pipe.m_modelDataPtr->Draw();
@@ -78,11 +81,31 @@ void Render::Rendering() {
 		itr.lock()->DrawPostEffect();
 	}
 
+	// メインカメラ
+	for (auto& itr : main) {
+		itr.lock()->BufferClear();
+		itr.lock()->RenderBefor();
+		directx::DirectX11Manager::GetInstance().TurnOnAlphaBlending();
+		for (auto pipe : m_commandDynamicArray) {
+			directx::SubResourceSendManager::GetInstance().SetWorldObjectBuffer(pipe.m_mat);
+			// pipe.m_function();
+			pipe.m_modelDataPtr->Draw();
+		}
+		for (auto pipe : m_commandAfterDynamicArray) {
+			directx::SubResourceSendManager::GetInstance().SetWorldObjectBuffer(pipe.m_mat);
+			// pipe.m_function();
+			pipe.m_modelDataPtr->Draw();
+		}
+		itr.lock()->DrawPostEffect();
+	}
+
+	directx::DirectX11Manager::GetInstance().TurnOffAlphaBlending();
 	basic[0].lock()->BufferClear();
 	m_rendering->GetPipeline()->SetTexture(main[0].lock()->GetCameraTexture(), 0);
 	m_rendering->GetPipeline()->Draw();
 
 	m_commandDynamicArray.clear();
+	m_commandAfterDynamicArray.clear();
 }
 
 void Render::ImGuiCare() {

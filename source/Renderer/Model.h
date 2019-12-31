@@ -6,6 +6,7 @@
 #include "./RenderObject.h"
 #include "./Shader/Shader.h"
 #include "./Assimp/AssimpSecen.h"
+#include "./renderer/Material.h"
 
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
@@ -32,7 +33,7 @@ public:
 
 	void AnimationUpdate(unsigned int _animeNo,unsigned int _animeFileNo);
 
-	// シェーダのセット
+	// テクスチャのセット
 	void SetTexture(std::string _fileName, int _number);
 
 	// 各種シェーダのセット
@@ -42,11 +43,14 @@ public:
 	void SetHullShader(std::string _shaderName);
 	void SetDomainShader(std::string _shaderName);
 	void SetShader(std::string _shaderrName, shader::ShaderType _shaderType);
+
+	// マテリアル取得
+	std::vector<std::shared_ptr<MyMaterial>>* GetMaterialVectorPtr();
 private:
 	// メッシュ情報
 	std::vector<std::shared_ptr<Mesh>> m_meshs;
 	// マテリアル
-	std::shared_ptr<Material> m_material;
+	std::vector<std::shared_ptr<MyMaterial>> m_material;
 	// シェーダー(内部でスマートポインタにしている)
 	shader::Shaders m_shaders;
 	// テクスチャ
@@ -77,6 +81,8 @@ private:
 		aiTextureType _type,
 		std::string _typeName,
 		const aiScene * _scene);
+	// マテリアルの解析と生成
+	std::shared_ptr<Material> CreateMaterial(aiNode* node);
 
 };
 }

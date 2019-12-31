@@ -38,7 +38,7 @@ void DirectXRenderTerget::BufferClear() {
 
 	deviceContext->OMSetRenderTargets(1, renderTergetView.GetAddressOf(), depth.Get());
 	deviceContext->ClearRenderTargetView(renderTergetView.Get(), m_color);
-	deviceContext->ClearDepthStencilView(depth.Get(), D3D11_CLEAR_DEPTH, 1.0f, 0);
+	deviceContext->ClearDepthStencilView(depth.Get(), D3D11_CLEAR_DEPTH| D3D11_CLEAR_STENCIL, 1.0f, 0);
 	deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 	deviceContext->PSSetSamplers(0, 1, m_samplerState.GetAddressOf());
 	UniqueProcess();

@@ -20,48 +20,6 @@ void ModelData::Load(std::string _fileName) {
 	}
 	// aiノードを解析する
 	ProcessNode(m_assimpScene.GetScene()->mRootNode, m_assimpScene.GetScene());
-	//auto mesh = std::make_shared< render::Mesh >();
-
-	//std::vector<PolygonAnimationVertex> vertices;			// 頂点
-	//std::vector<PolygonIndex> indices;		// 面の構成情報
-	//PolygonAnimationVertex ver;
-	//PolygonIndex ind;
-	//
-	//ver.pos.x = -0.5f;
-	//ver.pos.y = 0.5f;
-	//ver.pos.z = 0.f;
-
-	//ver.normal.x = 0.f;
-	//ver.normal.y = 0.f;
-	//ver.normal.z = -1.f;
-
-	//vertices.push_back(ver);
-	//indices.push_back(0);
-
-	//ver.pos.x = 0.5f;
-	//ver.pos.y = 0.5f;
-	//ver.pos.z = 0.f;
-
-	//ver.normal.x = 0.f; 
-	//ver.normal.y = 0.f;
-	//ver.normal.z = -1.f;
-
-	//vertices.push_back(ver);
-	//indices.push_back(1);
-
-	//ver.pos.x = -0.5f;
-	//ver.pos.y = -0.5f;
-	//ver.pos.z = 0.f;
-
-	//ver.normal.x = 0.f;
-	//ver.normal.y = 0.f;
-	//ver.normal.z = -1.f;
-
-	//vertices.push_back(ver);
-	//indices.push_back(2);
-
-	//mesh->Load(vertices, indices);
-	//m_meshs.push_back(mesh);
 
 	return;
 }
@@ -71,8 +29,11 @@ void ModelData::Draw() {
 		m_texture[i].Send(i);
 	}
 
+	int i = 0;
 	for (auto& itr : m_meshs) {
+		m_material[i]->Send();
 		itr->Draw();
+		i++;
 	}
 }
 
@@ -237,6 +198,11 @@ void ModelData::SetShader(std::string _shaderName, shader::ShaderType _shaderTyp
 	return ;
 }
 
+std::vector<std::shared_ptr<MyMaterial>>* ModelData::GetMaterialVectorPtr()
+{
+	return &m_material;
+}
+
 void ModelData::CreateBone(aiNode *node) {
 	Bone bone;
 
@@ -256,6 +222,7 @@ void ModelData::ProcessNode(aiNode * _node, const aiScene * _scene) {
 		int meshIndex = _node->mMeshes[i];			// ノードのi番目メッシュのインデックスを取得
 		aiMesh* mesh = _scene->mMeshes[meshIndex];	// シーンからメッシュ本体を取り出す
 
+		m_material.push_back(std::make_shared<MyMaterial>());
 		m_meshs.push_back(this->ProcessMesh(mesh, _scene, meshIndex));
 	}
 
@@ -418,6 +385,12 @@ void ModelData::LoadMaterialTextures(aiMaterial * _mat, aiTextureType _type, std
 	}
 
 	return;
+}
+
+// 現在制作中、生成してそのまま返す
+std::shared_ptr<Material> ModelData::CreateMaterial(aiNode * node) {
+	auto material = std::make_shared<Material>();
+	return material;
 }
 
 }  // namespace render

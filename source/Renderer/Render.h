@@ -53,6 +53,7 @@ public:
 
 	// command‚ğ•Û‚·‚é
 	void Draw( math::Matrix& _mat, ModelData* _modelData);
+	void AfterDraw(math::Matrix& _mat, ModelData* _modelData);
 	
 	void Rendering();
 	void ImGuiCare();
@@ -60,6 +61,7 @@ public:
 
 private:
 	std::vector<RenderObjectCommand> m_commandDynamicArray;
+	std::vector<RenderObjectCommand> m_commandAfterDynamicArray;
 
 	std::shared_ptr<MyMesh> m_rendering;
 };

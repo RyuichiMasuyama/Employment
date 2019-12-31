@@ -137,7 +137,7 @@ void RenderTerget::RenderBefor() {
 		*m_projectionMatrix .lock(),
 		*m_inversMatrix.lock(),
 		math::Vector4(*m_position)
-	);
+	); 
 #endif
 }
 

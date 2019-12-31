@@ -11,7 +11,7 @@ namespace origin {
 void GameObjectGround::Initialize() {
 	base::Initialize();
 
-	m_modelData.Load("assets/box.fbx");
+	m_modelData.Load("assets/dragon.fbx");
 	m_modelData.SetVertexShader("shader/testvs.fx");
 	m_modelData.SetPixelShader("shader/ps2d.fx");
 	m_modelData.SetTexture("Dragon_Bump_Col2.jpg", 0);
@@ -19,9 +19,6 @@ void GameObjectGround::Initialize() {
 	loader::MeshLoader load;
 	loader::TextureLoader textureLoader;
 	auto renderComponent = AddComponent<component::ModelRenderComponent>(&m_modelData);
-	// renderComponent.lock()->SetTexture("ground.jpg", 0);
-	// renderComponent.lock()->SetShader("shader/pstest.fx", shader::ShaderType::PS);
-	// renderComponent.lock()->SetShader("shader/Geometry/gs.fx", shader::ShaderType::GS);
 
 	CreateUpdateFunction(GROUND_UPDATE_NAME, &GameObjectGround::GroundUpdate, this);
 	SetUpdateFunction(GROUND_UPDATE_NAME);

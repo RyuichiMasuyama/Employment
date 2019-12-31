@@ -197,6 +197,16 @@
     <ClCompile Include="source\Renderer\Texture.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="source\origne\Scene\TitleScene.cpp" />
+    <ClCompile Include="source\DirectX\DirectXMaterial.cpp">
+      <Filter>DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Renderer\Material.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="source\origne\Fead\FeadComponent.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="core">
@@ -324,6 +334,15 @@
     </Filter>
     <Filter Include="Shader\Windows">
       <UniqueIdentifier>{4ec57b3b-f40e-4a02-9235-546e6c3bdd15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="origne\Scene">
+      <UniqueIdentifier>{dbe69917-7449-456a-adfd-1ed201480b46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="origne\Title">
+      <UniqueIdentifier>{1400c6fb-e4b0-4f67-9a08-4036ade520c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="origne\Fade">
+      <UniqueIdentifier>{359960d4-5e65-4379-b3c4-d30c06eb8cce}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -577,15 +596,33 @@
     <ClInclude Include="source\DirectX\DirectXTexture.h">
       <Filter>DirectX</Filter>
     </ClInclude>
+    <ClInclude Include="source\origne\Scene\TitleScene.h">
+      <Filter>origne\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="source\origne\Title\TitleSceneManagerGameObject.h">
+      <Filter>origne\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="source\origne\Fead\FeadComponent.h">
+      <Filter>origne\Fade</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Renderer\BaseMaterial.h">
+      <Filter>Renderer\base</Filter>
+    </ClInclude>
+    <ClInclude Include="source\DirectX\DirectXMaterial.h">
+      <Filter>DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Renderer\MaterialData.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Renderer\Material.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="shader\BumpMapPS.fx">
       <Filter>Shader\fx</Filter>
     </FxCompile>
     <FxCompile Include="shader\BumpMapVS.fx">
-      <Filter>Shader\fx</Filter>
-    </FxCompile>
-    <FxCompile Include="shader\fifo.fx">
       <Filter>Shader\fx</Filter>
     </FxCompile>
     <FxCompile Include="shader\ps.fx">
@@ -650,6 +687,9 @@
     </FxCompile>
     <FxCompile Include="shader\Geometry\gs.fx">
       <Filter>Shader\fx\geometry</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\psfead.fx">
+      <Filter>Shader\fx</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

@@ -63,6 +63,33 @@ bool DirectXInput::GetKeyStay(unsigned int _key)
 	return m_key[_key] & 0x80;
 }
 
+bool DirectXInput::GetAnyEnter() {
+	bool anyKey = false;
+
+	for (int i = 0; i < MSK_MAX; i++) {
+		// 何かキー入力があれば
+		if (!(m_key[i] & 0x08) && (m_oldKey[i])) {
+			anyKey = true;
+			break;
+		}
+	}
+	return false;
+}
+
+bool DirectXInput::GetAnyStay() {
+	bool anyKey = false;
+
+	for (auto itr : m_key) {
+		// 何かキー入力があれば
+		if (itr & 0x08) {
+			anyKey = true;
+			break;
+		}
+	}
+
+	return anyKey;
+}
+
 void DirectXInput::Update() {
 	// 動作開始
 	m_dxKeyInoutDevice->Acquire();
