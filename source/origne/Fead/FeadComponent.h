@@ -15,6 +15,7 @@ public:
 	void SetFeadLevel(float _level);
 
 	void Update()override;
+	void SetFeadTexture(std::string _fileName);
 
 private:
 	float m_feadlevel;

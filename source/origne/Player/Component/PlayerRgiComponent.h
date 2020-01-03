@@ -17,6 +17,7 @@ enum class PlayerBattleCommand {
 };
 
 enum class PlayerState {
+	FIELD,			// フィールドのアップデート
 	ENCOUNTER,		// 遭遇時のアップデート(たぶんFiシーン遷移が終わるまで)
 	ENCOUNTER_ATTACK,// 遭遇時に攻撃が発生した時のアップデート
 	ENCOUNTER_ENEMY_ATTACK,		// 遭遇時に敵攻撃が発生した時のアップデート

@@ -23,7 +23,7 @@
 
 // Scene管理系のクラス
 #include "./core/Scene/SceneManager.h"
-#include "./TestScene.h"
+#include "./origne/Scene/TitleScene.h"
 
 #include "./core/GameLoopManager.h"
 
@@ -76,7 +76,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	// シーンマネージャー生成・シーンの生成
 	static mslib::scene::SceneManager& sceneManager = mslib::scene::SceneManager::GetInstance();
-	mslib::scene::SceneManager::GetInstance().CreateScnen<mslib::scene::TestScene>();
+	mslib::scene::SceneManager::GetInstance().CreateScnen<mslib::scene::TitleScene>();
 
 	// キー操作の生成
 	mslib::input::Input input(hInstance);

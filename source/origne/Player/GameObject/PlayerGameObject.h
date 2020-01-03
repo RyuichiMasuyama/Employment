@@ -2,6 +2,7 @@
 
 #include <array>
 #include "./core/Object/object.h"
+#include "../../../Renderer/Model.h"
 
 namespace mslib {
 namespace origin {
@@ -35,9 +36,14 @@ private:
 	// 各種ステータス
 	std::array<int, static_cast<int>(STATUS::MAX) > m_status;
 
+	// プレイヤーのコンポーネント
 	PlayerRpgComponentPtr m_playerRpgComponetPtr;
+
+	// モデルデータ
+	render::ModelData m_modelData;
 public:
 	void Initialize() override;
+	
 };
 
 }  // namespace game

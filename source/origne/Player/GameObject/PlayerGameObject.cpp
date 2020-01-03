@@ -1,7 +1,7 @@
 #include "./PlayerGameObject.h"
-
-#include "./core/Component/Render/RenderComponent.h"
+#include "./AssetManager/ModelLoader.h"
 #include "../Component/PlayerRgiComponent.h"
+#include "./core/Component/Render/ModelRenderComponent.h"
 
 namespace mslib {
 namespace origin {
@@ -9,15 +9,14 @@ namespace game {
 
 void PlayerGameObject::Initialize() {
 	base::Initialize();
-
-	loader::MeshLoader load;
-	AddComponent<component::RenderComponent>(load.Load("assets/charModel.msobj"));
+	m_modelData.Load("assets/charModel.fbx");
+	AddComponent<component::ModelRenderComponent>(&m_modelData);
 
 	CreateUpdateFunction(RpgUpdateName, &PlayerGameObject::RpgUpdate, this);
 	CreateUpdateFunction(FieldUpdateName, &PlayerGameObject::FieldUpdate, this);
 
-	// とりあえずアップデートをPRGからスタートするようにする
-	SetUpdateFunction(RpgUpdateName);
+	// とりあえずアップデートをFieldからする
+	SetUpdateFunction(FieldUpdateName);
 
 	// statusをすべて1で設定
 	for (auto&itr : m_status) {
@@ -27,7 +26,7 @@ void PlayerGameObject::Initialize() {
 	m_playerRpgComponetPtr = AddComponent<PlayerRpgComponent>(&m_status);
 
 	// とりあえず普通にエンカウント
-	m_playerRpgComponetPtr.lock()->SetEncountState(PlayerState::ENCOUNTER);
+	m_playerRpgComponetPtr.lock()->SetEncountState(PlayerState::FIELD);
 }
 
 void PlayerGameObject::RpgUpdate() {
@@ -35,8 +34,11 @@ void PlayerGameObject::RpgUpdate() {
 }
 
 void PlayerGameObject::FieldUpdate() {
-	// とりあえず普通にエンカウント
-	m_playerRpgComponetPtr.lock()->SetEncountState(PlayerState::ENCOUNTER);
+	if (false) {
+		// とりあえず普通にエンカウント
+		m_playerRpgComponetPtr.lock()->SetEncountState(PlayerState::ENCOUNTER);
+	}
+	
 }
 
 }  // namespace game

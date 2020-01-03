@@ -12,6 +12,7 @@
 // ゲームオブジェクトの生成
 // これを通すか、GameoObjectManagerを通します
 #define CREATE_GAME_OBJECT(CreateClass, ...) mslib::manager::GameObjectManager::GetInstance().CreateGameObject<CreateClass>(__VA_ARGS__);
+#define DELETE_GAME_OBJECT(DeleteClass) mslib::manager::GameObjectManager::GetInstance().DeleteGameObject(DeleteClass);
 
 namespace mslib {
 namespace object {
@@ -38,7 +39,7 @@ public:
 		return result;
 	}
 
-	void DeleteGameObject(object::GameObject *_eleteObject) {
+	void DeleteGameObject(std::shared_ptr <object::GameObject>_eleteObject) {
 		for (auto& itr : m_gameObjectList) {
 			if (itr->m_incetanceNumber == _eleteObject->m_incetanceNumber) {
 				itr = nullptr;

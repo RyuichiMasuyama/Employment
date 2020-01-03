@@ -50,7 +50,7 @@ void DirectXInput::Init(HINSTANCE _hIncetance) {
 
 bool DirectXInput::GetKeyEnter(unsigned int _key)
 {
-	return !(m_oldKey[_key] & 0x80) && (m_key[_key] & 0x80);
+	return (!(m_oldKey[_key] & 0x80)) && (m_key[_key] & 0x80);
 }
 
 bool DirectXInput::GetKeyExit(unsigned int _key)
@@ -68,12 +68,12 @@ bool DirectXInput::GetAnyEnter() {
 
 	for (int i = 0; i < MSK_MAX; i++) {
 		// 何かキー入力があれば
-		if (!(m_key[i] & 0x08) && (m_oldKey[i])) {
+		if ((!(m_oldKey[i] & 0x80)) && (m_key[i] & 0x80)) {
 			anyKey = true;
 			break;
 		}
 	}
-	return false;
+	return anyKey;
 }
 
 bool DirectXInput::GetAnyStay() {
@@ -81,7 +81,7 @@ bool DirectXInput::GetAnyStay() {
 
 	for (auto itr : m_key) {
 		// 何かキー入力があれば
-		if (itr & 0x08) {
+		if (itr & 0x80) {
 			anyKey = true;
 			break;
 		}

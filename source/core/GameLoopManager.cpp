@@ -87,18 +87,18 @@ void GameLoop::ImGuiRenderBefor() {
 
 void GameLoop::Update() {
 	//FPSの制御
-	m_fpsManager.Update();
+	FpsManager::GetInstance().Update();
 
 	// オブジェクトのアップデート
 	mslib::manager::GameObjectManager::GetInstance().Update();
 
-	if (m_fpsManager.GetFixedFlag()) {
+	if (FpsManager::GetInstance().GetFixedFlag()) {
 		mslib::manager::GameObjectManager::GetInstance().FixedUpdate();
 	}
 }
 
 void GameLoop::Render() {
-	if (m_fpsManager.GetFixedFlag()) {
+	if (FpsManager::GetInstance().GetFixedFlag()) {
 		// m_directx_render->Render();	
 		mslib::render::Render::GetInstance().Rendering();
 

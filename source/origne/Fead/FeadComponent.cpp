@@ -27,6 +27,10 @@ void FeadComponent::SetFeadLevel(float _level) {
 void FeadComponent::Update() {
 	*m_ambX = m_feadlevel;
 }
+void FeadComponent::SetFeadTexture(std::string _fileName) {
+	m_fileName = _fileName;
+	feadModel.SetTexture(_fileName, 0);
+}
 }
 }
 

@@ -1,1 +1,9 @@
-﻿  DirectX11初期化.vcxproj -> C:\work\git\project\x64\DirectX11\DirectX11初期化.exe
+﻿  TestScene.cpp
+  PlayerRgiComponent.cpp
+  PlayerGameObject.cpp
+  FieldScene.cpp
+  TitleSceneManagerGameObject.cpp
+source\origne\Scene\FieldScene.cpp(16): warning C4003: マクロ 'CREATE_GAME_OBJECT' に指定された実引数の数が少なすぎます。
+source\origne\Scene\FieldScene.cpp(16): error C2672: 'mslib::manager::GameObjectManager::CreateGameObject': 一致するオーバーロードされた関数が見つかりませんでした。
+source\origne\Scene\FieldScene.cpp(16): error C2783: 'std::shared_ptr<_Other> mslib::manager::GameObjectManager::CreateGameObject(LIST &&...)': テンプレート 引数を 'T' に対して減少できませんでした
+  C:\work\git\project\employment\source\./GameObjectManager.h(31): note: 'mslib::manager::GameObjectManager::CreateGameObject' の宣言を確認してください

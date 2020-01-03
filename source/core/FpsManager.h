@@ -4,6 +4,7 @@
 
 #include <Windows.h>
 #include <mmsystem.h>
+#include <Singleton.h>
 #include <memory>
 
 #ifdef DIRECTX11
@@ -12,7 +13,7 @@
 
 namespace mslib {
 
-class FpsManager {
+class FpsManager :public pattern::Singleton<FpsManager> {
 private:
 	LARGE_INTEGER m_counter;
 	LONGLONG m_old_counter;

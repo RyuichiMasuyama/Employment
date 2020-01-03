@@ -41,6 +41,10 @@ void PlayerRpgComponent::Update() {
 	case PlayerState::ENEMY:
 
 		break;
+		// フィールドのアップデート
+	case PlayerState::FIELD:
+
+		break;
 	}
 
 }
@@ -89,7 +93,7 @@ void PlayerRpgComponent::BattleCommandUpdate() {
 		break;
 
 	case PlayerBattleCommand::BACK:
-		// いらない？っけ？
+		// いらない？
 		break;
 	}
 }

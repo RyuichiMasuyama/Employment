@@ -197,7 +197,6 @@
     <ClCompile Include="source\Renderer\Texture.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="source\origne\Scene\TitleScene.cpp" />
     <ClCompile Include="source\DirectX\DirectXMaterial.cpp">
       <Filter>DirectX</Filter>
     </ClCompile>
@@ -206,6 +205,24 @@
     </ClCompile>
     <ClCompile Include="source\origne\Fead\FeadComponent.cpp">
       <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="source\origne\Scene\TitleScene.cpp">
+      <Filter>origne\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="source\origne\Camera\HaveCameraGameObject.cpp">
+      <Filter>origne\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\origne\Scene\FieldScene.cpp">
+      <Filter>origne\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="source\origne\Scene\BattleScene.cpp">
+      <Filter>origne\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="source\origne\Title\TitleSceneManagerGameObject.cpp">
+      <Filter>origne\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="source\origne\Field\FieldManager.cpp">
+      <Filter>origne\Field</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -343,6 +360,12 @@
     </Filter>
     <Filter Include="origne\Fade">
       <UniqueIdentifier>{359960d4-5e65-4379-b3c4-d30c06eb8cce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="origne\Camera">
+      <UniqueIdentifier>{33ae85d2-16da-40a5-a1e0-68c5074f7b93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="origne\Field">
+      <UniqueIdentifier>{324c112a-0c59-46ea-859c-50471d4ce3fd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -616,6 +639,18 @@
     </ClInclude>
     <ClInclude Include="source\Renderer\Material.h">
       <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="source\origne\Camera\HaveCameraGameObject.h">
+      <Filter>origne\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="source\origne\Scene\BattleScene.h">
+      <Filter>origne\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="source\origne\Scene\FieldScene.h">
+      <Filter>origne\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="source\origne\Field\FieldManager.h">
+      <Filter>origne\Field</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

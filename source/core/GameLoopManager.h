@@ -20,7 +20,7 @@ public:
 	void Exit();
 
 private:
-	FpsManager m_fpsManager;
+	//FpsManager m_fpsManager;
 
 	void RenderAfter();
 	void RenderBefore();
