@@ -1,5 +1,6 @@
 #pragma once
-
+#include <stdio.h>
+#include <math.h>
 #include <DirectXMath.h>
 
 namespace math {
@@ -92,6 +93,7 @@ public:
 		return *this;
 	}
 
+	// ベクトル
 	float GetLength() {
 		DirectX::XMVECTOR vec;
 		float ans;
@@ -104,6 +106,7 @@ public:
 		return ans;
 	}
 
+	// 内積
 	static Vector3 Dot(const Vector3& _vec1, const Vector3& _vec2) {
 		Vector3 ans;
 
@@ -112,6 +115,7 @@ public:
 		return ans;
 	}
 
+	// 外積
 	static Vector3 Cross(const Vector3& _vec1, const Vector3& _vec2) {
 		Vector3 ans;
 
@@ -128,6 +132,17 @@ public:
 		return ans;
 	}
 	float *GetPtr() { return &x; }
+
+	static float Interval(const Vector3& _vec1, const Vector3& _vec2) {
+		Vector3 vec1= _vec1, vec2= _vec2;
+		const Vector3 diff = vec1 - vec2;
+		float ansXY, ans;
+
+		ansXY = sqrt(diff.x*diff.x + diff.y*diff.y);
+		ans = sqrt(diff.z*diff.z + ansXY * ansXY);
+
+		return ans;
+	}
 };
 
 class Vector4 :public DirectX::XMFLOAT4 {

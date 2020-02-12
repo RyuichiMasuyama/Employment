@@ -2,7 +2,9 @@
 
 namespace mslib {
 namespace object {
-
+std::string GameObject::ClassName() {
+	return m_className;
+}
 GameObject::GameObject() {
 	m_transform = std::make_shared<transform::Transform>
 		(m_position, m_quaternion, m_rotate, m_scale, m_matrix, this);
@@ -29,8 +31,15 @@ void GameObject::Update() {
 }
 
 void GameObject::FixedUpdate() {
+	if (!m_isActive)return;
 	for (auto itr : m_component) {
 		itr->FixedUpdate();
+	}
+}
+
+void GameObject::HitTriggerStay() {
+	for (auto itr : m_component) {
+		itr->HitTriggerStay();
 	}
 }
 
@@ -51,6 +60,9 @@ void GameObject::ChaildUpdate(const math::Matrix & _parentMat) {
 	// 位置
 	ans.MovePosition(m_position);
 
+	// AABB更新
+	
+
 	// 親子関係なのでかける
 	ans *= _parentMat;
 
@@ -61,6 +73,10 @@ void GameObject::ChaildUpdate(const math::Matrix & _parentMat) {
 	}
 }
 
+void GameObject::SetClassName(std::string _className) {
+	m_className = _className;
+}
+
 }
 namespace transform {
 
@@ -68,6 +84,7 @@ namespace transform {
 // case2: 親がおり、設定された親がいる
 // case3: 親がおらず、設定された親がいる
 void Transform::SetParent(TransformPtr _ptr) {
+	auto& myTrans = m_gameObject->m_transform;
 	// 中身がない（nullptrの）時
 	if (_ptr.expired()) {
 		if (m_parent.expired())return;	// case1
@@ -88,7 +105,7 @@ void Transform::SetParent(TransformPtr _ptr) {
 		if (m_parent.expired()) {
 			// case3↓
 			// 親に自分を登録
-			_ptr.lock()->m_children.push_back(_ptr);
+			_ptr.lock()->m_children.push_back(myTrans);
 
 			m_parent = _ptr;
 			// case3↑
@@ -112,8 +129,14 @@ void Transform::SetParent(TransformPtr _ptr) {
 		}
 	}
 
-	m_parent.reset();
+	//m_parent.reset();
 }
 
 }
+namespace component {
+transform::TransformPtr Component::GetTransform() {
+	return m_transform;
 }
+}
+}
+

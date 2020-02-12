@@ -33,7 +33,7 @@ enum class PlayerState {
 class PlayerRpgComponent :public component::Component {
 	BASE_CLASS_IS(Component)
 public:
-	PlayerRpgComponent(std::array<int, static_cast<int>(STATUS::MAX)>* _status);
+	PlayerRpgComponent(PlayerStatus* _status);
 	~PlayerRpgComponent() = default;
 
 	void Initialize() override;
@@ -69,10 +69,10 @@ private:
 	bool m_playerBattleCommandFlag;
 
 	// ゲームオブジェクトのステータスを受け取るポインタ
-	std::array<int, static_cast<int>(STATUS::MAX) > *m_status;
+	PlayerStatus *m_status;
 
 	// ゲームオブジェクトのステータスに干渉しない用のバフステータス
-	std::array<int, static_cast<int>(STATUS::MAX) > m_buffStatus;
+	PlayerStatus m_buffStatus;
 };
 
 }  // namespace game

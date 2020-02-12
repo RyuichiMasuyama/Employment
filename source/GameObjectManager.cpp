@@ -1,4 +1,5 @@
 #include "GameObjectManager.h"
+#include "./core/CollisionManager.h"
 
 namespace mslib {
 namespace manager {
@@ -8,19 +9,31 @@ void GameObjectManager::Update() {
 	// 参照カウンタが1の場合消去する
 	auto result = std::remove_if(m_gameObjectList.begin(), m_gameObjectList.end(),
 		[](auto itr) {
-		bool ret=itr.use_count() == 0;
+		bool ret = itr.use_count() == 0;
 		return  ret;
 	});
 	m_gameObjectList.erase(result, m_gameObjectList.end());
+	
+	manager::CollisionManager::GetInstance().Update();
 
-	for (auto itr : m_gameObjectList) {
-		itr->Update();
+	auto update = m_gameObjectList;
+	for (auto itr : update) {
+		if(itr) itr->Update();
 	}
 
 }
 
 void GameObjectManager::FixedUpdate() {
-	for (auto itr : m_gameObjectList) { itr->FixedUpdate(); }
+	// 参照カウンタが1の場合消去する
+	auto result = std::remove_if(m_gameObjectList.begin(), m_gameObjectList.end(),
+		[](auto itr) {
+		bool ret = itr.use_count() == 0;
+		return  ret;
+	});
+	m_gameObjectList.erase(result, m_gameObjectList.end());
+	for (auto itr : m_gameObjectList) {
+		if (itr) itr->FixedUpdate();
+	}
 	TransformUpdate();
 }
 

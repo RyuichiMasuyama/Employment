@@ -17,7 +17,7 @@ public:
 	void ImGuiDraw();
 
 	template<class T>
-	void CreateScnen(bool _sceneElase = false) {
+	void CreateScene(bool _sceneElase = false) {
 		static_assert(std::is_base_of<BaseScene, T>::value , "CreateSceneはシーンを継承したクラスしか生成できません。");
 
 		if (_sceneElase) {
@@ -32,11 +32,21 @@ public:
 
 		// ロード
 		scene->Load();
+		if (m_scenes.size() != 0)
+			m_scenes.top()->UnActive();
 
 		// キューに代入
 		m_scenes.push(std::move(scene));
 
 	};
+
+	void PopScene() {
+		if (!m_scenes.empty()) {
+			m_scenes.top()->UnLoad();
+			m_scenes.pop();
+			m_scenes.top()->OnActive();
+		}
+	}
 
 	std::stack<std::unique_ptr<BaseScene>> m_scenes;
 };

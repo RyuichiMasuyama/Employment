@@ -1,16 +1,24 @@
 #include "./Model.h"
 #include "./AssetManager/TextureLoader.h"
 #include "./AssetManager/ShaderLoader.h"
+#include "./AssetManager/AssimpLoader.h"
 
 namespace mslib {
 namespace render {
 void ModelData::Load(std::string _fileName) {
-	bool sts = m_assimpScene.Init(_fileName);
+	m_texture.resize(TEXTURE_MAX);
+
+	// アシンプをロード
+	loader::AssimpLoader loader;
+
+	m_assimpScene = loader.Load(_fileName);
+	
+	//bool sts = m_assimpScene.Init(_fileName);
 
 	// m_directory = resourcefolder;		// このモデルのテクスチャが存在するディレクトリ
 
 	// ボーンを生成する
-	CreateBone(m_assimpScene.GetScene()->mRootNode);
+	CreateBone(m_assimpScene->GetScene()->mRootNode);
 
 	// ボーンの配列位置を格納する
 	unsigned int num = 0;
@@ -19,7 +27,7 @@ void ModelData::Load(std::string _fileName) {
 		num++;
 	}
 	// aiノードを解析する
-	ProcessNode(m_assimpScene.GetScene()->mRootNode, m_assimpScene.GetScene());
+	ProcessNode(m_assimpScene->GetScene()->mRootNode, m_assimpScene->GetScene());
 
 	return;
 }
@@ -40,7 +48,7 @@ void ModelData::Draw() {
 void ModelData::AnimationUpdate(unsigned int _animeNo, unsigned int _animeFileNo)
 {
 	// 0番目のシーンを取り出し
-	const aiScene* scene = m_assimpScene.GetScene();
+	const aiScene* scene = m_assimpScene->GetScene();
 
 	// アニメーションデータを持っているか？
 	if (scene->HasAnimations())
@@ -88,7 +96,7 @@ void ModelData::AnimationUpdate(unsigned int _animeNo, unsigned int _animeFileNo
 		}
 
 		//再帰的にボーンマトリクスを更新
-		UpdateBoneMatrix(m_assimpScene.GetScene()->mRootNode, math::Matrix());
+		UpdateBoneMatrix(m_assimpScene->GetScene()->mRootNode, math::Matrix());
 
 		// メッシュのOBB更新
 		//		for (int i = 0; i < m_meshes.size(); i++)
@@ -106,6 +114,18 @@ void ModelData::AnimationUpdate(unsigned int _animeNo, unsigned int _animeFileNo
 	m_factor = 1.0f / (float)(m_cnt % INTER_POLATE_NUM + 1);
 
 	m_cnt++;
+}
+
+void ModelData::SetMaterial(std::string _fileName, int _number) {
+	if (_number < m_material.size()) {
+		//m_material[_number]=
+	}
+}
+
+void ModelData::SetMaterial(MaterialData _material, int _number) {
+	if (_number < m_material.size()) {
+		m_material[_number]->SetMaterial(_material);
+	}
 }
 
 void ModelData::SetTexture(std::string _fileName, int _number) {

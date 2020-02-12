@@ -17,7 +17,10 @@ public:
 	virtual void Load(std::string _fileName) = 0;
 
 	// 実際のMaterialのデータ
-	MaterialData materialData;
+	MaterialData m_materialData;
+	
+	// マテリアルのデータをセット
+	void SetMaterialData(const MaterialData& _mat);
 };
 }
 }

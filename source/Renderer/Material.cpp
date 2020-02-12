@@ -12,8 +12,11 @@ MyMaterial::MyMaterial() {
 void MyMaterial::Send() {
 	m_baseMaterial->Send();
 }
-MaterialData * MyMaterial::GetetMaterial() {
-	return &m_baseMaterial->materialData;
+MaterialData * MyMaterial::GetMaterial() {
+	return &m_baseMaterial->m_materialData;
+}
+void MyMaterial::SetMaterial(const MaterialData & _material) {
+	m_baseMaterial->m_materialData = _material;
 }
 }
 }

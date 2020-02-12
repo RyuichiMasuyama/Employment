@@ -1,23 +1,21 @@
 #pragma once
 
-// ImGuiŠÖŒW‚Ìƒwƒbƒ_[
-#include <imgui/imgui.h>
-#include <imgui/imgui_impl_win32.h>
-#include <imgui/imgui_impl_dx11.h>
 #include <Windows.h>
 
-extern const ImWchar glyphRangesJapanese[];
+// ImGuiŠÖŒW‚Ìƒwƒbƒ_[
+#include "imgui.h"
+#include "imgui_impl_win32.h"
+#include "imgui_impl_dx11.h"
 
 inline void ImGuiSetUp(const HWND& _hwnd,ID3D11Device* _device, ID3D11DeviceContext*_deviceCon) {
 #ifndef _DEBUG
 #else   
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
-	ImGuiIO& io = ImGui::GetIO();
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
 	ImGui::StyleColorsDark();
 	ImGui_ImplWin32_Init(_hwnd);
 	ImGui_ImplDX11_Init(_device, _deviceCon);
-	io.Fonts->AddFontFromFileTTF("assets/HGRGM.TTC", 14.0f, nullptr, glyphRangesJapanese);
 #endif
 }
 
@@ -29,3 +27,4 @@ inline void ImGuiCreanUp() {
 	ImGui::DestroyContext();
 #endif
 }
+

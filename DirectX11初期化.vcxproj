@@ -5,6 +5,14 @@
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="DirectX11Relese|Win32">
+      <Configuration>DirectX11Relese</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DirectX11Relese|x64">
+      <Configuration>DirectX11Relese</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="DirectX11|Win32">
       <Configuration>DirectX11</Configuration>
       <Platform>Win32</Platform>
@@ -27,6 +35,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\AssetManager\AssimpLoader.cpp" />
     <ClCompile Include="source\AssetManager\MaterialLoader.cpp" />
     <ClCompile Include="source\AssetManager\MeshLoader.cpp" />
     <ClCompile Include="source\AssetManager\ModelLoader.cpp" />
@@ -34,13 +43,18 @@
     <ClCompile Include="source\AssetManager\TextureLoader.cpp" />
     <ClCompile Include="source\Assimp\AssimpAnimation.cpp" />
     <ClCompile Include="source\Assimp\AssimpScene.cpp" />
+    <ClCompile Include="source\core\CollisionManager.cpp" />
     <ClCompile Include="source\core\Component\Camera\base\BaseCameraComponent.cpp" />
     <ClCompile Include="source\core\Component\Camera\CameraComponent.cpp" />
     <ClCompile Include="source\core\Component\Camera\ShadowMapCameraComponent.cpp" />
+    <ClCompile Include="source\core\Component\Collision\CollisionBaseComponent.cpp" />
+    <ClCompile Include="source\core\Component\Collision\CollisionSphereComponent.cpp" />
     <ClCompile Include="source\core\Component\Light\base\BaseLightComponent.cpp" />
     <ClCompile Include="source\core\Component\Light\DirectionalLightComponent.cpp" />
+    <ClCompile Include="source\core\Component\Physics\RigidbodyComponent.cpp" />
     <ClCompile Include="source\core\Component\PostEffect\BasePostEffectComponent.cpp" />
     <ClCompile Include="source\core\Component\Render\ModelRenderComponent.cpp" />
+    <ClCompile Include="source\core\Component\Render\QubeMapComponent.cpp" />
     <ClCompile Include="source\core\Component\Render\Render2DComponent.cpp" />
     <ClCompile Include="source\core\Component\Render\RenderComponent.cpp" />
     <ClCompile Include="source\core\FpsManager.cpp" />
@@ -48,6 +62,10 @@
     <ClCompile Include="source\core\Input\Input.cpp" />
     <ClCompile Include="source\core\JobSystem\JobLine.cpp" />
     <ClCompile Include="source\core\JobSystem\JobSystemManager.cpp" />
+    <ClCompile Include="source\core\Network\BaseNetwork.cpp" />
+    <ClCompile Include="source\core\Network\Network.cpp" />
+    <ClCompile Include="source\core\Network\WindowsNetwork.cpp" />
+    <ClCompile Include="source\core\Network\wsock32error.cpp" />
     <ClCompile Include="source\core\Object\Object.cpp" />
     <ClCompile Include="source\core\Scene\BaseScene.cpp" />
     <ClCompile Include="source\core\Scene\SceneManager.cpp" />
@@ -74,19 +92,35 @@
     <ClCompile Include="source\ImGui\imgui_widgets.cpp" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\MyDirectXMath.cpp" />
+    <ClCompile Include="source\origne\Atari\AtariGameObject.cpp" />
+    <ClCompile Include="source\origne\Atari\FpsDrawGameObject.cpp" />
     <ClCompile Include="source\origne\Camera\HaveCameraGameObject.cpp" />
+    <ClCompile Include="source\origne\Enemy\Component\EnemyComponent.cpp" />
+    <ClCompile Include="source\origne\Enemy\GameObject\EnemyGameObject.cpp" />
+    <ClCompile Include="source\origne\Enemy\GameObject\EnemyLoad.cpp" />
+    <ClCompile Include="source\origne\Enemy\GameObject\EnemyManagerGameObject.cpp" />
+    <ClCompile Include="source\origne\Enemy\GameObject\LoadEnemyGameObject.cpp" />
     <ClCompile Include="source\origne\Fead\FeadComponent.cpp" />
+    <ClCompile Include="source\origne\Field\Field.cpp" />
     <ClCompile Include="source\origne\Field\FieldManager.cpp" />
+    <ClCompile Include="source\origne\Field\FieldManagerComponent.cpp" />
     <ClCompile Include="source\origne\GameObjectGround.cpp" />
     <ClCompile Include="source\origne\GameObjectLight.cpp" />
+    <ClCompile Include="source\origne\NetworkGame\NetworkGame.cpp" />
     <ClCompile Include="source\origne\Player\Component\PlayerRgiComponent.cpp" />
+    <ClCompile Include="source\origne\Player\GameObject\PlayerCommandModelGameObject.cpp" />
     <ClCompile Include="source\origne\Player\GameObject\PlayerGameObject.cpp" />
     <ClCompile Include="source\origne\RPGManager\Component\RpgManagerComponent.cpp" />
+    <ClCompile Include="source\origne\RPGManager\GameObject\RpgFieldGameObject.cpp" />
     <ClCompile Include="source\origne\RPGManager\GameObject\RpgManagerGameObject.cpp" />
+    <ClCompile Include="source\origne\Scene\AtariScene.cpp" />
     <ClCompile Include="source\origne\Scene\BattleScene.cpp" />
     <ClCompile Include="source\origne\Scene\FieldScene.cpp" />
+    <ClCompile Include="source\origne\Scene\NetworkGameScene.cpp" />
     <ClCompile Include="source\origne\Scene\TitleScene.cpp" />
+    <ClCompile Include="source\origne\SkyBoxGameObject.cpp" />
     <ClCompile Include="source\origne\Title\TitleSceneManagerGameObject.cpp" />
+    <ClCompile Include="source\Renderer\BaseMaterial.cpp" />
     <ClCompile Include="source\Renderer\DirectXPostEffect.cpp" />
     <ClCompile Include="source\Renderer\Material.cpp" />
     <ClCompile Include="source\Renderer\Mesh.cpp" />
@@ -105,6 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\AssetManager\AssetManager.h" />
+    <ClInclude Include="source\AssetManager\AssimpLoader.h" />
     <ClInclude Include="source\AssetManager\MaterialLoader.h" />
     <ClInclude Include="source\AssetManager\MeshLoader.h" />
     <ClInclude Include="source\AssetManager\MeshPrimitive.h" />
@@ -114,16 +149,21 @@
     <ClInclude Include="source\Assimp\AssimpAnimation.h" />
     <ClInclude Include="source\Assimp\AssimpSecen.h" />
     <ClInclude Include="source\core\base.h" />
+    <ClInclude Include="source\core\CollisionManager.h" />
     <ClInclude Include="source\core\Component\Camera\base\BaseCameraComponent.h" />
     <ClInclude Include="source\core\Component\Camera\CameraComponent.h" />
     <ClInclude Include="source\core\Component\Camera\ShadowMapCameraComponent.h" />
+    <ClInclude Include="source\core\Component\Collision\CollisionBaseComponent.h" />
+    <ClInclude Include="source\core\Component\Collision\CollisionSphereComponent.h" />
     <ClInclude Include="source\core\Component\Light\base\BaseLightComponent.h" />
     <ClInclude Include="source\core\Component\Light\DirectionalLightComponent.h" />
     <ClInclude Include="source\core\Component\Light\PointLightComponent.h" />
     <ClInclude Include="source\core\Component\Light\SpotLightComponent.h" />
     <ClInclude Include="source\core\Component\Mesh\MeshComponent.h" />
+    <ClInclude Include="source\core\Component\Physics\RigidbodyComponent.h" />
     <ClInclude Include="source\core\Component\PostEffect\BasePostEffectComponent.h" />
     <ClInclude Include="source\core\Component\Render\ModelRenderComponent.h" />
+    <ClInclude Include="source\core\Component\Render\QubeMapComponent.h" />
     <ClInclude Include="source\core\Component\Render\Render2DComponent.h" />
     <ClInclude Include="source\core\Component\Render\RenderComponent.h" />
     <ClInclude Include="source\core\DesignPattern\FarmBase.h" />
@@ -133,9 +173,14 @@
     <ClInclude Include="source\core\Input\Input.h" />
     <ClInclude Include="source\core\JobSystem\JobLine.h" />
     <ClInclude Include="source\core\JobSystem\JobSystemManager.h" />
+    <ClInclude Include="source\core\Network\BaseNetwork.h" />
+    <ClInclude Include="source\core\Network\Network.h" />
+    <ClInclude Include="source\core\Network\WindowsNetwork.h" />
+    <ClInclude Include="source\core\Network\wsock32error.h" />
     <ClInclude Include="source\core\Object\object.h" />
     <ClInclude Include="source\core\Scene\basescene.h" />
     <ClInclude Include="source\core\Scene\SceneManager.h" />
+    <ClInclude Include="source\core\Thread\CollisionThread\CollisionThread.h" />
     <ClInclude Include="source\core\Thread\Thread.h" />
     <ClInclude Include="source\core\Thread\ThreadAffinity.h" />
     <ClInclude Include="source\DepseBufferRender2DGameObject.h" />
@@ -148,6 +193,7 @@
     <ClInclude Include="source\DirectX\DirectXRenderManager.h" />
     <ClInclude Include="source\DirectX\DirectXRenderTerget.h" />
     <ClInclude Include="source\DirectX\DirectXTexture.h" />
+    <ClInclude Include="source\DirectX\math\AABB.h" />
     <ClInclude Include="source\DirectX\math\HelperFunction.h" />
     <ClInclude Include="source\DirectX\SubResourceSendManager.h" />
     <ClInclude Include="source\DirectX\TextureLoader\WICTextureLoader.h" />
@@ -157,23 +203,41 @@
     <ClInclude Include="source\ImGui\ImGuiManager.h" />
     <ClInclude Include="source\ImGui\imgui_impl_dx11.h" />
     <ClInclude Include="source\ImGui\imgui_impl_win32.h" />
-    <ClInclude Include="source\ImGui\imgui_internal.h" />
+    <ClInclude Include="source\ImGui\imgui_internal.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="source\ImGui\imstb_rectpack.h" />
+    <ClInclude Include="source\ImGui\imstb_textedit.h" />
     <ClInclude Include="source\main.h" />
     <ClInclude Include="source\MyDirectXMath.h" />
+    <ClInclude Include="source\origne\Atari\AtariGameObject.h" />
+    <ClInclude Include="source\origne\Atari\FpsDrawGameObject.h" />
     <ClInclude Include="source\origne\Camera\HaveCameraGameObject.h" />
     <ClInclude Include="source\origne\Enemy\Component\EnemyComponent.h" />
     <ClInclude Include="source\origne\Enemy\GameObject\EnemyGameObject.h" />
+    <ClInclude Include="source\origne\Enemy\GameObject\EnemyLoad.h" />
+    <ClInclude Include="source\origne\Enemy\GameObject\EnemyManagerGameObject.h" />
+    <ClInclude Include="source\origne\Enemy\GameObject\LoadEnemyGameObject.h" />
     <ClInclude Include="source\origne\Fead\FeadComponent.h" />
     <ClInclude Include="source\origne\Field\FieldManager.h" />
+    <ClInclude Include="source\origne\Field\Field.h" />
+    <ClInclude Include="source\origne\Field\FieldManagerComponent.h" />
     <ClInclude Include="source\origne\GameObjectGround.h" />
     <ClInclude Include="source\origne\GameObjectLight.h" />
+    <ClInclude Include="source\origne\NetworkGame\NetworkGame.h" />
     <ClInclude Include="source\origne\Player\Component\PlayerRgiComponent.h" />
+    <ClInclude Include="source\origne\Player\GameObject\PlayerCommandModelGameObject.h" />
     <ClInclude Include="source\origne\Player\GameObject\PlayerGameObject.h" />
     <ClInclude Include="source\origne\RPGManager\Component\RpgManagerComponent.h" />
+    <ClInclude Include="source\origne\RPGManager\GameObject\RpgFieldGameObject.h" />
     <ClInclude Include="source\origne\RPGManager\GameObject\RpgManagerGameObject.h" />
+    <ClInclude Include="source\origne\Scene\AtariScene.h" />
     <ClInclude Include="source\origne\Scene\BattleScene.h" />
     <ClInclude Include="source\origne\Scene\FieldScene.h" />
+    <ClInclude Include="source\origne\Scene\NetworkGameScene.h" />
     <ClInclude Include="source\origne\Scene\TitleScene.h" />
+    <ClInclude Include="source\origne\SkyBoxGameObject.h" />
+    <ClInclude Include="source\origne\Status.h" />
     <ClInclude Include="source\origne\Title\TitleSceneManagerGameObject.h" />
     <ClInclude Include="source\Renderer\BaseMaterial.h" />
     <ClInclude Include="source\Renderer\BaseMesh.h" />
@@ -204,10 +268,12 @@
     <FxCompile Include="shader\Base\psRender2DBase.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11Relese|x64'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="shader\Base\vsRender2DBase.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11Relese|x64'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="shader\BumpMapPS.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -216,6 +282,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11Relese|x64'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="shader\BumpMapVS.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -224,10 +291,12 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11Relese|x64'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="shader\defferd\psDefferdNormal.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11Relese|x64'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="shader\Geometry\gs.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -236,6 +305,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11Relese|x64'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="shader\ps.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -244,6 +314,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11Relese|x64'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="shader\ps2d.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -252,6 +323,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11Relese|x64'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="shader\psBlackout.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -260,9 +332,11 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11Relese|x64'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="shader\psfead.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11Relese|x64'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="shader\PSGauss.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -271,10 +345,12 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11Relese|x64'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="shader\psShadowMap.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11Relese|x64'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="shader\psskydome.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -283,6 +359,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11Relese|x64'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="shader\pstest.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -291,10 +368,12 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11Relese|x64'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="shader\pstoon.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11Relese|x64'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="shader\pstriangle.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -303,6 +382,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11Relese|x64'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="shader\psvscommon.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -311,6 +391,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11Relese|x64'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="shader\testps.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -319,6 +400,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11Relese|x64'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="shader\testvs.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -327,6 +409,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11Relese|x64'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="shader\vs.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -335,6 +418,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11Relese|x64'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="shader\vs2d.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -344,6 +428,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">Vertex</ShaderType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11Relese|x64'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="shader\VSGauss.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -352,10 +437,12 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11Relese|x64'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="shader\vsShadowMap.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11Relese|x64'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="shader\vstriangle.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -364,6 +451,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DirectX11Relese|x64'">true</ExcludedFromBuild>
     </FxCompile>
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -407,6 +495,13 @@
     <CharacterSet>MultiByte</CharacterSet>
     <ConfigurationType>Application</ConfigurationType>
   </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='DirectX11Relese|Win32'">
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='DirectX11Relese|x64'">
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
@@ -441,6 +536,11 @@
     <IncludePath>C:\work\git\project\ExternalLibrary;$(ProjectDir)source/core/DesignPattern;$(ProjectDir)source;$(IncludePath)</IncludePath>
     <LibraryPath>C:\work\git\project\ExternalLibrary\assimp\lib;$(LibraryPath)</LibraryPath>
     <ReferencePath>C:\work\git\project\ExternalLibrary\assimp\lib;$(ReferencePath)</ReferencePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DirectX11Relese|x64'">
+    <IncludePath>C:\work\git\project\ExternalLibrary;$(ProjectDir)source/core/DesignPattern;$(ProjectDir)source;$(IncludePath)</IncludePath>
+    <ReferencePath>C:\work\git\project\ExternalLibrary\assimp\lib;$(ReferencePath)</ReferencePath>
+    <LibraryPath>C:\work\git\project\ExternalLibrary\assimp\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -521,6 +621,19 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DirectX11|Win32'">
     <ClCompile>
       <PreprocessorDefinitions>DIRECTX11;_DIRECTX11;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DirectX11Relese|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DirectX11Relese|x64'">
+    <ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <PreprocessorDefinitions>DIRECTX11;_DIRECTX11;WINDOWS;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

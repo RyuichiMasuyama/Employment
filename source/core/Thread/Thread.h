@@ -9,22 +9,31 @@ namespace thread {
 class Thread {
 public:
 	Thread(unsigned int _mask = UINT_MAX);
-	~Thread() = default;
+	virtual ~Thread();
 
 	bool IsEmpty() { return m_emptyFlag; };
 
-	template<class T>
-	void Push(T _functuin) {
-		//m_thread = function;
-		m_emptyFlag = false;
-	}
+	void Push(std::function<void(void)> _functuin);
+	void Pop();
 
+	void Finish();
 private:
+	// 制御
 	std::condition_variable m_condition;
 	std::thread m_thread;
 	std::mutex m_mutex;
+	
+	// 切り替え可能なFuncion
 	std::function<void(void)> m_function;
+
+	// Thread内部で動き続けるFunction
+	std::function<void(void)> m_threadFunction;
+
+	// 切り替え可能Functionが空か
 	bool m_emptyFlag;
+
+	// スレッドを終了させるフラグ
+	bool m_threadFinish;
 };
 }
 }

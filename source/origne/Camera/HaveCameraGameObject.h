@@ -1,5 +1,6 @@
 #pragma once
 #include "./core/Object/object.h"
+#include <./core/Component/PostEffect/BasePostEffectComponent.h>
 
 namespace mslib {
 namespace component {
@@ -14,6 +15,7 @@ using HaveCameraGameObjectSPtr = std::shared_ptr< HaveCameraGameObject>;
 class HaveCameraGameObject :public object::GameObject {
 	BASE_CLASS_IS(GameObject)
 public:
+	static constexpr const char* ClassName = "HaveCameraGameObject";
 	static constexpr const char* TestUpdateName = "TestUpdate";
 
 	void Initialize() override;
@@ -23,7 +25,7 @@ public:
 	void SetFeadLevel(float _feadLevel);
 private:
 	// ポストエフェクト
-	// std::weak_ptr<component::BasePostEffectComponent> m_postEffect;
+	std::weak_ptr<component::BasePostEffectComponent> m_postEffect;
 
 	// ポストエフェクトの変数
 	float m_gauusePower;

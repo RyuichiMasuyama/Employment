@@ -13,7 +13,7 @@ namespace mslib {
 namespace scene {
 
 void TestScene::Update() {
-	AllObjectUpdate();
+	// AllObjectUpdate();
 }
 
 void TestScene::Draw() {
@@ -27,10 +27,10 @@ void TestScene::Load() {
 	// CREATE_GAME_OBJECT(origin::TestGameObject)
 	// CREATE_GAME_OBJECT(origin::DepseBuffer2DRenderGameObject)
 	// CREATE_GAME_OBJECT(origin::HaveCameraGameObject)
-	CREATE_GAME_OBJECT(origin::GameObjectGround)
+	/*CREATE_GAME_OBJECT(origin::GameObjectGround)
 	CREATE_GAME_OBJECT(origin::GameObjectLight)
-	CREATE_GAME_OBJECT(origin::manager::RpgManagerGameObject)
-	CREATE_GAME_OBJECT(origin::game::PlayerGameObject)
+	CREATE_GAME_OBJECT(origin::manager::RpgManagerGameObject)*/
+	//CREATE_GAME_OBJECT(origin::game::PlayerGameObject)
 }
 
 void TestScene::UnLoad() {

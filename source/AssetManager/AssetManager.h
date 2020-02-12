@@ -15,6 +15,7 @@ class ShaderLoader;
 class MeshLoader;
 class MyMesh;
 class ModelLoader;
+class AssimpLoader;
 }
 
 namespace assets {
@@ -28,6 +29,7 @@ class AssetsManager :public pattern::Singleton<AssetsManager>{
 	friend loader::ShaderLoader;
 	friend loader::MeshLoader;
 	friend loader::ModelLoader;
+	friend loader::AssimpLoader;
 public:
 	void UnLoad(std::string);
 private:

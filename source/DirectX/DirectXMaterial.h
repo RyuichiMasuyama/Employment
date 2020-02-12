@@ -21,7 +21,6 @@ public:
 	// GPU‘—M
 	void Send() override;
 
-
 };
 }
 }

@@ -8,7 +8,7 @@ void DirectXMaterial::Load(std::string _fileName) {
 }
 
 void DirectXMaterial::Send() {
-	SubResourceSendManager::GetInstance().SetMaterialBuffer(materialData);
+	SubResourceSendManager::GetInstance().SetMaterialBuffer(m_materialData);
 }
 
 }

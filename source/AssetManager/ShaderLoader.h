@@ -11,7 +11,7 @@ public:
 
 	template<class T>
 	void Load(std::string _shaderName, T& _shader, shader::ShaderType _shaderType) {
-		if (_shaderName == "null" || _shaderName == " ") {
+		if (_shaderName == "null" || _shaderName == " "|| _shaderName == "") {
 			_shader = nullptr;
 			return;
 		}
@@ -20,7 +20,7 @@ public:
 		if (_shaderType == shader::ShaderType::IL) {
 			stackName += "IL";
 		}
-		auto asset = assets::AssetsManager::GetInstance().m_assets[stackName];
+		auto& asset = assets::AssetsManager::GetInstance().m_assets[stackName];
 		if (asset.has_value()) {
 			_shader = std::any_cast<T>(asset);
 			return;

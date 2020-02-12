@@ -5,7 +5,7 @@ namespace mslib {
 namespace JobSystem {
 
 JobSystem::JobSystem() : HARDWARE_THREAD_NUM(std::thread::hardware_concurrency()) {
-	for (int i = 0; i < HARDWARE_THREAD_NUM; i++) {
+	for (unsigned int i = 0; i < HARDWARE_THREAD_NUM; i++) {
 		//m_thread.push_back(static_cast<unsigned int>(1) << i);
 	}
 }

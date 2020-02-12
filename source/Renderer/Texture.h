@@ -8,6 +8,10 @@ namespace texture {
 class MyTexture {
 public:
 	MyTexture();
+	MyTexture(MyTexture&) {};
+	void operator=(MyTexture&_in) {
+		*this = _in;
+	}
 	~MyTexture() = default;
 
 	void Send(int _number);

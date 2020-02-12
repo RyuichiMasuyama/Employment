@@ -97,6 +97,8 @@ class GameObject :public TransformObejct {
 public:
 	static constexpr const char*  NonUpadteFunctionName = "NonUpadteFuntionName";
 
+	std::string ClassName();
+
 	GameObject();
 	~GameObject() = default;
 
@@ -107,7 +109,7 @@ public:
 	virtual void ImGuiDraw() {};
 
 	// 固定フレームアップデートの追加
-	virtual void FixedUpdate();
+	void FixedUpdate();
 
 	// 追加のコンポーネントをアタッチする。
 	// ここでは
@@ -126,7 +128,14 @@ public:
 	// アップデートFunctionを設定しないとこちらに飛ぶ
 	void NonUpdate() {}
 
+	transform::TransformSPtr m_transform;
+	void SetActive(const bool& _isActive) { m_isActive = _isActive; }
+
+	// 当たり判定
+	void HitTriggerStay();
 private:
+	std::string m_className;
+
 	std::vector<std::shared_ptr<component::Component>> m_component;
 
 	std::unordered_map<std::string, std::function<void(void)>> m_function;
@@ -146,10 +155,9 @@ protected:
 
 	void SetUpdateFunction(const std::string& _functionName) { m_activeFunctionName = _functionName; }
 
-	void SetActive(const bool& _isActive) { m_isActive = _isActive; }
 	const bool& GetActive() { return m_isActive; } 
-
-	transform::TransformSPtr m_transform;
+	
+	void SetClassName(std::string _className);
 
 	virtual void BeforUpdate() {};
 	virtual void AfterUpdate() {};
@@ -170,6 +178,8 @@ private:
 
 public:
 	virtual void Initialize() { 
+		base::Initialize();
+
 		m_activeFlag = true;
 	}
 	Component() = default;
@@ -178,9 +188,12 @@ public:
 	// 優先度変更関数を作成する、変更時にソートを行う
 	// 優先度の設定はJobSystemが行うべきかも
 
+	// SingleThreadUpdate系はGameObjectのUpdateをシングルスレッド行うことで
+	// 同期処理ができ、必要なくなるのでは？
+
 	// 可変フレームレート
 	// (SingleThreadで動くので値の受け渡しなどこちらで行うと安全)
-	virtual void SingleThreadUpdate() {}
+	// virtual void SingleThreadUpdate() {}
 	// 可変フレームレート
 	// (MultiThreadで動くので早い。値の受け渡しは危険)
 	virtual void Update() override {}
@@ -189,11 +202,24 @@ public:
 	virtual void FixedUpdate() {}
 	// 固定フレームレート
 	// (SingleThreadで動くので値の受け渡しはこちらで行うと安全)
-	virtual void SingleThreadFixedUpdate() {}
+	// virtual void SingleThreadFixedUpdate() {}
 
 	void SetActiveFlag(bool flag) { m_activeFlag = flag; }
 	bool &IsAcive() { return m_activeFlag; }
 
+	// 当たり判定があるとき呼ばれる関数
+	virtual void HitTriggerStay() {}	// 当たっている間
+	// 以下未実装
+	virtual void HitTriggerEnter() {}	// 当たった時
+	virtual void HitTriggerExit() {}	// 当たり判定が抜けたとき
+
+	// 衝突判定があるとき呼ばれる関数
+	// 以下未実装
+	virtual void HitCollisionStay() {}		// 当たっている間
+	virtual void HitCollisionEnter() {}		// 当たった時
+	virtual void HitCollisionExit() {}		// 当たり判定が抜けたとき
+	
+	transform::TransformPtr GetTransform();
 protected:
 	transform::TransformPtr m_transform;
 };
@@ -207,7 +233,7 @@ public:
 	Transform(
 		math::Vector3& _position,
 		math::Quaternion& _quaternion,
-		math::Vector3 _rotate,
+		math::Vector3& _rotate,
 		math::Vector3& _scale,
 		math::Matrix& _matrix,
 		object::GameObject* m_gameObject)

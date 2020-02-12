@@ -15,7 +15,7 @@ void FeadComponent::Initialize() {
 	feadModel.SetTexture(m_fileName, 0);
 	auto materialPtr = feadModel.GetMaterialVectorPtr();
 
-	m_ambX = &materialPtr->at(0)->GetetMaterial()->ambient.x;
+	m_ambX = &materialPtr->at(0)->GetMaterial()->ambient.x;
 
 	auto modelRender=gameObject->AddComponent<ModelRenderComponent>(&feadModel);
 	modelRender.lock()->AfterFlagOn();

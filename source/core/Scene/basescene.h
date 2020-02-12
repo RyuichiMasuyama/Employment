@@ -2,6 +2,8 @@
 
 #include "./core/base.h"
 #include "../Object/Object.h"
+#include "./origne/Camera/HaveCameraGameObject.h"
+#include <./GameObjectManager.h>
 
 #include <vector>
 
@@ -12,7 +14,7 @@ namespace scene {
 class BaseScene :public mslib::core::base {
 
 private:
-	std::vector<object::ObjectPtr> m_object;
+	std::vector<object::ObjectSPtr> m_object;
 
 public:
 	// 必須関数
@@ -25,10 +27,14 @@ public:
 	virtual void Load() {};
 	virtual void UnLoad() {};
 
+	virtual void UnActive() {};		// 新しいシーンを読み込み、今のシーンがstackされたとき
+	virtual void OnActive() {};		// 上のシーンがUnLoadされたとき
 protected:
 	void AllObjectUpdate();		// 全体のアップデート
 	void AllImGuiDraw();		// 全体のImGuiの描画
-	void IncetanceObject(object::ObjectPtr _object); // 生成したオブジェクトを入れる
+	void IncetanceObject(object::ObjectSPtr _object); // 生成したオブジェクトを入れる
+
+	// object::HaveCameraGameObjectSPtr m_haveCamera;
 };
 
 }

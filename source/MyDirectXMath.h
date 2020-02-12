@@ -1,8 +1,9 @@
 #pragma once
 
+#define PI 3.141592653589793f
+
 //Œ»İ–¢ì¬
 //Matrix.h@Qotanion.h	Vector.h	“‡—\’è
-
 #include "./Math/Vector.h"
 #include "./Math/Matrix.h"
 #include "./Math/Quaternion.h"
@@ -21,3 +22,12 @@ void CalcTangentAndBinormal(
 	const math::Vector3 & p2, const math::Vector2 & uv2,
 	math::Vector3 & outTangent, math::Vector3 & outBinormal
 );
+
+namespace math {
+inline float ToRadian(float _base) {
+	return _base * PI / 180.f;
+}
+inline float ToDegrees(float _base) {
+	return _base * 180.f / PI;
+}
+}

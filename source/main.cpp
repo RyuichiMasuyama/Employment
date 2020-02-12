@@ -23,7 +23,8 @@
 
 // Scene管理系のクラス
 #include "./core/Scene/SceneManager.h"
-#include "./origne/Scene/TitleScene.h"
+#include "./origne/Scene/AtariScene.h"
+#include "./origne/Scene/NetworkGameScene.h"
 
 #include "./core/GameLoopManager.h"
 
@@ -55,12 +56,13 @@ LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 
 // WinMain
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
-	// メッセージ構造体
-	MSG	msg;						
-
+	
 	// メモリリークを検知
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-	 
+	
+	// メッセージ構造体
+	MSG	msg;						
+ 
 	//ウインドウの生成・初期化+
 	mslib::windows::MainWindows win(hInstance);
 
@@ -76,14 +78,16 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	// シーンマネージャー生成・シーンの生成
 	static mslib::scene::SceneManager& sceneManager = mslib::scene::SceneManager::GetInstance();
-	mslib::scene::SceneManager::GetInstance().CreateScnen<mslib::scene::TitleScene>();
 
 	// キー操作の生成
 	mslib::input::Input input(hInstance);
 
 	// ゲームループの作成
 	mslib::GameLoop gameLoop;
+
 	gameLoop.Init();
+
+	mslib::scene::SceneManager::GetInstance().CreateScene<mslib::scene::NetworkGameScene>();
 
 	while (true) {
 		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE) != 0)	{  // メッセージを取得しなかった場合"0"を返す

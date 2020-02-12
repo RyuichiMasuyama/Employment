@@ -35,7 +35,7 @@ void TitleSceneManagerGameObject::Update() {
 	m_haveCameraGameObjectPtr.lock()->SetFeadLevel(m_feadLevel);
 
 	if (1.f < m_feadLevel) {
-		scene::SceneManager::GetInstance().CreateScnen<scene::FieldScene>(true);
+		scene::SceneManager::GetInstance().CreateScene<scene::FieldScene>(true);
 	}
 }
 }

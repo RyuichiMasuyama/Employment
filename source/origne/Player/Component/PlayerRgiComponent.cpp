@@ -1,15 +1,19 @@
 #include "PlayerRgiComponent.h"
 #include "./core/Input/Input.h"
+#include <./core/FpsManager.h>
 
 namespace mslib {
 namespace origin {
 namespace game {
-PlayerRpgComponent::PlayerRpgComponent(std::array<int, static_cast<int>(STATUS::MAX)>* _status):
+PlayerRpgComponent::PlayerRpgComponent(PlayerStatus* _status):
 	m_status(_status){}
 
 void PlayerRpgComponent::Initialize() {
-	for (auto&itr : m_buffStatus) itr = 0;
+	base::Initialize();
+	ZeroMemory(&m_state, sizeof(PlayerStatus));
 	m_playerBattleCommand = static_cast<int>(PlayerBattleCommand::ATTACK);
+
+
 }
 
 void PlayerRpgComponent::Update() {
@@ -50,11 +54,11 @@ void PlayerRpgComponent::Update() {
 }
 
 void PlayerRpgComponent::SetEncountState(PlayerState _state) {
-	if (_state == PlayerState::ENCOUNTER || _state == PlayerState::ENCOUNTER_ENEMY_ATTACK || _state == PlayerState::ENCOUNTER_ATTACK) {
-		m_state = _state;
-		return;
-	}
-	m_state = PlayerState::ENCOUNTER;
+	//if (_state == PlayerState::ENCOUNTER || _state == PlayerState::ENCOUNTER_ENEMY_ATTACK || _state == PlayerState::ENCOUNTER_ATTACK) {
+	//	m_state = _state;
+	//	return;
+	//}
+	m_state = _state;
 }
 
 // コマンド選択するステート
@@ -83,7 +87,7 @@ void PlayerRpgComponent::BattleCommandUpdate() {
 
 	case PlayerBattleCommand::DEFENSE:
 		// 防御力アップする
-		m_buffStatus[static_cast<int>(STATUS::DEFENSE)] += 3;
+		m_buffStatus.def += 3;
 		break;
 
 	case PlayerBattleCommand::SKILL:
@@ -105,7 +109,13 @@ void PlayerRpgComponent::EnemyAttackUpdate() {
 }
 
 void PlayerRpgComponent::EncountUpdate() {
-	m_state = PlayerState::COMMAND_CHOICE;
+	// 現在テスト段階
+	// 条件をAnimationが終了するとに変更予定
+	static float time = 0;
+	time += FpsManager::GetInstance().GetDeltaTime();
+	if (time >= 3.f) {
+		m_state = PlayerState::COMMAND_CHOICE;
+	}
 }
 
 }

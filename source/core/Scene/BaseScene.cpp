@@ -9,27 +9,25 @@ namespace scene {
 void BaseScene::AllObjectUpdate() {
 	// CreanUp
 	std::vector<object::ObjectPtr> result;
-	for (auto itr: m_object) {
-		if (!itr.expired()) {
-			result.push_back(itr);
-		}
+	for (auto itr : m_object) {
+		result.push_back(itr);
 	}
 
 	// Update
 	for (auto itr : m_object) {
-		itr.lock()->Update();
+		itr->Update();
 	}
 }
 
 void BaseScene::AllImGuiDraw() {
 	// ImGuiの描画
 	for (auto itr : m_object) {
-		itr.lock()->ImGuiDraw();
+		itr->ImGuiDraw();
 	}
 }
 
 // オブジェクトの追加・ロード関数内で使う予定
-void BaseScene::IncetanceObject(object::ObjectPtr _object) {
+void BaseScene::IncetanceObject(object::ObjectSPtr _object) {
 	m_object.push_back(_object);
 }
 

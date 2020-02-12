@@ -15,6 +15,8 @@
 #include "./AssetManager/ModelLoader.h"
 #include "./Texture.h"
 
+//#define TEXTURE_MAX 5
+//#define INTER_POLATE_NUM 1
 namespace mslib {
 namespace render {
 
@@ -32,6 +34,10 @@ public:
 	void Draw();
 
 	void AnimationUpdate(unsigned int _animeNo,unsigned int _animeFileNo);
+
+	// マテリアルセット
+	void SetMaterial(std::string _fileName, int _number);
+	void SetMaterial(MaterialData _mat, int _number);
 
 	// テクスチャのセット
 	void SetTexture(std::string _fileName, int _number);
@@ -54,12 +60,15 @@ private:
 	// シェーダー(内部でスマートポインタにしている)
 	shader::Shaders m_shaders;
 	// テクスチャ
-	std::array< texture::MyTexture, TEXTURE_MAX > m_texture;
+	std::vector< texture::MyTexture > m_texture;
 	// ボーンデータ
 	std::map<std::string, render::Bone> m_bone;
+
 	// アシンプ導入
 	// ここにあるのはよくない
-	assimp::AssimpScene m_assimpScene;
+	// 実体がここにあるのでCopyコンストラクタを呼ぶとバグる
+	// AssetManagerにアシンプを追加してポインタを保持できるようにする
+	std::shared_ptr<assimp::AssimpScene> m_assimpScene;
 
 	// キーフレームアニメーションデータ
 	int m_Frame = 0;							// フレーム番号

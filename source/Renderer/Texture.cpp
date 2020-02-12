@@ -10,7 +10,7 @@ MyTexture::MyTexture() {
 	m_baseTexture = std::make_unique<texture::BasisTexture>();
 }
 void MyTexture::Send(int _number) {
-	m_baseTexture->Send(_number);
+	if(m_baseTexture)	m_baseTexture->Send(_number);
 }
 
 void MyTexture::Load(std::string _fileNmae) {

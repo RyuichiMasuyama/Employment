@@ -12,7 +12,6 @@ public:
 	void Load()override;
 	void UnLoad()override;
 private:
-	object::HaveCameraGameObjectSPtr m_haveCamera;
 	object::TitleSceneManagerGameObjectSPtr m_titleSceneManager;
 };
 }

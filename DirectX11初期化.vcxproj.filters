@@ -224,6 +224,84 @@
     <ClCompile Include="source\origne\Field\FieldManager.cpp">
       <Filter>origne\Field</Filter>
     </ClCompile>
+    <ClCompile Include="source\origne\Field\Field.cpp">
+      <Filter>origne\Field</Filter>
+    </ClCompile>
+    <ClCompile Include="source\origne\Enemy\GameObject\EnemyGameObject.cpp">
+      <Filter>origne\Enemy\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="source\origne\Enemy\GameObject\EnemyLoad.cpp">
+      <Filter>origne\Enemy\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="source\origne\Enemy\GameObject\LoadEnemyGameObject.cpp">
+      <Filter>origne\Enemy\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="source\origne\Enemy\GameObject\EnemyManagerGameObject.cpp">
+      <Filter>origne\Enemy\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="source\origne\Field\FieldManagerComponent.cpp">
+      <Filter>origne\Field</Filter>
+    </ClCompile>
+    <ClCompile Include="source\origne\Enemy\Component\EnemyComponent.cpp">
+      <Filter>origne\Enemy\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="source\origne\RPGManager\GameObject\RpgFieldGameObject.cpp">
+      <Filter>origne\RPGManager\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="source\core\Component\Render\QubeMapComponent.cpp">
+      <Filter>core\Component\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="source\origne\SkyBoxGameObject.cpp">
+      <Filter>origne</Filter>
+    </ClCompile>
+    <ClCompile Include="source\origne\Player\GameObject\PlayerCommandModelGameObject.cpp">
+      <Filter>origne\Player\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="source\core\Component\Physics\RigidbodyComponent.cpp">
+      <Filter>core\Component\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="source\core\Component\Collision\CollisionBaseComponent.cpp">
+      <Filter>core\Component\Collision\base</Filter>
+    </ClCompile>
+    <ClCompile Include="source\core\Component\Collision\CollisionSphereComponent.cpp">
+      <Filter>core\Component\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="source\core\CollisionManager.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="source\origne\Scene\AtariScene.cpp">
+      <Filter>origne\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Renderer\BaseMaterial.cpp">
+      <Filter>Renderer\base</Filter>
+    </ClCompile>
+    <ClCompile Include="source\origne\Atari\AtariGameObject.cpp">
+      <Filter>origne\Atari</Filter>
+    </ClCompile>
+    <ClCompile Include="source\origne\Atari\FpsDrawGameObject.cpp">
+      <Filter>origne\Atari</Filter>
+    </ClCompile>
+    <ClCompile Include="source\core\Network\WindowsNetwork.cpp">
+      <Filter>core\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="source\AssetManager\AssimpLoader.cpp">
+      <Filter>Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="source\core\Network\wsock32error.cpp">
+      <Filter>core\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="source\core\Network\Network.cpp">
+      <Filter>core\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="source\core\Network\BaseNetwork.cpp">
+      <Filter>core\Network\base</Filter>
+    </ClCompile>
+    <ClCompile Include="source\origne\NetworkGame\NetworkGame.cpp">
+      <Filter>origne\NetworkGame</Filter>
+    </ClCompile>
+    <ClCompile Include="source\origne\Scene\NetworkGameScene.cpp">
+      <Filter>origne\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="core">
@@ -358,14 +436,38 @@
     <Filter Include="origne\Title">
       <UniqueIdentifier>{1400c6fb-e4b0-4f67-9a08-4036ade520c8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="origne\Fade">
-      <UniqueIdentifier>{359960d4-5e65-4379-b3c4-d30c06eb8cce}</UniqueIdentifier>
-    </Filter>
     <Filter Include="origne\Camera">
       <UniqueIdentifier>{33ae85d2-16da-40a5-a1e0-68c5074f7b93}</UniqueIdentifier>
     </Filter>
     <Filter Include="origne\Field">
       <UniqueIdentifier>{324c112a-0c59-46ea-859c-50471d4ce3fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="origne\Fade">
+      <UniqueIdentifier>{359960d4-5e65-4379-b3c4-d30c06eb8cce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\Component\Physics">
+      <UniqueIdentifier>{b1208c54-f0f2-41b1-adfb-de8308c0d806}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\Component\Collision">
+      <UniqueIdentifier>{dd3167e8-4427-44fc-9004-b0221d6ed760}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\Component\Collision\base">
+      <UniqueIdentifier>{6383126e-f896-4df5-9882-87db34c4ff7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\thread\CollisionThread">
+      <UniqueIdentifier>{7a06f41f-79f9-42a1-ae40-c581cba5b6ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="origne\Atari">
+      <UniqueIdentifier>{19da87b5-791d-4bd2-815e-b8ccb8d832bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\Network">
+      <UniqueIdentifier>{abf32f4c-4c30-4e86-be8e-79c05f16d427}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\Network\base">
+      <UniqueIdentifier>{498b1350-150a-47c5-9182-392071eb98c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="origne\NetworkGame">
+      <UniqueIdentifier>{873a82ef-c8dd-40ad-8024-c258b057407c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -651,6 +753,88 @@
     </ClInclude>
     <ClInclude Include="source\origne\Field\FieldManager.h">
       <Filter>origne\Field</Filter>
+    </ClInclude>
+    <ClInclude Include="source\origne\Field\Field.h">
+      <Filter>origne\Field</Filter>
+    </ClInclude>
+    <ClInclude Include="source\origne\Status.h">
+      <Filter>origne</Filter>
+    </ClInclude>
+    <ClInclude Include="source\origne\Enemy\GameObject\LoadEnemyGameObject.h">
+      <Filter>origne\Enemy\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="source\origne\Enemy\GameObject\EnemyLoad.h">
+      <Filter>origne\Enemy\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="source\origne\Enemy\GameObject\EnemyManagerGameObject.h">
+      <Filter>origne\Enemy\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="source\origne\Field\FieldManagerComponent.h">
+      <Filter>origne\Field</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ImGui\imstb_rectpack.h">
+      <Filter>Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ImGui\imstb_textedit.h">
+      <Filter>Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="source\origne\RPGManager\GameObject\RpgFieldGameObject.h">
+      <Filter>origne\RPGManager\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\Component\Render\QubeMapComponent.h">
+      <Filter>core\Component\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="source\origne\SkyBoxGameObject.h">
+      <Filter>origne</Filter>
+    </ClInclude>
+    <ClInclude Include="source\origne\Player\GameObject\PlayerCommandModelGameObject.h">
+      <Filter>origne\Player\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\Component\Physics\RigidbodyComponent.h">
+      <Filter>core\Component\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\CollisionManager.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\Component\Collision\CollisionBaseComponent.h">
+      <Filter>core\Component\Collision\base</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\Component\Collision\CollisionSphereComponent.h">
+      <Filter>core\Component\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="source\DirectX\math\AABB.h" />
+    <ClInclude Include="source\origne\Scene\AtariScene.h">
+      <Filter>origne\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\Thread\CollisionThread\CollisionThread.h">
+      <Filter>core\thread\CollisionThread</Filter>
+    </ClInclude>
+    <ClInclude Include="source\origne\Atari\AtariGameObject.h">
+      <Filter>origne\Atari</Filter>
+    </ClInclude>
+    <ClInclude Include="source\origne\Atari\FpsDrawGameObject.h">
+      <Filter>origne\Atari</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\Network\Network.h">
+      <Filter>core\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\Network\BaseNetwork.h">
+      <Filter>core\Network\base</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\Network\WindowsNetwork.h">
+      <Filter>core\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="source\AssetManager\AssimpLoader.h">
+      <Filter>Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\Network\wsock32error.h">
+      <Filter>core\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="source\origne\NetworkGame\NetworkGame.h">
+      <Filter>origne\NetworkGame</Filter>
+    </ClInclude>
+    <ClInclude Include="source\origne\Scene\NetworkGameScene.h">
+      <Filter>origne\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

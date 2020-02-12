@@ -1,6 +1,9 @@
 #pragma once
 
 #include "./core/Object/object.h"
+#include <./origne/Camera/HaveCameraGameObject.h>
+#include "./origne/Player/GameObject/PlayerGameObject.h"
+#include <./origne/Enemy/GameObject/EnemyManagerGameObject.h>
 
 namespace mslib {
 namespace origin {
@@ -20,15 +23,31 @@ enum class BATTLE_PHASE{
 // 敵をスポーンさせてからSceneアウトまでを行う
 class RpgManagerGameObject :public object::GameObject {
 	BASE_CLASS_IS(object::GameObject)
-		static constexpr const char* PlayerGameObjectName = "RpgManagerGameObject";
+	
+	static constexpr const char* RpgManagerGameObjectName = "RpgManagerGameObject";
+	static constexpr const char* RpgUpdateName = "RpgUpdate";
+public:
+	RpgManagerGameObject(
+		object::HaveCameraGameObjectSPtr _haveCameraGameObject,
+		origin::game::PlayerGameObjectSPtr _playerGameObject,
+		object::EnemyManagerGameObjectSPtr _enemyManagerGameObject);
+	~RpgManagerGameObject() = default;
+
+	void Initialize() override;
 private:
 	void RpgUpdate();
 	void BeforUpdate() override;
 
-	RpgManagerComponentPtr m_rpgManagerCompoent;
-public:
-	void Initialize() override;
+	float m_feadLevel;
 
+	RpgManagerComponentPtr m_rpgManagerCompoent;
+
+	object::HaveCameraGameObjectSPtr m_haveCameraGameObject;
+
+	origin::game::PlayerGameObjectSPtr m_playerGameObject;
+	object::EnemyManagerGameObjectSPtr m_enemyManagerGameObject;
+
+	math::Matrix m_playerFiledMatrix;
 };
 
 }  // namespace game

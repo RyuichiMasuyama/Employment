@@ -8,9 +8,10 @@ class BattleScene :public BaseScene {
 public:
 	BattleScene() = default;
 	~BattleScene() = default;
+
+	void Load()override;
 private:
 	void Update()override;
-	void Load()override;
 };
 }
 }

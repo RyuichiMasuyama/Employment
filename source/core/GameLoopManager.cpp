@@ -1,6 +1,8 @@
 #include "./GameLoopManager.h"
 #include "./GameObjectManager.h"
 
+#include <./core/CollisionManager.h>
+
 #include "./Renderer/Render.h" 
 
 #include "imgui/imgui.h"
@@ -9,22 +11,16 @@
 
 namespace mslib {
 GameLoop::GameLoop(){
-	//m_directx11_manager = _directx_manager;
-
-	//m_fpsManager = std::make_unique<FpsManager>(_directx_manager);
-
-	// カメラ変換行列初期化
-	// プロジェクション変換行列初期化
-	//math::Vector3 eye = { 0.f,0.f,-10.f };				// 視点
-	//math::Vector3 lookat = { 0,0,0 };			// 注視点
-	//math::Vector3 up = { 0,1,0 };					// 上向きベクトル
-
-	//m_camera.Init(1.0f, 10000.0f, DirectX::XM_PIDIV2, SCREEN_X, SCREEN_Y, eye, lookat, up);
 }
 
 GameLoop::~GameLoop() = default;
 
-void GameLoop::Init() {}
+void GameLoop::Init() {
+	manager::CollisionManager::GetInstance().Initialize(
+		7,
+		COLLISION_THREE_SIZE_MIN,
+		COLLISION_THREE_SIZE_MAX);
+}
 
 void GameLoop::Exit() {
 }
@@ -35,24 +31,6 @@ void GameLoop::RenderAfter() {
 }
 
 void GameLoop::RenderBefore() {
-	////バックカラー
-	//float color[4] = { 0.f,0.f,1.f,1.f };
-
-	//m_directx11_manager->GetDeviceContext()->OMSetRenderTargets(1, m_directx11_manager->GetRenderTargetView().GetAddressOf(),
-	//	m_directx11_manager->GetDepthStencilView().Get());
-
-	//// ターゲットバッファクリア
-	//m_directx11_manager->GetDeviceContext()->ClearRenderTargetView(m_directx11_manager->GetRenderTargetView().Get(), color);
-
-	//// Zバッファクリア
-	//m_directx11_manager->GetDeviceContext()->ClearDepthStencilView(m_directx11_manager->GetDepthStencilView().Get(),
-	//	D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, 0);
-
-	////プリミティブトポロジーをセット
-	//m_directx11_manager->GetDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-
-	////アルファブレンドオン
-	//m_directx11_manager->TurnOnAlphaBlending();
 }
 
 void GameLoop::ImGuiRenderAfter() {
@@ -69,18 +47,6 @@ void GameLoop::ImGuiRenderBefor() {
 	ImGui_ImplDX11_NewFrame();
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();
-
-	//ジオメトリシェーダーをセット
-	//m_directx11_manager->GetDeviceContext()->GSSetShader(nullptr, nullptr, 0);
-
-	////ハルシェーダーをセット
-	//m_directx11_manager->GetDeviceContext()->HSSetShader(nullptr, nullptr, 0);
-
-	////ドメインシェーダーをセット
-	//m_directx11_manager->GetDeviceContext()->DSSetShader(nullptr, nullptr, 0);
-
-	// ImGui::Spacing();
-
 #endif // !_DEBUG
 }
 
